@@ -24,13 +24,13 @@
 
       :host {
         display: block;
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+
+        --app-primary-color: #295DA4;
+        --app-secondary-color: #E06680;
       }
 
       app-header {
-        background-color: var(--app-primary-color);
-        color: var(--app-secondary-color);
+        color: rgba(0,0,0,0.86);
       }
 
       app-header paper-icon-button {
@@ -53,6 +53,11 @@
         #appToolbar {
           height: 64px;
           padding: 0 16px;
+          text-transform: uppercase;
+        }
+
+        #appToolbar [title] {
+          display: none;
         }
       }
 
@@ -122,6 +127,18 @@
       .menu-desktop > paper-tab.iron-selected > a {
         font-weight: normal;
       }
+
+      #views > * {
+        min-height: calc( 100vh - 56px );
+        background: #B0BEC5;
+        box-sizing: border-box;
+      }
+
+      @media (min-width:600px) {
+        #views > * {
+          min-height: calc( 100vh - 64px );
+        }
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -172,7 +189,7 @@
           </app-toolbar>
         </app-header>
 
-        <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
+        <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
           <view-view1 name="view1"></view-view1>
           <view-view2 name="view2"></view-view2>
           <view-view3 name="view3"></view-view3>
