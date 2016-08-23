@@ -1,0 +1,149 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../timer-days/timer-days.html">
+
+<link href="https://fonts.googleapis.com/css?family=Lato:400,100" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" type="text/css">
+
+<dom-module id="polymerday-app">
+
+  <template>
+
+    <style>
+      :host {
+        position: relative;
+        display: block;
+        height: 100%;
+
+        --app-primary-color: #295DA4;
+        --app-secondary-color: #E06680;
+
+        background: #FFF url('images/side.png') no-repeat;
+        background-size: auto 100%;
+
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+      }
+
+      .container {
+        text-align: center;
+        z-index: 100;
+        @apply(--layout-flex);
+      }
+
+      h2.date {
+        font-family: 'Lato', sans-serif;
+        font-weight: 100;
+        color: #4687C7;
+        line-height: 0.5;
+        text-align: center;
+      }
+
+      h2.date span {
+        display: inline-block;
+        position: relative;
+      }
+
+      @media (min-width: 450px) {
+        h2.date span:before,
+        h2.date span:after {
+          content: "";
+          position: absolute;
+          height: 5px;
+          border-bottom: 1px solid #4687C7;
+          border-top: 1px solid #4687C7;
+          top: 3px;
+          width: 100px;
+        }
+
+        h2.date span:before {
+          right: 100%;
+          margin-right: 15px;
+        }
+
+        h2.date span:after {
+          left: 100%;
+          margin-left: 15px;
+        }
+      }
+
+      img.logo {
+        max-width: 75%;
+      }
+
+      h1 {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 400;
+      }
+
+      h1.slogan {
+        font-size: 1.8em;
+        text-shadow: 1px 0 0 #fff,
+          -1px 0 0 #fff,
+          0 1px 0 #fff,
+          0 -1px 0 #fff,
+          1px 1px #fff,
+          -1px -1px 0 #fff,
+          1px -1px 0 #fff,
+          -1px 1px 0 #fff;
+      }
+
+      img.side {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom : 0;
+        height: 100%;
+      }
+
+      timer-days {
+        background-image: url('images/bg.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center 20%;
+        padding: 40px 0;
+        min-width: auto;
+
+        --timer-days-font-color: #FFF;
+        --timer-days-font-number-size: 35px;
+      }
+
+    </style>
+
+    <div class="container">
+      <h2 class="date"><span>[[formatedDate(date)]]</span></h2>
+      <img class="logo" src="images/logo_polymerday.png" />
+      <h1 class="location">Madrid</h1>
+      <timer-days target-date="2016-10-21T09:00:00"></timer-days>
+      <h1 class="slogan">We're Coming Soon...</h1>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'polymerday-app',
+
+      properties: {
+        date: {
+          type: Date,
+          value: new Date('October 21, 2016'),
+        },
+      },
+
+      _monthName: function(dt) {
+        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return months[dt.getMonth()];
+      },
+
+      formatedDate: function(dt) {
+        return this._monthName(dt) + ' '
+          + dt.getDate() + 'th -'
+          + (dt.getDate()+1) + 'th, '
+          + dt.getFullYear();
+      }
+
+    });
+  </script>
+</dom-module>
