@@ -1,6 +1,20 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../timer-days/timer-days.html">
+<link rel="import" href="../app-data/app-data.html">
+<link rel="import" href="../app-icons/app-icons.html">
 
 <link href="https://fonts.googleapis.com/css?family=Lato:400,100" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" type="text/css">
@@ -20,33 +34,32 @@
 
         background: #FFF url('images/side.png') no-repeat;
         background-size: auto 100%;
-
+        /*
         @apply(--layout-horizontal);
-        @apply(--layout-center);
+        @apply(--layout-center);*/
       }
 
       .container {
-        text-align: center;
+        text-align: center;/*
         z-index: 100;
-        @apply(--layout-flex);
+        @apply(--layout-flex);*/
       }
 
-      h2.date {
+      .container h2.date {
         font-family: 'Lato', sans-serif;
         font-weight: 100;
         color: #4687C7;
         line-height: 0.5;
         text-align: center;
       }
-
-      h2.date span {
+      .container h2.date span {
         display: inline-block;
         position: relative;
       }
 
       @media (min-width: 450px) {
-        h2.date span:before,
-        h2.date span:after {
+        .container h2.date span:before,
+        .container h2.date span:after {
           content: "";
           position: absolute;
           height: 5px;
@@ -56,27 +69,27 @@
           width: 100px;
         }
 
-        h2.date span:before {
+        .container h2.date span:before {
           right: 100%;
           margin-right: 15px;
         }
 
-        h2.date span:after {
+        .container h2.date span:after {
           left: 100%;
           margin-left: 15px;
         }
       }
 
-      img.logo {
+      .container img.logo {
         max-width: 75%;
       }
 
-      h1 {
+      .container h1 {
         font-family: 'Quicksand', sans-serif;
         font-weight: 400;
       }
 
-      h1.slogan {
+      .container h1.slogan {
         font-size: 1.8em;
         text-shadow: 1px 0 0 #fff,
           -1px 0 0 #fff,
@@ -88,7 +101,7 @@
           -1px 1px 0 #fff;
       }
 
-      img.side {
+      .container img.side {
         position: absolute;
         top: 0;
         left: 0;
@@ -108,15 +121,99 @@
         --timer-days-font-number-size: 35px;
       }
 
+      app-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 212px;
+        color: --app-primary-color;/*#fff;
+        background-color: var(--app-primary-color);
+        --app-header-background-front-layer: {
+          background-image: url(../images/bg2.jpg);
+          background-position: left center;
+        };*/
+      }
+      app-header paper-icon-button,
+      app-header iron-icon {
+        --paper-icon-button-ink-color: white;
+        width: 64px;
+        height: 64px;
+      }
+      app-toolbar.tall {
+        height: 148px;
+      }
+      [title] {
+        font-weight: lighter;
+        margin-left: 108px;
+        font-family: 'Quicksand', sans-serif;
+      }
+      [condensed-title] {
+        font-weight: lighter;
+        margin-left: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      [condensed-title] i {
+        font-weight: 100;
+        font-style: normal;
+      }
+      @media (max-width: 639px) {
+        [main-title] {
+          margin-left: 50px;
+          font-size: 30px;
+        }
+        [condensed-title] {
+          font-size: 15px;
+        }
+      }
+
+      #accountDialog {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 400px;
+        overflow: auto;
+      }
+
+      #accountButton iron-icon {
+        /*
+        https://css-tricks.com/clipping-masking-css/
+        */
+        -webkit-clip-path: circle(24px at 50% 50%);
+        clip-path: circle(24px at 50% 50%);
+      }
+
     </style>
 
-    <div class="container">
-      <h2 class="date"><span>[[formatedDate(date)]]</span></h2>
-      <img class="logo" src="images/logo_polymerday.png" />
-      <h1 class="location">Madrid</h1>
-      <timer-days target-date="2016-10-21T09:00:00"></timer-days>
-      <h1 class="slogan">We're Coming Soon...</h1>
-    </div>
+    <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
+      <app-data user="{{user}}"></app-data>
+    </paper-dialog>
+
+    <!-- Main content -->
+    <app-header-layout has-scrolling-region>
+
+      <app-header condenses reveals effects="waterfall resize-title blend-background parallax-background">
+        <app-toolbar class="tall">
+          <div main-title>&nbsp;</div>
+          <paper-button id="accountButton" class="">
+            Pre-registration is now open
+            <iron-icon src="{{user.photoURL}}" alt=="{{user.displayName}}" icon="{{accountButtonIcon}}"></iron-icon>
+          </paper-button>
+        </app-toolbar>
+      </app-header>
+
+      <div class="container">
+        <h2 class="date"><span>[[formatedDate(date)]]</span></h2>
+        <img class="logo" src="images/logo_polymerday.png" />
+        <h1 class="location">Madrid</h1>
+        <timer-days target-date="2016-10-21T09:00:00"></timer-days>
+        <h1 class="slogan">We're Coming Soon...</h1>
+      </div>
+
+    </app-header-layout>
 
   </template>
 
@@ -130,6 +227,29 @@
           type: Date,
           value: new Date('October 21, 2016'),
         },
+
+        user: {
+          type: Object,
+          notify: true
+        },
+
+        accountButtonIcon: {
+          type: String,
+          value: 'account-circle',
+          computed: '_computeAccountButtonIcon(user)'
+        }
+      },
+
+      listeners: {
+        'accountButton.tap': '_showAccountDialog'
+      },
+
+      _showAccountDialog: function() {
+        this.$.accountDialog.open();
+      },
+
+      _computeAccountButtonIcon: function(user) {
+        return (user) ? null : 'account-circle'
       },
 
       _monthName: function(dt) {
