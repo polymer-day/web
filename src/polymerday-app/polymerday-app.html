@@ -2,9 +2,12 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -206,11 +209,23 @@
 
       <app-header condenses reveals effects="waterfall resize-title blend-background parallax-background">
         <app-toolbar class="tall">
-          <div main-title>&nbsp;</div>
-          <paper-button id="accountButton" class="">
+          <div main-title>Polymer Day 2016</div>
+          <!--paper-button id="accountButton" class="">
             Pre-registration is now open
             <iron-icon src="{{user.photoURL}}" alt=="{{user.displayName}}" icon="{{accountButtonIcon}}"></iron-icon>
-          </paper-button>
+          </paper-button-->
+          <paper-tabs class="menu-desktop" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
+            <template is="dom-repeat" items="[[_toArray(menu)]]">
+              <paper-tab menu-name="[[item.name]]" link>
+                <a tabindex="-1" href="/[[item.__id]]">
+                  <template is="dom-if" if="[[item.icon]]">
+                    <iron-icon icon="[[item.icon]]"></iron-icon>
+                  </template>
+                  [[item.title]]
+                </a>
+              </paper-tab>
+            </template>
+          </paper-tabs>
         </app-toolbar>
       </app-header>
 
@@ -226,6 +241,7 @@
         <view-tracks name="tracks"></view-tracks>
         <view-speakers name="speakers"></view-speakers>
         <view-venue name="venue"></view-venue>
+        <view-sponsors name="sponsors"></view-sponsors>
       </iron-pages>
 
     </app-header-layout>
@@ -252,12 +268,12 @@
           value: {
             'tracks': {
               'name': 'tracks',
-              'title': 'Tracks',
-              'default': true
+              'title': 'Tracks'
             },
             'speakers': {
               'name': 'speakers',
-              'title': 'Speakers'
+              'title': 'Speakers',
+              'default': true
             },
             'venue': {
               'name': 'venue',
@@ -313,10 +329,10 @@
       observers: [
         'goTo(routeData.page)'
       ],
-
+/*
       listeners: {
         'accountButton.tap': '_showAccountDialog'
-      },
+      },*/
 
       _computeDefaultView: function(menu) {
         var name;
