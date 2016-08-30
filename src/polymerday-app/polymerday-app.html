@@ -1,16 +1,18 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../timer-days/timer-days.html">
 <link rel="import" href="../app-data/app-data.html">
@@ -20,9 +22,9 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" type="text/css">
 
 <dom-module id="polymerday-app">
+  <style include="iron-flex iron-flex-alignment"></style>
 
   <template>
-
     <style>
       :host {
         position: relative;
@@ -188,6 +190,13 @@
 
     </style>
 
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
     <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
       <app-data user="{{user}}"></app-data>
     </paper-dialog>
@@ -212,6 +221,12 @@
         <timer-days target-date="2016-10-21T09:00:00"></timer-days>
         <h1 class="slogan">We're Coming Soon...</h1>
       </div>
+
+      <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
+        <view-tracks name="tracks"></view-tracks>
+        <view-speakers name="speakers"></view-speakers>
+        <view-venue name="venue"></view-venue>
+      </iron-pages>
 
     </app-header-layout>
 
@@ -312,7 +327,7 @@
       },
 
       _pageChanged: function(page) {
-        var url = this.resolveUrl('view-' + page + '.html');
+        var url = this.resolveUrl('../' + 'view-' + page + '.html');
 
         // load page import on demand.
         this.importHref(url, null, null, true);
@@ -328,13 +343,13 @@
 
         this.page = page;
 
-        this.closeDrawer();
+        // this.closeDrawer();
 
         this.async(function() {
           this.set('routeData.page', page);
         }, 50);
       },
-
+      /*
       openDrawer: function() {
         if (!this.$.drawer.persistent) {
           this.$.drawer.open();
@@ -345,7 +360,7 @@
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
-      },
+      },*/
 
       _toArray: function(obj) {
         return obj ? Object.keys(obj).map(function(key) {
