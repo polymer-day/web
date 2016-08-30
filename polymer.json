@@ -1,0 +1,9 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/polymerday-app.html",
+  "fragments": [
+    "src/view-tracks.html",
+    "src/view-speakers.html",
+    "src/view-venue.html"
+  ]
+}

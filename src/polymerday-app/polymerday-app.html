@@ -223,6 +223,57 @@
       is: 'polymerday-app',
 
       properties: {
+        app: {
+          type: Object,
+          value: function() {
+            return {
+              version: '0.0.1'
+            };
+          }
+        },
+
+        menu: {
+          type: Object,
+          value: {
+            'tracks': {
+              'name': 'tracks',
+              'title': 'Tracks',
+              'default': true
+            },
+            'speakers': {
+              'name': 'speakers',
+              'title': 'Speakers'
+            },
+            'venue': {
+              'name': 'venue',
+              'title': 'Venue'
+            },
+          },
+        },
+
+        route: {
+          type: Object
+        },
+
+        routeData: {
+          type: Object
+        },
+
+        subroute: {
+          type: Object
+        },
+
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+
+        _defaultView: {
+          type: String,
+          computed: '_computeDefaultView(menu)'
+        },
+
         date: {
           type: Date,
           value: new Date('October 21, 2016'),
@@ -240,8 +291,67 @@
         }
       },
 
+      observers: [
+        'goTo(routeData.page)'
+      ],
+
       listeners: {
         'accountButton.tap': '_showAccountDialog'
+      },
+
+      _computeDefaultView: function(menu) {
+        var name;
+
+        for (var item in menu) {
+          if (menu[item].default) {
+            return name = item;
+          }
+        }
+
+        return name;
+      },
+
+      _pageChanged: function(page) {
+        var url = this.resolveUrl('view-' + page + '.html');
+
+        // load page import on demand.
+        this.importHref(url, null, null, true);
+      },
+
+      goTo: function(page) {
+        page = page || this._defaultView;
+        var page = this.menu[page].name;
+
+        if (this.page === page) {
+          return;
+        }
+
+        this.page = page;
+
+        this.closeDrawer();
+
+        this.async(function() {
+          this.set('routeData.page', page);
+        }, 50);
+      },
+
+      openDrawer: function() {
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.open();
+        }
+      },
+
+      closeDrawer: function() {
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.close();
+        }
+      },
+
+      _toArray: function(obj) {
+        return obj ? Object.keys(obj).map(function(key) {
+          obj[key].__id = key;
+          return obj[key];
+        }) : null;
       },
 
       _showAccountDialog: function() {

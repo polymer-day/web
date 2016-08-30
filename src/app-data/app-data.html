@@ -3,7 +3,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
-<script src="../../data/app-dataconfig.js"></script>
+<script src="data/app-dataconfig.js"></script>
 
 <dom-module id="app-data">
 
@@ -182,7 +182,7 @@
         this.$.auth.signOut();
       },
 
-      _computeUserData(user, oldUser) {
+      _computeUserData: function(user, oldUser) {
         if (user !== null) {
           this.set('userPath', '/users/' + user.uid);
           this.set('userData', {
