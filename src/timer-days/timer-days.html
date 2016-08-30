@@ -20,7 +20,7 @@ Example:
 You can specify the language in which the labels will be shown. By default they are in english, but you can use `lang` to choose between English (en), Spanish (es), French (fr), Italian (it), Portuguese (pt) or German (de).
 =======
 
-You can specify the language in which the labels will be shown. By default they are in english, but you can 
+You can specify the language in which the labels will be shown. By default they are in english, but you can
 use `lang` to choose between English (en), Spanish (es), French (fr), Italian (it), Portuguese (pt) or German (de).
 >>>>>>> 0f787ccaa8bc37a3298334d0a28c91a0185b2fb2
 
@@ -38,7 +38,7 @@ Example:
 <<<<<<< HEAD
 It is also posible to set the text to be displayed before and after the proper countdown, by using the `before` and `after` properties.
 =======
-It is also posible to set the text to be displayed before and after the proper countdown, by using the `before` 
+It is also posible to set the text to be displayed before and after the proper countdown, by using the `before`
 and `after` properties.
 >>>>>>> 0f787ccaa8bc37a3298334d0a28c91a0185b2fb2
 
@@ -70,29 +70,29 @@ Custom property | Description | Default
     :host {
       min-width: 400px;
       display: block;
-      text-align: center; 
+      text-align: center;
       padding-top: 5px;
       padding-bottom: 5px;
-
+      /*
       background-color: var(--timer-days-background-color, #FFD54F);
-      border: 1px solid var(--timer-days-border-color, #212121);
-      color: var(--timer-days-font-color, #212121);
-      @apply(--shadow-elevation-4dp);
-      
+      border: 1px solid var(--timer-days-border-color, #212121);*/
+      color: var(--timer-days-font-color, #212121);/*
+      @apply(--shadow-elevation-4dp);*/
+      /*
       transition-property: background-color, border, color;
       transition-duration: 300ms;
-      transition-timing-function: linear; 
+      transition-timing-function: linear; */
 
-      /*For Safari*/
+      /*For Safari*//*
       -webkit-transition-property: background-color, border, color;
       -webkit-transition-duration: 300ms;
-      -webkit-transition-timing-function: linear; 
+      -webkit-transition-timing-function: linear; */
     }
 
-    :host(:hover) {
+    :host(:hover) {/*
       background-color: var(--timer-days-hover-background-color, #4E342E);
       border: 1px solid var(--timer-days-hover-border-color, #CFD8DC);
-      color: var(--timer-days-hover-font-color, #CFD8DC);
+      color: var(--timer-days-hover-font-color, #CFD8DC);*/
     }
 
     .description {
@@ -105,7 +105,7 @@ Custom property | Description | Default
     }
 
     .text{
-      font-size: var(--timer-days-font-text-size, 18px); 
+      font-size: var(--timer-days-font-text-size, 18px);
     }
 
     .inline {
@@ -123,7 +123,7 @@ Custom property | Description | Default
     <span class="inline"><span class="number">{{_secs}}</span><br><span class="text">{{_chosenWords.3}}</span></span>
     <p class="description">{{after}}</p>
   </template>
-</dom-module>  
+</dom-module>
 
 
 
@@ -131,15 +131,15 @@ Custom property | Description | Default
   Polymer({
       is: 'timer-days',
       properties:{
-        /** 
+        /**
          *  Target date of our timer.
          *  Highly recommended to use the "yyyy-mm-ddThh:mm:ss" format
-         *  to specify when using the component. 
+         *  to specify when using the component.
          */
         targetDate: String,
 
-        /** 
-         *  Text to be shown before the count of time. 
+        /**
+         *  Text to be shown before the count of time.
          *  If no value is specified, nothing is displayed.
          */
         before:{
@@ -147,16 +147,16 @@ Custom property | Description | Default
           value: ""
         },
 
-        /** 
-         *  Text to be shown after the count of time. 
+        /**
+         *  Text to be shown after the count of time.
          *  If no value is specified, nothing is displayed.
-         */        
+         */
          after:{
           type: String,
           value: ""
         },
 
-        /** 
+        /**
          *  Language of the "hour, day, minute and second" that
          *  are displayed. By default, english is used.
          */
@@ -173,13 +173,13 @@ Custom property | Description | Default
 
         /** Number of entire hours until target date. */
         _hours: Number,
-        
+
         /** Number of entire minnutes until target date. */
         _mins: Number,
-        
+
         /** Number of entire seconds until target date. */
         _secs: Number,
-        
+
         /** Words "days" and "day" in the selected language. */
         wordDay: Array,
 
@@ -191,9 +191,9 @@ Custom property | Description | Default
 
         /** Words "seconds" and "second" in the selected language. */
         _wordSec: Array,
-        
+
         /**
-         *  Words displayed for each element in the counter, 
+         *  Words displayed for each element in the counter,
          *  depending on the language and the number.
          */
         _chosenWords: Array
@@ -258,24 +258,24 @@ Custom property | Description | Default
             this._wordDay = ["day", "days"];
             this._wordHour = ["hour", "hours"];
             this._wordMin = ["minute", "minutes"];
-            this._wordSec = ["second", "seconds"]; 
+            this._wordSec = ["second", "seconds"];
           }
         }
       },
 
-      /** 
-       *  Manages an interation of the timer to modify what is displayed and prepare 
+      /**
+       *  Manages an interation of the timer to modify what is displayed and prepare
        *  the next iteration one second after it has ended.
        */
       _updateTimer: function(){
         this._calculateGap();
         this._chosenWords = this._wordsToDisplay();
-        this.async(this._updateTimer, 1000); 
+        this.async(this._updateTimer, 1000);
       },
 
-        /** 
-         *  Calculates the number of days, hours, minutes and seconds from 
-         *  the current date to the target. 
+        /**
+         *  Calculates the number of days, hours, minutes and seconds from
+         *  the current date to the target.
          */
       _calculateGap: function(){
         var startingDate = new Date();
@@ -295,11 +295,11 @@ Custom property | Description | Default
           this._secs = 0;
         }
       },
-      
+
       /**
        * Padding seconds, minutes and hours with 0
-       * 
-       * @return {string} A padding string with 0. Length 2  
+       *
+       * @return {string} A padding string with 0. Length 2
        */
       _padTime: function(s){
         var ss = "" + s;
@@ -310,16 +310,16 @@ Custom property | Description | Default
       },
 
       /**
-       *  Decides the words that are shown taking into account if each one 
+       *  Decides the words that are shown taking into account if each one
        *  refers to a singular or plural number.
-       *   
-       *  @return {array} An array with the string that must be showed. 
+       *
+       *  @return {array} An array with the string that must be showed.
        *    The order is days, hours, minutes and seconds.
        */
       _wordsToDisplay: function(){
-        return [((this._days != 1) ? this._wordDay[1] : this._wordDay[0]), 
-          ((this._hours != 1) ? this._wordHour[1] : this._wordHour[0]), 
-          ((this._mins != 1) ? this._wordMin[1] : this._wordMin[0]), 
+        return [((this._days != 1) ? this._wordDay[1] : this._wordDay[0]),
+          ((this._hours != 1) ? this._wordHour[1] : this._wordHour[0]),
+          ((this._mins != 1) ? this._wordMin[1] : this._wordMin[0]),
           ((this._secs != 1) ? this._wordSec[1] : this._wordSec[0])];
       }
     });

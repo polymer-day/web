@@ -4,6 +4,7 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
@@ -17,7 +18,6 @@
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
-<link rel="import" href="../timer-days/timer-days.html">
 <link rel="import" href="../app-data/app-data.html">
 <link rel="import" href="../app-icons/app-icons.html">
 
@@ -36,94 +36,44 @@
 
         --app-primary-color: #295DA4;
         --app-secondary-color: #E06680;
+        --paper-tab-ink: #fff;
+        --paper-tab-content: {
+          color: #fff;
+          text-decoration: none;
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+        }
+        --paper-tabs-selection-bar-color: #E26682;
+        --paper-tabs: {
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+          color: #fff;
+        }
 
-        background: #FFF url('images/side.png') no-repeat;
-        background-size: auto 100%;
+        background-color: #fafafa;
+        /*background: #FFF url('images/side.png') no-repeat;*/
+        /*background-size: auto 100%;*/
         /*
         @apply(--layout-horizontal);
         @apply(--layout-center);*/
       }
 
-      .container {
-        text-align: center;/*
-        z-index: 100;
-        @apply(--layout-flex);*/
+      paper-icon-button {
+        --paper-icon-button-ink-color: white;
       }
-
-      .container h2.date {
-        font-family: 'Lato', sans-serif;
-        font-weight: 100;
-        color: #4687C7;
-        line-height: 0.5;
-        text-align: center;
-      }
-      .container h2.date span {
-        display: inline-block;
-        position: relative;
-      }
-
-      @media (min-width: 450px) {
-        .container h2.date span:before,
-        .container h2.date span:after {
-          content: "";
-          position: absolute;
-          height: 5px;
-          border-bottom: 1px solid #4687C7;
-          border-top: 1px solid #4687C7;
-          top: 3px;
-          width: 100px;
-        }
-
-        .container h2.date span:before {
-          right: 100%;
-          margin-right: 15px;
-        }
-
-        .container h2.date span:after {
-          left: 100%;
-          margin-left: 15px;
-        }
-      }
-
-      .container img.logo {
-        max-width: 75%;
-      }
-
-      .container h1 {
+      paper-tab a  {
+        color: #fff;
+        text-decoration: none;
         font-family: 'Quicksand', sans-serif;
         font-weight: 400;
+        font-size: 1.5em;
+        padding: 0 40px;
       }
 
-      .container h1.slogan {
-        font-size: 1.8em;
-        text-shadow: 1px 0 0 #fff,
-          -1px 0 0 #fff,
-          0 1px 0 #fff,
-          0 -1px 0 #fff,
-          1px 1px #fff,
-          -1px -1px 0 #fff,
-          1px -1px 0 #fff,
-          -1px 1px 0 #fff;
-      }
-
-      .container img.side {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom : 0;
-        height: 100%;
-      }
-
-      timer-days {
-        background-image: url('images/bg.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center 20%;
-        padding: 40px 0;
-        min-width: auto;
-
-        --timer-days-font-color: #FFF;
-        --timer-days-font-number-size: 35px;
+      .self-end {
+        /* This mixin (from iron-flex-layout) aligns the tabs to the
+           bottom of the toolbar. */
+        @apply(--layout-self-end);
       }
 
       app-header {
@@ -132,12 +82,12 @@
         left: 0;
         width: 100%;
         height: 212px;
-        color: --app-primary-color;/*#fff;
-        background-color: var(--app-primary-color);
+        color: #fff;
+        background-color: #4788C8;/*var(--app-primary-color);*/
         --app-header-background-front-layer: {
-          background-image: url(../images/bg2.jpg);
+          background-image: url(images/bg-header.png);
           background-position: left center;
-        };*/
+        };
       }
       app-header paper-icon-button,
       app-header iron-icon {
@@ -148,16 +98,26 @@
       app-toolbar.tall {
         height: 148px;
       }
-      [title] {
+      [main-title] {
         font-weight: lighter;
         margin-left: 108px;
         font-family: 'Quicksand', sans-serif;
+        color: transparent;
+        background-image: url(images/logo_polymerday_white.png);
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
       }
       [condensed-title] {
         font-weight: lighter;
         margin-left: 30px;
         overflow: hidden;
+        color: transparent;
         text-overflow: ellipsis;
+        background-image: url(images/logo_polymerday_white.png);
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
       }
       [condensed-title] i {
         font-weight: 100;
@@ -172,25 +132,6 @@
           font-size: 15px;
         }
       }
-
-      #accountDialog {
-        position: fixed;
-        top: 64px;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        width: 400px;
-        overflow: auto;
-      }
-
-      #accountButton iron-icon {
-        /*
-        https://css-tricks.com/clipping-masking-css/
-        */
-        -webkit-clip-path: circle(24px at 50% 50%);
-        clip-path: circle(24px at 50% 50%);
-      }
-
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -208,13 +149,12 @@
     <app-header-layout has-scrolling-region>
 
       <app-header condenses reveals effects="waterfall resize-title blend-background parallax-background">
+        <app-toolbar>
+          <h4 condensed-title>Polymer Day</h4>
+        </app-toolbar>
         <app-toolbar class="tall">
-          <div main-title>Polymer Day 2016</div>
-          <!--paper-button id="accountButton" class="">
-            Pre-registration is now open
-            <iron-icon src="{{user.photoURL}}" alt=="{{user.displayName}}" icon="{{accountButtonIcon}}"></iron-icon>
-          </paper-button-->
-          <paper-tabs class="menu-desktop" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
+          <div main-title>Polymer Day</div>
+          <paper-tabs class="bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
             <template is="dom-repeat" items="[[_toArray(menu)]]">
               <paper-tab menu-name="[[item.name]]" link>
                 <a tabindex="-1" href="/[[item.__id]]">
@@ -229,21 +169,16 @@
         </app-toolbar>
       </app-header>
 
-      <div class="container">
-        <h2 class="date"><span>[[formatedDate(date)]]</span></h2>
-        <img class="logo" src="images/logo_polymerday.png" alt="PolymerDay" />
-        <h1 class="location">Madrid</h1>
-        <timer-days target-date="2016-10-21T09:00:00"></timer-days>
-        <h1 class="slogan">We're Coming Soon...</h1>
-      </div>
-
       <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
-        <view-tracks name="tracks"></view-tracks>
+        <view-home name="home" user="{{user}}"></view-home>
         <view-speakers name="speakers"></view-speakers>
+        <view-tracks name="tracks"></view-tracks>
         <view-venue name="venue"></view-venue>
         <view-sponsors name="sponsors"></view-sponsors>
       </iron-pages>
-
+      <!--br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br-->
     </app-header-layout>
 
   </template>
@@ -266,14 +201,18 @@
         menu: {
           type: Object,
           value: {
-            'tracks': {
-              'name': 'tracks',
-              'title': 'Tracks'
+            'home': {
+              'name': 'home',
+              'title': 'Home',
+              'default': true
             },
             'speakers': {
               'name': 'speakers',
-              'title': 'Speakers',
-              'default': true
+              'title': 'Speakers'
+            },
+            'tracks': {
+              'name': 'tracks',
+              'title': 'Tracks'
             },
             'venue': {
               'name': 'venue',
@@ -319,20 +258,11 @@
           notify: true
         },
 
-        accountButtonIcon: {
-          type: String,
-          value: 'account-circle',
-          computed: '_computeAccountButtonIcon(user)'
-        }
       },
 
       observers: [
         'goTo(routeData.page)'
       ],
-/*
-      listeners: {
-        'accountButton.tap': '_showAccountDialog'
-      },*/
 
       _computeDefaultView: function(menu) {
         var name;
@@ -387,14 +317,6 @@
           obj[key].__id = key;
           return obj[key];
         }) : null;
-      },
-
-      _showAccountDialog: function() {
-        this.$.accountDialog.open();
-      },
-
-      _computeAccountButtonIcon: function(user) {
-        return (user) ? null : 'account-circle'
       },
 
       _monthName: function(dt) {

@@ -102,13 +102,13 @@
 
     <div hidden$="{{user}}" class="user-data">
       <paper-icon-button icon="account-circle"></paper-icon-button>
-      <p><strong>User identification</strong><em>Log in to get access to the full site.</em></p>
+      <p><strong>User identification</strong><em>Sign in to receive upcoming news.</em></p>
       <paper-button on-tap="_signInWithGoogle">Sign In With Google</paper-button>
     </div>
     <div hidden$="{{!user}}" class="user-data">
       <img src="{{user.photoURL}}" alt="{{user.displayName}}">
       <p><strong>{{user.displayName}}</strong><em>{{user.email}}</em></p>
-      <p class="newline">Great!, You're pre-registered. We'll contact you shortly.</p>
+      <p class="newline">You'll receive Polymer Day news on your inbox soon.</p>
       <paper-button on-tap="_signOut">Sign Out</paper-button>
     </div>
   </template>
