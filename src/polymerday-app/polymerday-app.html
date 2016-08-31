@@ -57,7 +57,7 @@
         @apply(--layout-horizontal);
         @apply(--layout-center);*/
       }
-      
+
       #accountDialog {
         position: fixed;
         top: 64px;
@@ -258,11 +258,6 @@
           computed: '_computeDefaultView(menu)'
         },
 
-        date: {
-          type: Date,
-          value: new Date('October 21, 2016'),
-        },
-
         user: {
           type: Object,
           notify: true
@@ -335,18 +330,6 @@
           obj[key].__id = key;
           return obj[key];
         }) : null;
-      },
-
-      _monthName: function(dt) {
-        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        return months[dt.getMonth()];
-      },
-
-      formatedDate: function(dt) {
-        return this._monthName(dt) + ' '
-          + dt.getDate() + 'th -'
-          + (dt.getDate()+1) + 'th, '
-          + dt.getFullYear();
       }
 
     });
