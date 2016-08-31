@@ -23,15 +23,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 10px;
     }
 
-    h1 {
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 400;
-    }
-
     paper-card {
       margin: 40px;
       width: auto;
       display: block;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    a,
+    paper-button {
+      text-decoration: none;
+      font-family: 'Quicksand', sans-serif;
     }
   </style>
 
@@ -39,9 +41,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card-content">
       <h1>We're Coming Soon...</h1>
     </div>
-    <!--div class="card-actions">
-      <paper-button>Share</paper-button>
-    </div-->
+    <div class="card-actions">
+      <a href="https://twitter.com/polymerday" tabindex="-1">
+        <paper-button>
+          @polymerday&nbsp;
+          <iron-icon icon="twitter"></iron-icon>
+        </paper-button>
+      </a>
+    </div>
   </paper-card>
 
   </template>
