@@ -170,7 +170,7 @@
       </app-header>
 
       <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
-        <view-home name="home" user="{{user}}"></view-home>
+        <view-home name="home" user="{{user}}" dialog="accountDialog"></view-home>
         <view-speakers name="speakers"></view-speakers>
         <view-tracks name="tracks"></view-tracks>
         <view-venue name="venue"></view-venue>
@@ -264,6 +264,10 @@
         'goTo(routeData.page)'
       ],
 
+      listeners: {
+        'showAccountDialog': '_showAccountDialog'
+      },
+
       _computeDefaultView: function(menu) {
         var name;
 
@@ -311,6 +315,10 @@
           this.$.drawer.close();
         }
       },*/
+
+      _showAccountDialog: function() {
+        this.$.accountDialog.open();
+      },
 
       _toArray: function(obj) {
         return obj ? Object.keys(obj).map(function(key) {
