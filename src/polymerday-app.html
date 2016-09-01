@@ -1,4 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -7,15 +16,12 @@
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="my-icons.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 
-<dom-module id="view-app">
+<link rel="import" href="polymerday-icons.html">
+<link rel="import" href="polymerday-signin.html">
+
+<dom-module id="polymerday-app">
   <style include="iron-flex iron-flex-alignment"></style>
 
   <template>
@@ -23,42 +29,58 @@
     <style>
 
       :host {
+        position: relative;
         display: block;
-
+        height: 100%;
         --app-primary-color: #295DA4;
         --app-secondary-color: #E06680;
+        --paper-tab-ink: #fff;
+        --paper-tab-content: {
+          color: #fff;
+          text-decoration: none;
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+        }
       }
 
       app-header {
-        color: rgba(0,0,0,0.86);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        height: 150px;
+        background-color: var(--app-primary-color);
+        --app-header-background-front-layer: {
+          background-image: url(images/bg-header.png);
+          background-position: left center;
+        };
+      }
+      
+      
+      app-header iron-icon {
+        --paper-icon-button-ink-color: white;
+        width: 64px;
+        height: 64px;
+      }
+
+      [main-title] {
+        color: transparent;
+        background-image: url(./images/logo_polymerday_white.png);
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;  
+        font-size: 24px;
       }
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
 
-      @media (min-width: 600px) {
-        app-header paper-icon-button{
-          display:none;
-        }
-      }
-
-      #appToolbar {
-        height: 56px;
-        padding: 0 8px;
-        font-size: 18px;
-      }
-
-      @media (min-width: 600px) {
-        #appToolbar {
-          height: 64px;
-          padding: 0 16px;
-          text-transform: uppercase;
-        }
-
-        #appToolbar [title] {
-          display: none;
-        }
+      app-toolbar.tall {
+        position: absolute;
+        right: 0;
+        bottom: 0;
       }
 
       .drawer-list a {
@@ -95,19 +117,17 @@
       }
 
       .menu-desktop {
-        height: 100%; 
         display: none; 
         --paper-tabs-selection-bar-color: var(--app-secondary-color);
         --paper-tabs-selection-bar: {
           height: 4px;
           padding-bottom: 0px;
           margin-bottom:0px;
-        }        
-      }
-
-      @media (min-width:600px) {
-        .menu-desktop {
-          display: block;
+        }
+        --paper-tabs: {
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+          font-size: 20px;
         }
       }
 
@@ -129,7 +149,7 @@
       }
 
       #views {
-        background: #B0BEC5;
+        background: #FFF;
       }
 
       #views > * {
@@ -138,6 +158,16 @@
       }
 
       @media (min-width:600px) {
+        app-header paper-icon-button{
+          display:none;
+        }
+        [main-title] {
+          font-size: 36px;
+        }
+        
+        .menu-desktop {
+          display: block;
+        }
         #views > * {
           min-height: calc( 100vh - 64px );
         }
@@ -150,6 +180,10 @@
         pattern="/:page"
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
+
+    <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
+      <polymerday-signin user="{{user}}" firebase-data="[[firebaseData]]"></polymerday-signin>
+    </paper-dialog>
 
     <app-drawer-layout force-narrow>
 
@@ -171,12 +205,13 @@
       <!-- Main content -->
       <app-header-layout>
 
-        <app-header condenses reveals effects="waterfall">
-          <app-toolbar id="appToolbar">
+        <app-header fixed condenses reveals effects="waterfall blend-background">
+          <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <div title class="flex">Polymer Day</div>
-
-            <paper-tabs class="menu-desktop" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
+            <div main-title >Polymer Day</div>
+          </app-toolbar>
+          <app-toolbar class="tall">
+            <paper-tabs class="menu-desktop bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
               <template is="dom-repeat" items="[[_toArray(menu)]]">
                 <paper-tab menu-name="[[item.name]]" link>
                   <a tabindex="-1" href="/[[item.__id]]">
@@ -188,14 +223,15 @@
                 </paper-tab>
               </template>
             </paper-tabs>
-
           </app-toolbar>
         </app-header>
 
         <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
-          <view-view1 name="view1"></view-view1>
-          <view-view2 name="view2"></view-view2>
-          <view-view3 name="view3"></view-view3>
+          <polymerday-home name="home" user="[[user]]"></polymerday-home>
+          <polymerday-speakers name="speakers"></polymerday-speakers>
+          <polymerday-schedule name="schedule"></polymerday-schedule>
+          <polymerday-venue name="venue"></polymerday-venue>
+          <polymerday-sponsors name="sponsors"></polymerday-sponsors>
         </iron-pages>
 
       </app-header-layout>
@@ -208,7 +244,7 @@
 
     Polymer({
 
-      is: 'view-app',
+      is: 'polymerday-app',
 
       properties: {
 
@@ -224,21 +260,31 @@
         menu: {
           type: Object,
           value: {
-            'view1': {
-              'name': 'view1',
-              'title': 'View One',
+            'home': {
+              'name': 'home',
+              'title': 'Home',
               'default': true
             },
-            'view2': {
-              'name': 'view2',
-              'title': 'View Two'
+            'speakers': {
+              'name': 'speakers',
+              'title': 'Speakers'
             },
-            'view3': {
-              'name': 'view3',
-              'title': 'View Three'
+            'schedule': {
+              'name': 'schedule',
+              'title': 'Schedule'
+            },
+            'venue': {
+              'name': 'venue',
+              'title': 'Venue'
+            },
+            'sponsors': {
+              'name': 'sponsors',
+              'title': 'Sponsors'
             },
           },
         },
+
+        firebaseData: Object,
 
         route: {
           type: Object
@@ -269,6 +315,10 @@
         'goTo(routeData.page)'
       ],
 
+      listeners: {
+        'showAccountDialog': '_showAccountDialog'
+      },
+
       _computeDefaultView: function(menu) {
         var name;
 
@@ -282,7 +332,7 @@
       },
 
       _pageChanged: function(page) {
-        var url = this.resolveUrl('view-' + page + '.html');
+        var url = this.resolveUrl('polymerday-' + page + '.html');
 
         // load page import on demand.
         this.importHref(url, null, null, true);
@@ -315,6 +365,10 @@
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
+      },
+
+      _showAccountDialog: function() {
+        this.$.accountDialog.open();
       },
 
       _toArray: function(obj) {

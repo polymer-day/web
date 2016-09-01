@@ -1,9 +1,20 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/view-app.html",
+  "shell": "src/polymerday-app.html",
   "fragments": [
-    "src/view-view1.html",
-    "src/view-view2.html",
-    "src/view-view3.html"
+    "src/polymerday-home.html",
+    "src/polymerday-schedule.html",
+    "src/polymerday-speakers.html",
+    "src/polymerday-sponsors.html",
+    "src/polymerday-venue.html"
+  ],
+  "sourceGlobs": [
+   "src/**/*",
+   "images/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ]
 }
