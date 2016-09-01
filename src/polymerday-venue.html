@@ -1,0 +1,67 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+
+<dom-module id="polymerday-venue">
+
+  <template>
+
+  <style>
+    :host {
+      display: block;
+      padding: 10px;
+    }
+
+    paper-card {
+      margin: 40px;
+      width: auto;
+      display: block;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    a,
+    paper-button {
+      text-decoration: none;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    google-map {
+      height: 400px;
+    }
+  </style>
+
+  <paper-card>
+    <google-map api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15">
+      <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
+    </google-map>
+    <div class="card-content">
+      <h2>La Estación Gran Teatro Príncipe Pío</h2>
+      <p>Cuesta de San Vicente 44,</p>
+      <p>Madrid, 28008</p>
+      <p><a href="http://laestacion.com">laestacion.com</a></p>
+    </div>
+    <div class="card-actions">
+      <a href="https://www.google.es/maps/place/La+Estaci%C3%B3n+Gran+Teatro+Pr%C3%ADncipe+P%C3%ADo/@40.4208415,-3.7188506,15z/data=!4m2!3m1!1s0x0:0x89ba0fea276d4684?sa=X&ved=0ahUKEwj3-sWwuevOAhVIOhoKHRz-CEwQ_BIIhQEwCg" tabindex="-1">
+        <paper-button>
+          La Estación Gran Teatro Príncipe Pío&nbsp;
+          <iron-icon icon="place"></iron-icon>
+        </paper-button>
+      </a>
+    </div>
+  </paper-card>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-venue'
+
+    });
+
+  </script>
+
+</dom-module>

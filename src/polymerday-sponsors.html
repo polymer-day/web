@@ -1,0 +1,136 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<dom-module id="polymerday-sponsors">
+
+  <template>
+
+  <style>
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 664px;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 40px 0 0;
+      color: rgba(0, 0, 0, 0.6);
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    paper-card {
+      padding: 16px;
+      margin: 8px;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .card-content {
+      padding: 0 !important;
+    }
+    .card-actions {
+      border-color: rgba(0, 0, 0, 0.6) !important;
+      padding: 0 !important;
+    }
+    .symbol {
+      margin: 20px 0;
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 48px;
+    }
+    .title {
+      display: table-caption;
+      margin: 0 0 15px;
+      height: 64px;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      letter-spacing: -.012em;
+    }
+    .icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+    .tagline {
+      font-size: 13px;
+      margin: 10px 0 0 0;
+      line-height: 20px;
+      height: 40px;
+    }
+    .tagline a {
+      text-decoration: none;
+      color: #2B5DA4;
+    }
+
+    .pt-sponsoring {background-color: rgb(207, 216, 220);}
+    .ne-sponsoring {background-color: rgb(167, 255, 235);}
+    .au-sponsoring {background-color: rgb(255, 183, 77);}
+    .fe-sponsoring {background-color: rgb(129, 199, 132);}
+    .md-sponsoring {background-color: rgb(255, 255, 255);}
+  </style>
+
+  <paper-card class="pt-sponsoring">
+    <iron-icon icon="polymer-day" class="icon"></iron-icon>
+    <div class="card-content">
+      <h2 class="symbol">Pt</h2>
+      <h3 class="title">Platinum sponsoring</h3>
+    </div>
+    <div class="card-actions">
+      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
+    </div>
+  </paper-card>
+  <paper-card class="ne-sponsoring">
+    <iron-icon icon="polymer-day" class="icon"></iron-icon>
+    <div class="card-content">
+      <h2 class="symbol">Ne</h2>
+      <h3 class="title">Neon sponsoring</h3>
+    </div>
+    <div class="card-actions">
+      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
+    </div>
+  </paper-card>
+  <paper-card class="au-sponsoring">
+    <iron-icon icon="polymer-day" class="icon"></iron-icon>
+    <div class="card-content">
+      <h2 class="symbol">Au</h2>
+      <h3 class="title">Gold sponsoring</h3>
+    </div>
+    <div class="card-actions">
+      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
+    </div>
+  </paper-card>
+  <paper-card class="fe-sponsoring">
+    <iron-icon icon="polymer-day" class="icon"></iron-icon>
+    <div class="card-content">
+      <h2 class="symbol">Fe</h2>
+      <h3 class="title">Iron sponsoring</h3>
+    </div>
+    <div class="card-actions">
+      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
+    </div>
+  </paper-card>
+  <paper-card class="md-sponsoring">
+    <iron-icon icon="polymer-day" class="icon"></iron-icon>
+    <div class="card-content">
+      <h2 class="symbol">Md</h2>
+      <h3 class="title">Paper sponsoring</h3>
+    </div>
+    <div class="card-actions">
+      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
+    </div>
+  </paper-card>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-sponsors'
+
+    });
+
+  </script>
+
+</dom-module>

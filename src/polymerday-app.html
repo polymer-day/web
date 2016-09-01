@@ -1,0 +1,385 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animations.html">
+
+<link rel="import" href="polymerday-icons.html">
+<link rel="import" href="polymerday-signin.html">
+
+<dom-module id="polymerday-app">
+  <style include="iron-flex iron-flex-alignment"></style>
+
+  <template>
+
+    <style>
+
+      :host {
+        position: relative;
+        display: block;
+        height: 100%;
+        --app-primary-color: #295DA4;
+        --app-secondary-color: #E06680;
+        --paper-tab-ink: #fff;
+        --paper-tab-content: {
+          color: #fff;
+          text-decoration: none;
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+        }
+      }
+
+      app-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        height: 150px;
+        background-color: var(--app-primary-color);
+        --app-header-background-front-layer: {
+          background-image: url(images/bg-header.png);
+          background-position: left center;
+        };
+      }
+      
+      
+      app-header iron-icon {
+        --paper-icon-button-ink-color: white;
+        width: 64px;
+        height: 64px;
+      }
+
+      [main-title] {
+        color: transparent;
+        background-image: url(./images/logo_polymerday_white.png);
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;  
+        font-size: 24px;
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      app-toolbar.tall {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        line-height: 48px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        outline: 0;
+        color: rgba(0,0,0,0.86);
+        -webkit-transition: background-color .4s cubic-bezier(0.25,0.8,0.25,1);
+        transition: background-color .4s cubic-bezier(0.25,0.8,0.25,1);
+      }
+
+      .drawer-list a:hover {
+        background-color: #f1f1f1;
+      }
+
+      .drawer-list a iron-icon {
+        width:20px;
+        height:20px;
+        margin-right: 16px;
+        color: rgba(0,0,0,0.60);
+      }
+
+      .drawer-list a.iron-selected,
+      .drawer-list a.iron-selected iron-icon {
+        color: var(--app-primary-color);
+      }
+
+      .drawer-list a.subroute {
+        padding-left: 32px;
+      }
+
+      .menu-desktop {
+        display: none; 
+        --paper-tabs-selection-bar-color: var(--app-secondary-color);
+        --paper-tabs-selection-bar: {
+          height: 4px;
+          padding-bottom: 0px;
+          margin-bottom:0px;
+        }
+        --paper-tabs: {
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+          font-size: 20px;
+        }
+      }
+
+      .menu-desktop > paper-tab {
+        margin-left: 24px;
+      }
+
+      .menu-desktop > paper-tab > a {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+        text-decoration: none;
+        font-weight: normal;
+        color: rgba(0,0,0,0.87);
+        outline: 0;
+      }
+
+      .menu-desktop > paper-tab.iron-selected > a {
+        font-weight: normal;
+      }
+
+      #views {
+        background: #FFF;
+      }
+
+      #views > * {
+        min-height: calc( 100vh - 56px );
+        box-sizing: border-box;
+      }
+
+      @media (min-width:600px) {
+        app-header paper-icon-button{
+          display:none;
+        }
+        [main-title] {
+          font-size: 36px;
+        }
+        
+        .menu-desktop {
+          display: block;
+        }
+        #views > * {
+          min-height: calc( 100vh - 64px );
+        }
+      }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+    <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
+      <polymerday-signin user="{{user}}" firebase-data="[[firebaseData]]"></polymerday-signin>
+    </paper-dialog>
+
+    <app-drawer-layout force-narrow>
+
+      <!-- Drawer content -->
+      <app-drawer id="drawer">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation">
+          <template is="dom-repeat" items="[[_toArray(menu)]]">
+            <a menu-name="[[item.name]]" href$="/[[item.__id]]" class$="[[item.className]]">
+              <template is="dom-if" if="[[item.icon]]">
+                <iron-icon icon="[[item.icon]]"></iron-icon>
+              </template>
+              <span>[[item.title]]</span>
+            </a>
+          </template>
+        </iron-selector>
+      </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout>
+
+        <app-header fixed condenses reveals effects="waterfall blend-background">
+          <app-toolbar>
+            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+            <div main-title >Polymer Day</div>
+          </app-toolbar>
+          <app-toolbar class="tall">
+            <paper-tabs class="menu-desktop bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
+              <template is="dom-repeat" items="[[_toArray(menu)]]">
+                <paper-tab menu-name="[[item.name]]" link>
+                  <a tabindex="-1" href="/[[item.__id]]">
+                    <template is="dom-if" if="[[item.icon]]">
+                      <iron-icon icon="[[item.icon]]"></iron-icon>
+                    </template>
+                    [[item.title]]
+                  </a>
+                </paper-tab>
+              </template>
+            </paper-tabs>
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
+          <polymerday-home name="home" user="[[user]]"></polymerday-home>
+          <polymerday-speakers name="speakers"></polymerday-speakers>
+          <polymerday-schedule name="schedule"></polymerday-schedule>
+          <polymerday-venue name="venue"></polymerday-venue>
+          <polymerday-sponsors name="sponsors"></polymerday-sponsors>
+        </iron-pages>
+
+      </app-header-layout>
+
+    </app-drawer-layout>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-app',
+
+      properties: {
+
+        app: {
+          type: Object,
+          value: function() {
+            return {
+              version: '0.0.1'
+            };
+          }
+        },
+
+        menu: {
+          type: Object,
+          value: {
+            'home': {
+              'name': 'home',
+              'title': 'Home',
+              'default': true
+            },
+            'speakers': {
+              'name': 'speakers',
+              'title': 'Speakers'
+            },
+            'schedule': {
+              'name': 'schedule',
+              'title': 'Schedule'
+            },
+            'venue': {
+              'name': 'venue',
+              'title': 'Venue'
+            },
+            'sponsors': {
+              'name': 'sponsors',
+              'title': 'Sponsors'
+            },
+          },
+        },
+
+        firebaseData: Object,
+
+        route: {
+          type: Object
+        },
+
+        routeData: {
+          type: Object
+        },
+
+        subroute: {
+          type: Object
+        },
+
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+
+        _defaultView: {
+          type: String,
+          computed: '_computeDefaultView(menu)'
+        },
+
+      },
+
+      observers: [
+        'goTo(routeData.page)'
+      ],
+
+      listeners: {
+        'showAccountDialog': '_showAccountDialog'
+      },
+
+      _computeDefaultView: function(menu) {
+        var name;
+
+        for (var item in menu) {
+          if (menu[item].default) {
+            return name = item;
+          }
+        }
+
+        return name;
+      },
+
+      _pageChanged: function(page) {
+        var url = this.resolveUrl('polymerday-' + page + '.html');
+
+        // load page import on demand.
+        this.importHref(url, null, null, true);
+      },
+
+      goTo: function(page) {
+        page = page || this._defaultView;
+        var page = this.menu[page].name;
+
+        if (this.page === page) {
+          return;
+        }
+
+        this.page = page;
+
+        this.closeDrawer();
+
+        this.async(function() {
+          this.set('routeData.page', page);
+        }, 50);
+      },
+
+      openDrawer: function() {
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.open();
+        }
+      },
+
+      closeDrawer: function() {
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.close();
+        }
+      },
+
+      _showAccountDialog: function() {
+        this.$.accountDialog.open();
+      },
+
+      _toArray: function(obj) {
+        return obj ? Object.keys(obj).map(function(key) {
+          obj[key].__id = key;
+          return obj[key];
+        }) : null;
+      },
+
+    });
+
+  </script>
+
+</dom-module>
