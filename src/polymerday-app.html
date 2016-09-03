@@ -56,8 +56,8 @@
           background-position: left center;
         };
       }
-      
-      
+
+
       app-header iron-icon {
         --paper-icon-button-ink-color: white;
         width: 64px;
@@ -69,7 +69,7 @@
         background-image: url(./images/logo_polymerday_white.png);
         background-position: left;
         background-repeat: no-repeat;
-        background-size: contain;  
+        background-size: contain;
         font-size: 24px;
       }
 
@@ -117,7 +117,7 @@
       }
 
       .menu-desktop {
-        display: none; 
+        display: none;
         --paper-tabs-selection-bar-color: var(--app-secondary-color);
         --paper-tabs-selection-bar: {
           height: 4px;
@@ -152,7 +152,7 @@
         background: #FFF;
       }
 
-      #views > * {
+      .view.not(.view-sponsors) {
         min-height: calc( 100vh - 56px );
         box-sizing: border-box;
       }
@@ -164,11 +164,11 @@
         [main-title] {
           font-size: 36px;
         }
-        
+
         .menu-desktop {
           display: block;
         }
-        #views > * {
+        .view.not(.view-sponsors) {
           min-height: calc( 100vh - 64px );
         }
       }
@@ -227,11 +227,11 @@
         </app-header>
 
         <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
-          <polymerday-home name="home" user="[[user]]"></polymerday-home>
-          <polymerday-speakers name="speakers"></polymerday-speakers>
-          <polymerday-schedule name="schedule"></polymerday-schedule>
-          <polymerday-venue name="venue"></polymerday-venue>
-          <polymerday-sponsors name="sponsors"></polymerday-sponsors>
+          <polymerday-home name="home" user="[[user]]" class="view"></polymerday-home>
+          <polymerday-speakers name="speakers" class="view"></polymerday-speakers>
+          <polymerday-schedule name="schedule" class="view"></polymerday-schedule>
+          <polymerday-venue name="venue" class="view"></polymerday-venue>
+          <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
         </iron-pages>
 
       </app-header-layout>
