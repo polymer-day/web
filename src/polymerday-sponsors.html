@@ -21,8 +21,9 @@
 
     paper-card {
       padding: 16px;
-      margin: 8px;
+      margin: 8px 16px;
       font-family: 'Quicksand', sans-serif;
+      width: 100%;
     }
     .card-content {
       padding: 0 !important;
@@ -68,6 +69,13 @@
     .au-sponsoring {background-color: rgb(255, 183, 77);}
     .fe-sponsoring {background-color: rgb(129, 199, 132);}
     .md-sponsoring {background-color: rgb(255, 255, 255);}
+
+    @media (min-width: 600px) {
+      paper-card {
+        margin: 8px;
+        width: auto;
+      }
+    }
   </style>
 
   <paper-card class="pt-sponsoring">
