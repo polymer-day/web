@@ -44,10 +44,6 @@
       }
 
       app-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
         color: #fff;
         height: 150px;
         background-color: var(--app-primary-color);
@@ -57,6 +53,11 @@
         };
       }
 
+      .logo {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
 
       app-header iron-icon {
         --paper-icon-button-ink-color: white;
@@ -206,7 +207,7 @@
       <app-header-layout>
 
         <app-header fixed condenses reveals effects="waterfall blend-background">
-          <app-toolbar>
+          <app-toolbar class="logo">
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div main-title >Polymer Day</div>
           </app-toolbar>
