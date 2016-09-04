@@ -128,12 +128,12 @@
         --paper-tabs: {
           font-family: 'Quicksand', sans-serif;
           font-weight: 400;
-          font-size: 20px;
+          font-size: 16px;
         }
       }
 
       .menu-desktop > paper-tab {
-        margin-left: 24px;
+        margin-left: 12px;
       }
 
       .menu-desktop > paper-tab > a {
@@ -171,6 +171,12 @@
         }
         .view.not(.view-sponsors) {
           min-height: calc( 100vh - 64px );
+        }
+      }
+      @media (min-width: 730px) {
+        .menu-desktop > paper-tab {
+          margin-left: 24px;
+          font-size: 20px;
         }
       }
     </style>
