@@ -11,7 +11,6 @@
     <style>
       :host {
         display: block;
-        padding: 10px;
       }
 
       h2.date {
@@ -110,7 +109,6 @@
       }
 
       paper-card {
-        margin: 40px;
         width: auto;
         display: block;
         text-align: center;
@@ -122,11 +120,25 @@
         font-family: 'Quicksand', sans-serif;
       }
 
+      .card-actions__label {
+        padding-right: 6px;
+      }
+
       .eventbrite {
-        font-weight: 400;
-        font-style: normal;
         color: #f6682f;
-        font-family: "Benton Sans","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+      }
+      .icon-eventbrite {
+        background: #f6682f;
+        color: #fff;
+      }
+
+      @media (min-width: 600px) {
+        :host {
+          padding: 10px;
+        }
+        paper-card {
+          margin: 40px;
+        }
       }
     </style>
 
@@ -141,18 +153,16 @@
       <div class="card-actions">
         <a href="http://polymerday.eventbrite.es/" tabindex="-1">
           <paper-button>
-            Event registration at <em class="eventbrite">Eventbrite</em>
+            <span class="card-actions__label eventbrite">Event registration at</span> <iron-icon icon="eventbrite" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
           </paper-button>
         </a>
         <a href="https://twitter.com/polymerday" tabindex="-1">
           <paper-button>
-            @polymerday&nbsp;
-            <iron-icon icon="twitter"></iron-icon>
+            <span class="card-actions__label">@polymerday</span> <iron-icon icon="twitter"></iron-icon>
           </paper-button>
         </a>
         <paper-button id="accountButton" class="">
-          Stay tuned&nbsp;
-          <iron-icon src="[[user.photoURL]]" alt$="[[user.displayName]]" icon="[[accountButtonIcon]]"></iron-icon>
+          <span class="card-actions__label">Stay tuned</span> <iron-icon src="[[user.photoURL]]" aria-label$="[[user.displayName]]" icon="[[accountButtonIcon]]"></iron-icon>
         </paper-button>
       </div>
     </paper-card>

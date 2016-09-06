@@ -44,20 +44,21 @@
       }
 
       app-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
         color: #fff;
         height: 150px;
         background-color: var(--app-primary-color);
         --app-header-background-front-layer: {
-          background-image: url(images/bg-header.png);
+          background-image: url(images/bg-header.svg);
           background-position: left center;
         };
       }
-      
-      
+
+      .logo {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
       app-header iron-icon {
         --paper-icon-button-ink-color: white;
         width: 64px;
@@ -69,7 +70,7 @@
         background-image: url(./images/logo_polymerday_white.png);
         background-position: left;
         background-repeat: no-repeat;
-        background-size: contain;  
+        background-size: contain;
         font-size: 24px;
       }
 
@@ -117,7 +118,7 @@
       }
 
       .menu-desktop {
-        display: none; 
+        display: none;
         --paper-tabs-selection-bar-color: var(--app-secondary-color);
         --paper-tabs-selection-bar: {
           height: 4px;
@@ -127,12 +128,12 @@
         --paper-tabs: {
           font-family: 'Quicksand', sans-serif;
           font-weight: 400;
-          font-size: 20px;
+          font-size: 16px;
         }
       }
 
       .menu-desktop > paper-tab {
-        margin-left: 24px;
+        margin-left: 12px;
       }
 
       .menu-desktop > paper-tab > a {
@@ -140,7 +141,7 @@
         @apply(--layout-center-center);
         text-decoration: none;
         font-weight: normal;
-        color: rgba(0,0,0,0.87);
+        color: #fff;
         outline: 0;
       }
 
@@ -152,7 +153,7 @@
         background: #FFF;
       }
 
-      #views > * {
+      .view.not(.view-sponsors) {
         min-height: calc( 100vh - 56px );
         box-sizing: border-box;
       }
@@ -164,12 +165,18 @@
         [main-title] {
           font-size: 36px;
         }
-        
+
         .menu-desktop {
           display: block;
         }
-        #views > * {
+        .view.not(.view-sponsors) {
           min-height: calc( 100vh - 64px );
+        }
+      }
+      @media (min-width: 730px) {
+        .menu-desktop > paper-tab {
+          margin-left: 24px;
+          font-size: 20px;
         }
       }
     </style>
@@ -206,7 +213,7 @@
       <app-header-layout>
 
         <app-header fixed condenses reveals effects="waterfall blend-background">
-          <app-toolbar>
+          <app-toolbar class="logo">
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div main-title >Polymer Day</div>
           </app-toolbar>
@@ -227,11 +234,11 @@
         </app-header>
 
         <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
-          <polymerday-home name="home" user="[[user]]"></polymerday-home>
-          <polymerday-speakers name="speakers"></polymerday-speakers>
-          <polymerday-schedule name="schedule"></polymerday-schedule>
-          <polymerday-venue name="venue"></polymerday-venue>
-          <polymerday-sponsors name="sponsors"></polymerday-sponsors>
+          <polymerday-home name="home" user="[[user]]" class="view"></polymerday-home>
+          <polymerday-speakers name="speakers" class="view"></polymerday-speakers>
+          <polymerday-schedule name="schedule" class="view"></polymerday-schedule>
+          <polymerday-venue name="venue" class="view"></polymerday-venue>
+          <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
         </iron-pages>
 
       </app-header-layout>
