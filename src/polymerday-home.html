@@ -16,7 +16,7 @@
       h2.date {
         font-family: 'Lato', sans-serif;
         font-weight: 100;
-        color: #4687C7;
+        color: var(--app-primary-color);
         line-height: 0.5;
         text-align: center;
       }
@@ -31,8 +31,8 @@
           content: "";
           position: absolute;
           height: 5px;
-          border-bottom: 1px solid #4687C7;
-          border-top: 1px solid #4687C7;
+          border-bottom: 1px solid var(--app-primary-color);
+          border-top: 1px solid var(--app-primary-color);
           top: 3px;
           width: 100px;
         }
@@ -87,7 +87,8 @@
         min-width: auto;
         box-sizing: border-box;
 
-        --timer-days-font-color: #FFF;
+        --timer-days-font-color: var(--app-background-color);
+        --timer-days-background-color: var(--app-primary-color);
         --timer-days-font-number-size: 35px;
       }
       /*

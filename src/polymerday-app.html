@@ -32,8 +32,9 @@
         position: relative;
         display: block;
         height: 100%;
-        --app-primary-color: #295DA4;
-        --app-secondary-color: #E06680;
+        --app-primary-color: #2c5ea5;
+        --app-secondary-color: #e04b63;
+        --app-background-color: #FFF;
         --paper-tab-ink: #fff;
         --paper-tab-content: {
           color: #fff;
@@ -141,7 +142,7 @@
         @apply(--layout-center-center);
         text-decoration: none;
         font-weight: normal;
-        color: #fff;
+        color: var(--app-background-color);
         outline: 0;
       }
 
@@ -150,7 +151,7 @@
       }
 
       #views {
-        background: #FFF;
+        background: var(--app-background-color);
       }
 
       .view.not(.view-sponsors) {
