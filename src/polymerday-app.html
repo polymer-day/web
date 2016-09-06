@@ -85,21 +85,28 @@
         bottom: 0;
       }
 
+      #drawer {
+        --app-drawer-content-container: {
+          background: var(--app-background-color);
+          color: var(--app-primary-color);
+          font-weight: 100;
+        }
+      }
+
+      #drawer img {
+        max-width: 100%;
+      }
+      
       .drawer-list a {
         display: block;
         padding: 0 16px;
-        line-height: 48px;
-        font-size: 14px;
         font-weight: bold;
+        line-height: 3.5;
         text-decoration: none;
         outline: 0;
-        color: rgba(0,0,0,0.86);
+        color: var(--app-primary-color);
         -webkit-transition: background-color .4s cubic-bezier(0.25,0.8,0.25,1);
         transition: background-color .4s cubic-bezier(0.25,0.8,0.25,1);
-      }
-
-      .drawer-list a:hover {
-        background-color: #f1f1f1;
       }
 
       .drawer-list a iron-icon {
@@ -111,7 +118,18 @@
 
       .drawer-list a.iron-selected,
       .drawer-list a.iron-selected iron-icon {
-        color: var(--app-primary-color);
+        font-weight: 100;
+        background-color: var(--app-primary-color);
+        color: var(--app-background-color);
+      }
+
+      .drawer-list a:hover,
+      .drawer-list a:hover iron-icon,
+      .drawer-list a.iron-selected:hover,
+      .drawer-list a.iron-selected:hover iron-icon {
+        font-weight: 100;
+        background-color: var(--app-secondary-color);
+        color: var(--app-background-color);
       }
 
       .drawer-list a.subroute {
@@ -197,7 +215,9 @@
 
       <!-- Drawer content -->
       <app-drawer id="drawer">
-        <app-toolbar>Menu</app-toolbar>
+        <app-toolbar>
+          <img src="./images/logo_polymerday.png" alt="Polymer Day">
+        </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation">
           <template is="dom-repeat" items="[[_toArray(menu)]]">
             <a menu-name="[[item.name]]" href$="/[[item.__id]]" class$="[[item.className]]">
