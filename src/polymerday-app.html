@@ -18,6 +18,7 @@
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 
+<link rel="import" href="polymerday-theme.html">
 <link rel="import" href="polymerday-icons.html">
 <link rel="import" href="polymerday-signin.html">
 
@@ -31,27 +32,13 @@
       :host {
         position: relative;
         display: block;
-        height: 100%;
-        --app-primary-color: #2c5ea5;
-        --app-secondary-color: #e04b63;
-        --app-background-color: #FFF;
-        --paper-tab-ink: #fff;
-        --paper-tab-content: {
-          color: #fff;
-          text-decoration: none;
-          font-family: 'Quicksand', sans-serif;
-          font-weight: 400;
-        }
+        @apply(--text-normal);
       }
 
       app-header {
-        color: var(--app-background-color);
+        color: var(--color-white-primary);
         height: 150px;
-        background-color: var(--app-primary-color);
-        --app-header-background-front-layer: {
-          background-image: url(images/bg-header.svg);
-          background-position: left center;
-        };
+        background-color: var(--color-blue-primary);
       }
 
       .logo {
@@ -87,26 +74,25 @@
 
       #drawer {
         --app-drawer-content-container: {
-          background: var(--app-background-color);
-          color: var(--app-primary-color);
+          background: var(--color-blue-primary);
+          color: var(--color-white-primary);
           font-weight: 100;
         }
+        --app-drawer-scrim-background: rgba(255,255,255,.7);
       }
 
       #drawer img {
         max-width: 100%;
       }
-      
+
       .drawer-list a {
+        @apply(--text-normal-white);
         display: block;
-        padding: 0 16px;
         font-weight: bold;
         line-height: 3.5;
-        text-decoration: none;
         outline: 0;
-        color: var(--app-primary-color);
-        -webkit-transition: background-color .4s cubic-bezier(0.25,0.8,0.25,1);
-        transition: background-color .4s cubic-bezier(0.25,0.8,0.25,1);
+        padding: 0 16px;
+        text-decoration: none;
       }
 
       .drawer-list a iron-icon {
@@ -138,46 +124,69 @@
 
       .menu-desktop {
         display: none;
-        --paper-tabs-selection-bar-color: var(--app-secondary-color);
-        --paper-tabs-selection-bar: {
-          height: 4px;
-          padding-bottom: 0px;
-          margin-bottom:0px;
-        }
+      }
+
+      paper-tabs {
         --paper-tabs: {
-          font-family: 'Quicksand', sans-serif;
-          font-weight: 400;
-          font-size: 16px;
+          padding-bottom: 8px;
         }
+        --paper-tabs-selection-bar-color: var(--color-white-primary);
       }
 
-      .menu-desktop paper-tab {
-        margin-left: 12px;
+      paper-tab {
+        margin: 0 16px;
       }
 
-      .menu-desktop paper-tab a {
+      paper-tab > a {
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
+        @apply(--text-normal-white);
         text-decoration: none;
-        font-weight: normal;
-        color: var(--app-background-color);
+      );
         outline: 0;
       }
 
-      .menu-desktop paper-tab.iron-selected > a {
-        font-weight: normal;
+      .footer{
+        background-image: url('images/bg-footer.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom right;
+        height: 30vh;
+        position: relative;
       }
 
-      #views {
-        background: var(--app-background-color);
+      .footer .links {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-bottom: 16px;
       }
 
-      .view.not(.view-sponsors) {
-        min-height: calc( 100vh - 56px );
-        box-sizing: border-box;
+      .footer a:first-child {
+        margin: 0 16px;
       }
 
-      @media (min-width:600px) {
+      .footer a {
+        text-decoration: none;
+        color: var(--color-grey-primary);
+      }
+
+      .footer [icon="twitter"] {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 32px;
+        height: 32px;
+      }
+
+      .footer [title="Eventbrite"] {
+        width: auto;
+        height: auto;
+        padding-bottom: 6px;
+
+      }
+
+
+      @media (min-width:720px) {
         app-header paper-icon-button{
           display:none;
         }
@@ -188,14 +197,9 @@
         .menu-desktop {
           display: block;
         }
-        .view.not(.view-sponsors) {
-          min-height: calc( 100vh - 64px );
-        }
-      }
-      @media (min-width: 730px) {
-        .menu-desktop paper-tab {
-          margin-left: 24px;
-          font-size: 20px;
+        .view {
+          min-height: calc( 70vh - 150px );
+          box-sizing: border-box;
         }
       }
     </style>
@@ -216,7 +220,7 @@
       <!-- Drawer content -->
       <app-drawer id="drawer">
         <app-toolbar>
-          <img src="./images/logo_polymerday.png" alt="Polymer Day">
+          <img src="./images/logo_polymerday_white.png" alt="Polymer Day">
         </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation">
           <template is="dom-repeat" items="[[_toArray(menu)]]">
@@ -261,6 +265,16 @@
           <polymerday-venue name="venue" class="view"></polymerday-venue>
           <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
         </iron-pages>
+        <div class="footer">
+          <div class="links">
+            <a href="http://polymerday.eventbrite.es/" tabindex="-1" target="_blank">
+              <span class="card-actions__label eventbrite">registration at</span> <iron-icon src="images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
+            </a>
+            <a href="https://twitter.com/polymerday" tabindex="-1" target="_blank">
+              <span class="card-actions__label">@polymerday</span> <iron-icon icon="twitter"></iron-icon>
+            </a>
+          </div>
+        </div>
 
       </app-header-layout>
 

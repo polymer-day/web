@@ -36,10 +36,7 @@
   <meta name="msapplication-TileColor" content="#2c5ea5">
   <meta name="msapplication-tap-highlight" content="no">
 
-
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,100" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" type="text/css">
-
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet" type="text/css">
   <script>
 
     // setup Polymer options
@@ -86,14 +83,18 @@
   <link rel="import" href="/src/polymerday-app.html">
 
   <style>
+  
+    html {
+      font-size: 16px;
+      text-rendering: optimizeLegibility !important;
+      -webkit-font-smoothing: antialiased !important;
+    }
 
     body {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
-      font-family: 'Lato', sans-serif;
-      line-height: 1.5;
       min-height: 100vh;
-      background-color: #fff;
-      color: #2c5ea5;
     }
 
   </style>
