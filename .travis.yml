@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - "6.1"
+cache:
+  timeout: 3600
+  directories:
+    - node_modules
+    - bower_components
 install:
   - npm install -g bower
   - npm install -g polymer-cli
@@ -8,10 +13,12 @@ before_script:
   - bower install
 script:
   - polymer build
-before_deploy
-  - npm install -g firebase-tools
 deploy:
-  provider: script
-  script: firebase deploy --token "${FIREBASE_TOKEN}" --project "${FIREBASE_PROJECT_ID}"
+  provider: firebase
+  edge:
+    source: jorgecasar/dpl
+    branch: fix/503-firebase-deploy-project-option
+  token: "${FIREBASE_TOKEN}"
+  project: "${FIREBASE_PROJECT_ID}"
   on:
     branch: master
