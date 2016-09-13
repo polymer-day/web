@@ -46,7 +46,8 @@
     "timer-days": "Polymer-day/timer-days#polymer-day",
     "paper-fab": "PolymerElements/paper-fab#^1.2.0",
     "iron-collapse": "PolymerElements/iron-collapse#^1.2.1",
-    "iron-a11y-announcer": "PolymerElements/iron-a11y-announcer#^1.0.5"
+    "iron-a11y-announcer": "PolymerElements/iron-a11y-announcer#^1.0.5",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
