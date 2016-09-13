@@ -44,7 +44,8 @@
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
     "google-map": "GoogleWebComponents/google-map#^1.1.11",
     "timer-days": "^1.0.4",
-    "paper-fab": "PolymerElements/paper-fab#^1.2.0"
+    "paper-fab": "PolymerElements/paper-fab#^1.2.0",
+    "iron-collapse": "PolymerElements/iron-collapse#^1.2.1"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
