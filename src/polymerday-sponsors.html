@@ -2,9 +2,8 @@
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
-
-<link rel="import" href="polymerday-section-title.html">
-<link rel="import" href="polymerday-data.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="polymerday-sponsors">
 
@@ -12,139 +11,125 @@
 
   <style>
     :host {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 664px;
-      justify-content: center;
-      margin: 0 auto;
-      padding: 40px 0 0;
-      color: rgba(0, 0, 0, 0.6);
-      font-family: 'Quicksand', sans-serif;
+      display: block;
+      font-family: "Roboto", sans-serif;
     }
 
-    paper-card {
-      padding: 16px;
-      margin: 8px 16px;
-      font-family: 'Quicksand', sans-serif;
-      width: 100%;
-    }
-    .card-content {
-      padding: 0 !important;
-    }
-    .card-actions {
-      border-color: rgba(0, 0, 0, 0.6) !important;
-      padding: 0 !important;
-    }
-    .symbol {
-      margin: 20px 0;
-      font-size: 48px;
-      font-weight: 400;
-      letter-spacing: 0;
-      line-height: 48px;
-    }
     .title {
-      display: table-caption;
-      margin: 0 0 15px;
-      height: 64px;
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 28px;
-      letter-spacing: -.012em;
+      font-size: 64px;
+      color: #224FBD;
+      font-weight: 100;
+      margin-bottom: 20px;
     }
-    .icon {
+
+    .content {
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
+      position: relative;;
+      text-align: center;
+    }
+
+    .description {
+      font-size: 24px;
+      font-weight: 300;
+      margin: 24px 0;
+      max-width: 900px;
+      padding: 0 16px;
+    }
+
+    .tickets {
+      @apply(--text-small);
       position: absolute;
-      top: 16px;
-      right: 16px;
-    }
-    .tagline {
-      font-size: 13px;
-      margin: 10px 0 0 0;
-      line-height: 20px;
-      height: 40px;
-    }
-    .tagline a {
+      right: 32px;
       text-decoration: none;
-      color: #2B5DA4;
+      top: 48px;
     }
 
-    .pt-sponsoring {background-color: rgb(207, 216, 220);}
-    .ne-sponsoring {background-color: rgb(167, 255, 235);}
-    .au-sponsoring {background-color: rgb(255, 183, 77);}
-    .fe-sponsoring {background-color: rgb(129, 199, 132);}
-    .md-sponsoring {background-color: rgb(255, 255, 255);}
+    paper-fab {
+      background: var(--color-magenta-primary);
+      box-shadow: 8px 8px 8px 0px rgba(60,71,78,0.24);
+      height: 80px;
+      margin-bottom: 8px;
+      width: 80px;
+    }
 
-    @media (min-width: 600px) {
-      paper-card {
-        margin: 8px;
-        width: auto;
+    @media (max-width:600px) {
+      .tickets {
+        display: none;
       }
     }
+
+    .jumbotron {
+      margin: 80px 0;
+      background-color: #E7F0F9;
+      padding: 45px 80px;
+    }
+
+    @media (max-width:600px) {
+      .jumbotron {
+        padding: 45px 10px;
+      }
+    }
+
+    .subtitle {
+      font-size: 24px;
+      font-weight: 300;
+      color: #2B5DA4;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .text {
+      font-size: 16px;
+      color: #4687C7;
+    }
+
+    paper-button {
+      font-size: 16px;
+      color: #fff;
+      background-color: #2B5DA4;
+      height: 48px;
+      width: 192px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 50);
+    }
+
+    .sponsors {
+      max-width: 80%;
+    }
+
+    a {
+      text-decoration: none;
+    }
   </style>
+  
+  <iron-ajax
+    auto
+    url="mocks/sponsors.json"
+    handle-as="json"
+    last-response="{{sponsors}}"></iron-ajax>
 
-  <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
+  <div class="content">
+    <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
+      <paper-fab src="images/icon-tickets.svg"></paper-fab>
+      <span>TICKETS</span>
+    </a>
+    <h3 class="title">Sponsors</h3>
+    <p class="description">Here are the people that make it happen.</p>
 
-  <!-- Example to create a component -->
-  <polymerday-sponsors-list sponsor-type="platinum">
-    <polymerday-data page="sponsors" subpage="platinum" data="{{platinumSponsor}}"></polymerday-data>
-    <polymerday-section-title title="Platinum"></polymerday-section-title>
-    <template is="dom-repeat" items="{{platinumSponsor}}" as="sponsor">
-      <polymerday-sponsor>
-        <a href="[[sponsor.link]]"><img src="[[sponsor.logo]]" alt="[[sponsor.name]]" /></a>
-      </polymerday-sponsor>
-    </template>
-  </polymerday-sponsor>
+    <div class="jumbotron">
+      <h4 class="subtitle">BECOME ONE OF OUR SPONSORS</h4>
+      <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum aliquid, ratione quis eum nostrum, illum ipsam officia, illo sunt maiores autem itaque praesentium eveniet culpa expedita blanditiis, voluptate ad reiciendis.</p>
+      <paper-button raised>I WANT</paper-button>
+    </div>
 
-
-  <paper-card class="pt-sponsoring">
-    <iron-icon icon="polymer-day" class="icon"></iron-icon>
-    <div class="card-content">
-      <h2 class="symbol">Pt</h2>
-      <h3 class="title">Platinum sponsoring</h3>
+    <div class="sponsors">
+      <template is="dom-repeat" items="{{sponsors.sponsors}}">
+        <a href="{{item.link}}" target="_blank">
+          <img src="{{item.logo}}" alt="{{item.name}}">
+        </a>
+      </template>
     </div>
-    <div class="card-actions">
-      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
-    </div>
-  </paper-card>
-  <paper-card class="ne-sponsoring">
-    <iron-icon icon="polymer-day" class="icon"></iron-icon>
-    <div class="card-content">
-      <h2 class="symbol">Ne</h2>
-      <h3 class="title">Neon sponsoring</h3>
-    </div>
-    <div class="card-actions">
-      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
-    </div>
-  </paper-card>
-  <paper-card class="au-sponsoring">
-    <iron-icon icon="polymer-day" class="icon"></iron-icon>
-    <div class="card-content">
-      <h2 class="symbol">Au</h2>
-      <h3 class="title">Gold sponsoring</h3>
-    </div>
-    <div class="card-actions">
-      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
-    </div>
-  </paper-card>
-  <paper-card class="fe-sponsoring">
-    <iron-icon icon="polymer-day" class="icon"></iron-icon>
-    <div class="card-content">
-      <h2 class="symbol">Fe</h2>
-      <h3 class="title">Iron sponsoring</h3>
-    </div>
-    <div class="card-actions">
-      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
-    </div>
-  </paper-card>
-  <paper-card class="md-sponsoring">
-    <iron-icon icon="polymer-day" class="icon"></iron-icon>
-    <div class="card-content">
-      <h2 class="symbol">Md</h2>
-      <h3 class="title">Paper sponsoring</h3>
-    </div>
-    <div class="card-actions">
-      <p class="tagline"><a href="mailto:sponsor@polymerday.com">sponsor@polymerday.com</a></p>
-    </div>
-  </paper-card>
+  </div>
 
   </template>
 
