@@ -10,7 +10,8 @@
         display: block;
         line-height: normal;
         padding: 40px 0;
-        --paper-fab-background: #2B5DA4;
+        --paper-button-background: #2B5DA4;
+        --paper-fab-background: var(--paper-button-background);
       }
 
       .header {
@@ -27,8 +28,6 @@
         -ms-flex: 1;
         flex: 1;
       }
-
-      .header__btn {}
 
       .date {
         font-size: 16px;
@@ -65,7 +64,7 @@
       }
 
       paper-button {
-        background: #2B5DA4;
+        background: var(--paper-button-background);
         color: #fff;
         padding: 16px 30px;
         margin: 0;
