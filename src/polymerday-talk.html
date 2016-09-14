@@ -11,7 +11,7 @@
         line-height: normal;
         padding: 40px 0;
 
-        --paper-button-background: #2B5DA4;
+        --paper-button-background: var(--color-blue-primary);
         --paper-fab-background: var(--paper-button-background);
         --paper-fab-keyboard-focus-background: var(--paper-button-background);
       }
@@ -57,7 +57,7 @@
       .title {
         @apply(--text-subtitle);
         text-transform: uppercase;
-        color: var(--color-blue-primary); /* missing color in theme: 2B5DA4 */
+        color: var(--color-blue-primary);
         margin: 0 0 9px;
       }
 
@@ -65,7 +65,7 @@
         font-size: 16px;
         font-weight: 100;
         letter-spacing: 1px;
-        color: #4687C7; /* missing color in theme */
+        color: var(--color-blue-medium);
         margin: 0;
       }
 
