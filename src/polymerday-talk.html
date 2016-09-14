@@ -13,6 +13,7 @@
 
         --paper-button-background: #2B5DA4;
         --paper-fab-background: var(--paper-button-background);
+        --paper-fab-keyboard-focus-background: var(--paper-button-background);
       }
 
       .header {
@@ -23,6 +24,7 @@
 
       .header__title {
         flex: 1 0 100%;
+        margin-bottom: -3px;
       }
 
       .header__date {
@@ -38,7 +40,7 @@
 
       .date {
         font-size: 16px;
-        padding-top: 4px;
+        padding-top: 5px;
         min-width: 128px;
       }
 
@@ -51,7 +53,7 @@
         @apply(--text-subtitle);
         text-transform: uppercase;
         color: var(--color-blue-primary); /* missing color in theme: 2B5DA4 */
-        margin: 0 0 8px;
+        margin: 0 0 9px;
       }
 
       .subtitle {
@@ -70,7 +72,7 @@
       paper-button {
         background: var(--paper-button-background);
         color: #fff;
-        padding: 16px 30px;
+        padding: 15px 32px;
         margin: 0;
       }
 
@@ -79,14 +81,19 @@
         @apply(--button-shadow);
       }
 
-      /* 769px */
+      /* from 769px */
       @media (min-width: 48.06em) {
-        .header__btn { order: 0; }
-        .header__title { flex: 1 1 auto; }
+        .header__btn {
+          order: 0;
+        }
+        .header__title {
+          flex: 1 1 auto;
+          margin-bottom: 5px;
+        }
 
         .date__label {
           display: block;
-          margin-top: 8px;
+          margin-top: 10px;
         }
 
         .summary { padding-left: 128px; }
