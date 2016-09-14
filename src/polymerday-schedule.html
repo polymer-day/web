@@ -31,7 +31,7 @@
   <div class="wrapper">
     <template is="dom-repeat" items="[[talks]]">
       <div class$="[[_computeClass(item.type)]]">
-        <polymerday-talk talk="[[item]]"></polymerday-talk>
+        <polymerday-talk talk="[[item]]" on-select="doSomething"></polymerday-talk>
       </div>
     </template>
   </div>
@@ -76,6 +76,10 @@
 
       _computeClass: function(type) {
         return type === 'activity' ? 'highlight' : '';
+      },
+
+      doSomething: function(e) {
+        console.log(e.model.item);
       }
     });
 

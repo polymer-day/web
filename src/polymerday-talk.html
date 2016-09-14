@@ -91,7 +91,7 @@
     <iron-collapse opened$="[[opened]]">
       <div class="summary">
         <p class="summary__content">[[talk.summary]]</p>
-        <paper-button>Show speaker</paper-button>
+        <paper-button on-tap="select">Show speaker</paper-button>
       </div>
     </iron-collapse>
   </template>
@@ -118,7 +118,11 @@
     },
 
     _computeToggleIcon: function(opened) {
-      return opened ? 'minus' : 'plus'
+      return opened ? 'minus' : 'plus';
+    },
+
+    select: function() {
+      this.fire('select');
     }
   });
   </script>
