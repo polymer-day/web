@@ -1,0 +1,125 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+
+<dom-module id="polymerday-talk">
+  <template>
+    <style>
+      :host {
+        display: block;
+        line-height: normal;
+        padding: 40px 0;
+        --paper-fab-background: #2B5DA4;
+      }
+
+      .header {
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .header__date {
+        -ms-flex-order: -1;
+        order: -1;
+      }
+
+      .header__title {
+        -ms-flex: 1;
+        flex: 1;
+      }
+
+      .header__btn {}
+
+      .date {
+        font-size: 16px;
+        padding-top: 4px;
+        min-width: 128px;
+      }
+
+      .date__label {
+        text-transform: uppercase;
+        font-size: 12px;
+        display: block;
+        margin-top: 8px;
+      }
+
+      .title {
+        @apply(--text-subtitle);
+        text-transform: uppercase;
+        color: var(--color-blue-primary); /* missing color in theme: 2B5DA4 */
+        margin: 0 0 8px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        font-weight: 100;
+        letter-spacing: 1px;
+        color: #4687C7; /* missing color in theme */
+        margin: 0;
+      }
+
+      .summary { padding-left: 128px; }
+      .summary__content {
+        line-height: 2;
+        margin: 1.5em 0;
+      }
+
+      paper-button {
+        background: #2B5DA4;
+        color: #fff;
+        padding: 16px 30px;
+        margin: 0;
+      }
+
+      paper-button,
+      paper-fab {
+        @apply(--button-shadow);
+      }
+    </style>
+
+    <div class="header">
+      <header class="header__title">
+        <h2 class="title">[[talk.title]]</h2>
+        <p class="subtitle">[[talk.speaker]]</p>
+      </header>
+
+      <div class="header__date date">[[talk.startTime]] - [[talk.endTime]] <span class="date__label">hours</span></div>
+
+      <paper-fab mini class="header__btn" aria-label$="[[_computeToggleLabel(opened)]]" on-tap="toggle" icon="[[_computeToggleIcon(opened)]]"></paper-fab>
+    </div>
+
+    <iron-collapse opened$="[[opened]]">
+      <div class="summary">
+        <p class="summary__content">[[talk.summary]]</p>
+        <paper-button>Show speaker</paper-button>
+      </div>
+    </iron-collapse>
+  </template>
+
+  <script>
+  Polymer({
+    is: 'polymerday-talk',
+
+    properties: {
+      talk: Object,
+      opened: {
+        type: Boolean,
+        value: false,
+        notify: true
+      }
+    },
+
+    toggle: function() {
+      this.opened = !this.opened;
+    },
+
+    _computeToggleLabel: function(opened) {
+      return opened ? 'Hide summary' : 'Show summary';
+    },
+
+    _computeToggleIcon: function(opened) {
+      return opened ? 'minus' : 'plus'
+    }
+  });
+  </script>
+</dom-module>
