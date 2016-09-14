@@ -30,7 +30,7 @@
 
   <div class="wrapper">
     <template is="dom-repeat" items="[[talks]]">
-      <div class$="[[item.highlight]]">
+      <div class$="[[_computeClass(item.type)]]">
         <polymerday-talk talk="[[item]]"></polymerday-talk>
       </div>
     </template>
@@ -41,23 +41,25 @@
   <script>
     var mockTalks = [{
       title: 'Nombre de la charla',
+      type: 'talk',
       speaker: 'John Doe',
       startTime: '11:00',
       endTime: '11:45',
       summary: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, aperiam harum numquam enim sed totam possimus, similique mollitia inventore, vero eaque voluptatibus ut incidunt reprehenderit.'
     }, {
       title: 'Another talk',
+      type: 'talk',
       speaker: 'Rob Dodson',
       startTime: '11:45',
       endTime: '13:00',
       summary: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, aperiam harum numquam enim sed consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, totam possimus, similique mollitia inventore, vero eaque voluptatibus ut incidunt reprehenderit.'
     }, {
       title: 'Lorem ipsum dolor',
+      type: 'activity',
       speaker: 'Peter Graham',
       startTime: '14:00',
       endTime: '15:30',
-      summary: 'Voluptatum ad eius atque, similique facere. Explicabo similique aliquid provident est numquam eaque ipsam culpa ab, adipisci rem obcaeca ticonsectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, hic iste quam.',
-      highlight: 'highlight'
+      summary: 'Voluptatum ad eius atque, similique facere. Explicabo similique aliquid provident est numquam eaque ipsam culpa ab, adipisci rem obcaeca ticonsectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, hic iste quam.'
     }];
 
     Polymer({
@@ -70,6 +72,10 @@
 
       ready: function() {
         this.set('talks', mockTalks);
+      },
+
+      _computeClass: function(type) {
+        return type === 'activity' ? 'highlight' : '';
       }
     });
 
