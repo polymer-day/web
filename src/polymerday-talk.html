@@ -10,13 +10,19 @@
         display: block;
         line-height: normal;
         padding: 40px 0;
+
         --paper-button-background: #2B5DA4;
         --paper-fab-background: var(--paper-button-background);
       }
 
       .header {
-        display: -ms-flexbox;
         display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .header__title {
+        flex: 1 0 100%;
       }
 
       .header__date {
@@ -24,9 +30,10 @@
         order: -1;
       }
 
-      .header__title {
-        -ms-flex: 1;
-        flex: 1;
+      .header__btn {
+        width: 32px;
+        height: 32px;
+        order: -1;
       }
 
       .date {
@@ -38,8 +45,6 @@
       .date__label {
         text-transform: uppercase;
         font-size: 12px;
-        display: block;
-        margin-top: 8px;
       }
 
       .title {
@@ -57,7 +62,6 @@
         margin: 0;
       }
 
-      .summary { padding-left: 128px; }
       .summary__content {
         line-height: 2;
         margin: 1.5em 0;
@@ -73,6 +77,19 @@
       paper-button,
       paper-fab {
         @apply(--button-shadow);
+      }
+
+      /* 769px */
+      @media (min-width: 48.06em) {
+        .header__btn { order: 0; }
+        .header__title { flex: 1 1 auto; }
+
+        .date__label {
+          display: block;
+          margin-top: 8px;
+        }
+
+        .summary { padding-left: 128px; }
       }
     </style>
 

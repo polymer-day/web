@@ -13,6 +13,18 @@
       display: block;
     }
 
+    .wrapper {
+      padding: 32px 0;
+    }
+
+    .talk {
+      padding: 0 24px;
+    }
+
+    .talk--highlight {
+      background: #E7F0F9;
+    }
+
     h1 {
       font-family: 'Quicksand', sans-serif;
       font-weight: 400;
@@ -23,14 +35,11 @@
       margin: auto;
     }
 
-    .highlight {
-      background: #E7F0F9;
-    }
   </style>
 
   <div class="wrapper">
     <template is="dom-repeat" items="[[talks]]">
-      <div class$="[[_computeClass(item.type)]]">
+      <div class$="talk [[_computeClass(item.type)]]">
         <polymerday-talk talk="[[item]]" on-select="doSomething"></polymerday-talk>
       </div>
     </template>
@@ -75,7 +84,7 @@
       },
 
       _computeClass: function(type) {
-        return type === 'activity' ? 'highlight' : '';
+        return type === 'activity' ? 'talk--highlight' : '';
       },
 
       doSomething: function(e) {
