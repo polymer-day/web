@@ -17,12 +17,16 @@
       }
 
       .header {
+        display: -ms-flexbox;
         display: flex;
+        -ms-flex-pack: justify;
         justify-content: space-between;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
       }
 
       .header__title {
+        -ms-flex: 1 0 100%;
         flex: 1 0 100%;
         margin-bottom: -3px;
       }
@@ -35,6 +39,7 @@
       .header__btn {
         width: 32px;
         height: 32px;
+        -ms-flex-order: -1;
         order: -1;
       }
 
@@ -84,9 +89,11 @@
       /* from 769px */
       @media (min-width: 48.06em) {
         .header__btn {
+          -ms-flex-order: 0;
           order: 0;
         }
         .header__title {
+          -ms-flex: 1 1 auto;
           flex: 1 1 auto;
           margin-bottom: 5px;
         }
