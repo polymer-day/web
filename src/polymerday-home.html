@@ -80,7 +80,7 @@
 
     </style>
 
-    <timer-days target-date="[[date]]"></timer-days>
+    <timer-days target-date="[[_dateforTimer(date)]]"></timer-days>
     <div class="content">
       <h2 class="date">[[formatedDate(date)]]</h2>
       <img class="logo" src="images/logo_polymerday.png" alt="PolymerDay" />
@@ -110,7 +110,7 @@ We will dedicate a day and a half to talk about Web Components technology. More 
         // },
         date: {
           type: Date,
-          value: new Date('October 21, 2016 17:00:00'),
+          value: new Date('October 21, 2016 17:00:00')
         }
       },
 
@@ -125,6 +125,10 @@ We will dedicate a day and a half to talk about Web Components technology. More 
       // _showAccountDialog: function() {
       //   this.fire('showAccountDialog');
       // },
+
+      _dateforTimer: function(date){
+        return new Date(date).toISOString().slice(0,-1);
+      },
 
       _monthName: function(dt) {
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
