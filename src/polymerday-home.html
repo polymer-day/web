@@ -96,7 +96,7 @@
 
     </style>
 
-    <timer-days target-date="2016-10-21T09:00:00"></timer-days>
+    <timer-days target-date="[[date]]"></timer-days>
     <div class="content">
       <h2 class="date">[[formatedDate(date)]]</h2>
       <img class="logo" src="images/logo_polymerday.png" alt="PolymerDay" />
@@ -131,7 +131,7 @@ We will dedicate a day and a half to talk about Web Components technology. More 
         // },
         date: {
           type: Date,
-          value: new Date('October 21, 2016'),
+          value: new Date('October 21, 2016 17:00:00'),
         }
       },
 
