@@ -49,6 +49,13 @@
     paper-card  .card-content__link a{
       color: var(--color-blue-medium);
     }
+    
+    paper-card .card-content__link iron-icon {
+      height: 16px;
+    }
+    paper-card .card-content__link iron-icon[icon="place"] {
+      vertical-align: baseline;
+    }
 
     paper-card .card-content__address{
       margin-bottom: 0;
@@ -82,6 +89,29 @@
       height: 400px;
     }
 
+
+    .gallery { 
+      display: -ms-flexbox;
+      -ms-flex-wrap: wrap;
+      -ms-flex-direction: column;
+      -webkit-flex-flow: row wrap; 
+      flex-flow: row wrap; 
+      display: -webkit-box;
+      display: flex;
+    }
+    .gallery div { 
+      margin: 0;
+      -webkit-box-flex: auto;
+      -ms-flex: auto;
+      flex: auto; 
+      width: 320px; 
+    }
+    .gallery div img { 
+      display: block;
+      width: 100%; 
+      height: auto; 
+    }
+
     @media (max-width: 600px) {
         paper-card {
           padding: 0;
@@ -94,25 +124,30 @@
       <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
     </google-map>
     <paper-card elevation="0"> 
-    <div class="card-content">
-      <h2 class="card-title">La Estación Gran Teatro Príncipe Pío</h2>
-      <p class="card-content__link"><a href="http://laestacion.com">www.laestacion.com</a></p>
-      <p>Imported from Holland, it has come to Madrid the first Spiegeltent, built on the premises of the new complex Station. This is a big tent of 29 meters wide, baroque style, built in wood and decorated with mirrors, textiles and stained glass. It has a capacity for 600 spectators, and it can be offered shows of different formats. Its particular characteristics make enjoy the events in this unique environment is an experience, very appetizing and appealing.</p>
-      <div class="card-content__address--container">
-        <h3 class="card-content__address">ADDRESS</h3>
-        <p>Cuesta de San Vicente 44,</p>
-        <p>Madrid, 28008</p>
+      <div class="card-content">
+        <h2 class="card-title">La Estación Gran Teatro Príncipe Pío</h2>        
+        <p class="card-content__link">
+          <a href="https://www.google.es/maps/place/La+Estaci%C3%B3n+Gran+Teatro+Pr%C3%ADncipe+P%C3%ADo/@40.4208415,-3.7188506,15z/data=!4m2!3m1!1s0x0:0x89ba0fea276d4684?sa=X&ved=0ahUKEwj3-sWwuevOAhVIOhoKHRz-CEwQ_BIIhQEwCg" tabindex="-1">
+            <iron-icon icon="place"></iron-icon>Cuesta de San Vicente 44, 28008 Madrid
+          </a>
+        </p>
+        <p class="card-content__link">
+          <a href="http://laestacion.com">
+            <iron-icon icon="link"></iron-icon>www.laestacion.com
+          </a>
+        </p>
+        <p>Imported from Holland, it has come to Madrid the first Spiegeltent, built on the premises of the new complex Station. This is a big tent of 29 meters wide, baroque style, built in wood and decorated with mirrors, textiles and stained glass. It has a capacity for 600 spectators, and it can be offered shows of different formats. Its particular characteristics make enjoy the events in this unique environment is an experience, very appetizing and appealing.</p>
+        
+        <div class="gallery">
+          <div><img src="images/venue/venue-1.jpg" alt="Photo venue 1" /></div>
+          <div><img src="images/venue/venue-2.jpg" alt="Photo venue 2" /></div>
+          <div><img src="images/venue/venue-3.jpg" alt="Photo venue 3" /></div>
+          <div><img src="images/venue/venue-4.jpg" alt="Photo venue 4" /></div>
+          <div><img src="images/venue/venue-5.jpg" alt="Photo venue 5" /></div>
+          <div><img src="images/venue/venue-6.jpg" alt="Photo venue 6" /></div>
+        </div>
       </div>
-      <a href="https://www.google.es/maps/place/La+Estaci%C3%B3n+Gran+Teatro+Pr%C3%ADncipe+P%C3%ADo/@40.4208415,-3.7188506,15z/data=!4m2!3m1!1s0x0:0x89ba0fea276d4684?sa=X&ved=0ahUKEwj3-sWwuevOAhVIOhoKHRz-CEwQ_BIIhQEwCg" tabindex="-1">
-        <paper-button class="how-to-go--button" raised>
-          How to Go 
-        </paper-button>
-      </a>
-    </div>
-      
     </paper-card>
-    
-
   </template>
 
   <script>
