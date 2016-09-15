@@ -23,7 +23,7 @@
       padding:40px 145px;
     }
 
-    paper-card .card-title{
+    paper-card .card-title {
       color: var(--color-blue-primary);
       font-family: Roboto;
       font-size: 2em;
@@ -42,13 +42,20 @@
       width:100%;
     }
 
+    paper-card .card-title {
+      margin-bottom: 6px;
+    }
+
     paper-card  .card-content__link a{
       color: var(--color-blue-medium);
     }
 
     paper-card .card-content__address{
+      margin-bottom: 0;
       color: var(--color-blue-medium);
-      font-family: Roboto;      
+      font-family: Roboto;
+      font-weight: normal;
+      font-size: 16px;
       letter-spacing: 1px;
       line-height: 32px;
     }
@@ -88,11 +95,11 @@
     </google-map>
     <paper-card elevation="0"> 
     <div class="card-content">
-      <label class="card-title">La Estación Gran Teatro Príncipe Pío</label>
+      <h2 class="card-title">La Estación Gran Teatro Príncipe Pío</h2>
       <p class="card-content__link"><a href="http://laestacion.com">www.laestacion.com</a></p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illum, ex nemo laboriosam, mollitia corrupti ipsum vero saepe unde molestiae vel fugiat voluptate optio aspernatur itaque vitae totam excepturi fugit!</p>
       <div class="card-content__address--container">
-        <label class="card-content__address">ADDRESS</label>
+        <h3 class="card-content__address">ADDRESS</h3>
         <p>Cuesta de San Vicente 44,</p>
         <p>Madrid, 28008</p>
       </div>
