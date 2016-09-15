@@ -43,7 +43,7 @@
     "platinum-sw": "polymerelements/platinum-sw#^1.3.0",
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
     "google-map": "GoogleWebComponents/google-map#^1.1.11",
-    "timer-days": "Polymer-day/timer-days#master",
+    "timer-days": "Polymer-day/timer-days#polymer-day",
     "paper-fab": "PolymerElements/paper-fab#^1.2.0"
   },
   "devDependencies": {
