@@ -231,7 +231,7 @@
           <img src="./images/logo_polymerday_white.png" alt="Polymer Day">
         </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation">
-          <template is="dom-repeat" items="[[menu]]">
+          <template is="dom-repeat" items="[[_menuVisible]]">
             <a menu-name="[[item.name]]" href$="/[[item.name]]" class$="[[item.className]]">
               <template is="dom-if" if="[[item.icon]]">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
@@ -252,7 +252,7 @@
           </app-toolbar>
           <app-toolbar class="tall">
             <paper-tabs class="menu-desktop bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
-              <template is="dom-repeat" items="[[menu]]">
+              <template is="dom-repeat" items="[[_menuVisible]]">
                 <paper-tab menu-name="[[item.name]]" link>
                   <a tabindex="-1" href="/[[item.name]]">
                     <template is="dom-if" if="[[item.icon]]">
@@ -313,10 +313,12 @@
             default: true
           }, {
             name: 'speakers',
-            title: 'Speakers'
+            title: 'Speakers',
+            hidden: true
           }, {
             name: 'schedule',
-            title: 'Schedule'
+            title: 'Schedule',
+            hidden: true
           }, {
             name: 'venue',
             title: 'Venue'
@@ -351,6 +353,11 @@
           computed: '_computeDefaultView(menu)'
         },
 
+        _menuVisible: {
+          type: Array,
+          computed: '_computeMenuVisible(menu)'
+        }
+
       },
 
       observers: [
@@ -372,6 +379,18 @@
         }
 
         return name || (menu.length ? name = menu[0].name : '');
+      },
+
+      _computeMenuVisible: function(menu) {
+        var menuVisible = [];
+
+        for (var i = 0; i < menu.length; i++) {
+          if (menu[i].hidden !== true) {
+            menuVisible.push(menu[i]);
+          }
+        }
+
+        return menuVisible;
       },
 
       _pageChanged: function(page) {
