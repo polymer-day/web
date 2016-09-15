@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+
+<dom-module id="buy-tickets-foating">
+
+  <template>
+
+  <style>
+    :host {
+      position: fixed;
+      right: 32px;
+      text-align: center;
+      top: 198px;
+    }
+
+    :host([page="home"]) {
+      position: absolute;
+      top: 390px;
+    }
+
+    .tickets {
+      @apply(--text-small);
+      text-decoration: none;
+    }
+
+    .tickets paper-fab {
+      background: var(--color-magenta-primary);
+      box-shadow: 8px 8px 8px 0px rgba(60,71,78,0.24);
+      height: 80px;
+      margin-bottom: 8px;
+      width: 80px;
+    }
+
+  </style>
+  <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
+    <paper-fab src="images/icon-tickets.svg"></paper-fab>
+    <span>TICKETS</span>
+  </a>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'buy-tickets-foating',
+
+      properties: {
+        page: {
+          type: String,
+          reflectToAttribute: true
+        }
+      }
+
+    });
+
+  </script>
+
+</dom-module>

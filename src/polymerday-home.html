@@ -1,7 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/timer-days/timer-days.html">
 
 <dom-module id="polymerday-home">
@@ -41,20 +40,13 @@
         min-width: 300px;
       }
 
-      .tickets {
-        @apply(--text-small);
-        position: absolute;
-        right: 32px;
-        text-decoration: none;
-        top: 48px;
-      }
-
       timer-days {
         align-items: center;
         background-image: url('images/bg-time-days.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
+        background-color: var(--color-white-primary);
         border: none;
         box-shadow: none;
         display: flex;
@@ -80,14 +72,6 @@
         @apply(--text-small-white);
       }
 
-      paper-fab {
-        background: var(--color-magenta-primary);
-        box-shadow: 8px 8px 8px 0px rgba(60,71,78,0.24);
-        height: 80px;
-        margin-bottom: 8px;
-        width: 80px;
-      }
-
       @media (max-width:600px) {
         .tickets {
           display: none;
@@ -100,11 +84,6 @@
     <div class="content">
       <h2 class="date">[[formatedDate(date)]]</h2>
       <img class="logo" src="images/logo_polymerday.png" alt="PolymerDay" />
-      <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
-        <paper-fab src="images/icon-tickets.svg"></paper-fab>
-        <span>TICKETS</span>
-      </a>
-
       <h3 class="location">MADRID</h3>
       <p class="description">The first event focused on Google's Polymer Library and App's Toolbox in Spain.
 We dedicate one an a half days to talk about Web Components technology. More than 10 talks from developer who are using Polymer during long time and for real projects.</p>
