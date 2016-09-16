@@ -4,6 +4,8 @@
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 
 <link rel="import" href="polymerday-section-title.html">
+<link rel="import" href="polymerday-data.html">
+
 <dom-module id="polymerday-sponsors">
 
   <template>
@@ -80,6 +82,19 @@
   </style>
 
   <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
+
+  <!-- Example to create a component -->
+  <polymerday-sponsors-list sponsor-type="platinum">
+    <polymerday-data page="sponsors" subpage="platinum" data="{{platinumSponsor}}"></polymerday-data>
+    <polymerday-section-title title="Platinum"></polymerday-section-title>
+    <template is="dom-repeat" items="{{platinumSponsor}}" as="sponsor">
+      <polymerday-sponsor>
+        <a href="[[sponsor.link]]"><img src="[[sponsor.logo]]" alt="[[sponsor.name]]" /></a>
+      </polymerday-sponsor>
+    </template>
+  </polymerday-sponsor>
+
+
   <paper-card class="pt-sponsoring">
     <iron-icon icon="polymer-day" class="icon"></iron-icon>
     <div class="card-content">
