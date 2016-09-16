@@ -87,12 +87,6 @@
   </style>
 
   <template>
-    <firebase-app auth-domain="{{firebaseData.authDomain}}"
-      database-url="{{firebaseData.databaseUrl}}"
-      api-key="{{firebaseData.apiKey}}"
-      storageBucket="{{firebaseData.storageBucket}}">
-    </firebase-app>
-
     <firebase-auth id="auth" user="{{user}}" signedIn="{{signedIn}}" provider="google" on-error="_handleError"></firebase-auth>
 
     <firebase-document
@@ -138,9 +132,6 @@
         userData: {
           type: Object,
           notify: true
-        },
-        firebaseData: {
-          type: Object
         }
       },
 
