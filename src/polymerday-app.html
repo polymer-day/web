@@ -4,7 +4,7 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<!-- <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html"> -->
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
@@ -22,7 +22,7 @@
 <link rel="import" href="polymerday-footer.html">
 <link rel="import" href="polymerday-theme.html">
 <link rel="import" href="polymerday-icons.html">
-<link rel="import" href="polymerday-signin.html">
+<!-- <link rel="import" href="polymerday-signin.html"> -->
 
 <dom-module id="polymerday-app">
   <style include="iron-flex iron-flex-alignment"></style>
@@ -217,9 +217,11 @@
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
+    <!--
     <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
-      <polymerday-signin user="{{user}}" firebase-data="[[firebaseData]]"></polymerday-signin>
+      <polymerday-signin user="{{user}}"></polymerday-signin>
     </paper-dialog>
+    -->
 
     <app-drawer-layout force-narrow>
 
