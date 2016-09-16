@@ -1,0 +1,28 @@
+{
+  "name": "polymer-day-web",
+  "version": "0.0.1",
+  "description": "The first event focused on Google's Polymer Library and App's Toolbox in Spain. We will dedicate a day and a half to talk about Web Components technology. More than 10 talks from developers who are using Polymer during long time and for real projects.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:polymer-day/web"
+  },
+  "bugs": {
+    "url": "https://github.com/polymer-day/web/issues"
+  },
+  "engines": {
+    "node": ">=4.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "del": "^2.2.1",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-crisper": "^1.1.0",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-uglify": "^2.0.0",
+    "merge-stream": "^1.0.0",
+    "plylog": "^0.4.0",
+    "polymer-build": "^0.4.0"
+  }
+}
