@@ -40,28 +40,6 @@
       padding: 0 16px;
     }
 
-    .tickets {
-      @apply(--text-small);
-      position: absolute;
-      right: 32px;
-      text-decoration: none;
-      top: 48px;
-    }
-
-    paper-fab {
-      background: var(--color-magenta-primary);
-      box-shadow: 8px 8px 8px 0px rgba(60,71,78,0.24);
-      height: 80px;
-      margin-bottom: 8px;
-      width: 80px;
-    }
-
-    @media (max-width:600px) {
-      .tickets {
-        display: none;
-      }
-    }
-
     .jumbotron {
       margin: 80px 0;
       background-color: #E7F0F9;
@@ -119,10 +97,6 @@
     data="{{ironSponsor}}"></polymerday-data>
 
   <div class="content">
-    <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
-      <paper-fab src="images/icon-tickets.svg"></paper-fab>
-      <span>TICKETS</span>
-    </a>
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
     <div class="jumbotron">
