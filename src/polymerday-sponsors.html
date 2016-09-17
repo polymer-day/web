@@ -5,6 +5,7 @@
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="polymerday-section-title.html">
+<link rel="import" href="polymerday-data.html">
 
 <dom-module id="polymerday-sponsors">
 
@@ -103,11 +104,18 @@
     }
   </style>
   
-  <iron-ajax
-    auto
-    url="mocks/sponsors.json"
-    handle-as="json"
-    last-response="{{sponsors}}"></iron-ajax>
+  <polymerday-data
+    page="sponsors"
+    subpage="platinum"
+    data="{{platinumSponsor}}"></polymerday-data>
+  <polymerday-data
+    page="sponsors"
+    subpage="gold"
+    data="{{goldSponsor}}"></polymerday-data>
+  <polymerday-data
+    page="sponsors"
+    subpage="iron"
+    data="{{ironSponsor}}"></polymerday-data>
 
   <div class="content">
     <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
@@ -123,10 +131,23 @@
     </div>
 
     <div class="sponsors">
-      <template is="dom-repeat" items="{{sponsors.sponsors}}">
-        <a href="{{item.link}}" target="_blank">
-          <img src="{{item.logo}}" alt="{{item.name}}">
-        </a>
+      <polymerday-section-title title="Platinum"></polymerday-section-title>
+      <template is="dom-repeat" items="{{platinumSponsor}}" as="platinum">
+          <a href="[[platinum.link]]">
+            <img src="[[platinum.logo]]" alt="[[platinum.name]]"/>
+          </a>
+      </template>
+      <polymerday-section-title title="Gold"></polymerday-section-title>
+      <template is="dom-repeat" items="{{goldSponsor}}" as="sponsor">
+          <a href="[[sponsor.link]]">
+            <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
+          </a>
+      </template>
+      <polymerday-section-title title="Iron"></polymerday-section-title>
+      <template is="dom-repeat" items="{{ironSponsor}}" as="sponsor">
+          <a href="[[sponsor.link]]">
+            <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
+          </a>
       </template>
     </div>
   </div>
