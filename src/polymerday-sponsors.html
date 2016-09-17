@@ -3,7 +3,8 @@
 <link rel="import" href="polymerday-section-title.html">
 <link rel="import" href="polymerday-sponsors-list.html">
 <link rel="import" href="polymerday-theme.html">
-<link rel="import" href="polymerday-section-title.html">
+
+<link rel="import" href="polymerday-data.html">
 
 <dom-module id="polymerday-sponsors">
 
@@ -69,6 +70,18 @@
     }
   </style>
 
+  <polymerday-data
+    page="sponsors"
+    subpage="platinum"
+    data="{{platinumSponsor}}"></polymerday-data>
+  <polymerday-data
+    page="sponsors"
+    subpage="gold"
+    data="{{goldSponsor}}"></polymerday-data>
+  <polymerday-data
+    page="sponsors"
+    subpage="iron"
+    data="{{ironSponsor}}"></polymerday-data>
   <div class="content">
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
@@ -79,9 +92,24 @@
     </div>
 
     <div class="sponsors">
-      <polymerday-sponsors-list sponsors-type="platinum" sponsors-title="Platinum"></polymerday-sponsors-list>
-      <polymerday-sponsors-list sponsors-type="gold" sponsors-title="Gold"></polymerday-sponsors-list>
-      <polymerday-sponsors-list sponsors-type="iron" sponsors-title="Iron"></polymerday-sponsors-list>
+      <polymerday-section-title title="Platinum"></polymerday-section-title>
+      <template is="dom-repeat" items="{{platinumSponsor}}" as="platinum">
+          <a href="[[platinum.link]]">
+            <img src="[[platinum.logo]]" alt="[[platinum.name]]"/>
+          </a>
+      </template>
+      <polymerday-section-title title="Gold"></polymerday-section-title>
+      <template is="dom-repeat" items="{{goldSponsor}}" as="sponsor">
+          <a href="[[sponsor.link]]">
+            <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
+          </a>
+      </template>
+      <polymerday-section-title title="Iron"></polymerday-section-title>
+      <template is="dom-repeat" items="{{ironSponsor}}" as="sponsor">
+          <a href="[[sponsor.link]]">
+            <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
+          </a>
+      </template>
     </div>
   </div>
 
