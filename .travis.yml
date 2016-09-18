@@ -15,10 +15,10 @@ script:
   - polymer build
 deploy:
   provider: firebase
-  skip_cleanup: true
+  edge:
+    source: jorgecasar/dpl
+    branch: fix/503-firebase-deploy-project-option
   token: "${FIREBASE_TOKEN}"
   project: "${FIREBASE_PROJECT_ID}"
   on:
     branch: master
-notifications:
-  slack: "${SLACK_ACCOUNT}:${SLACK_TOKEN}#${SLACK_ROOM}"
