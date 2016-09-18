@@ -1,32 +1,20 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-
 <link rel="import" href="polymerday-data.html">
 
 <dom-module id="polymerday-sponsors-list">
-
   <template>
+    <polymerday-data
+      page="sponsors"
+      subpage="{{sponsor-type}}"
+      data="{{sponsors}}"></polymerday-data>
 
-  <style>
+    <polymerday-section-title title="{{_title}}"></polymerday-section-title>
 
-    a {
-      text-decoration: none;
-    }
-  </style>
-
-  <polymerday-data
-    page="sponsors"
-    subpage="{{sponsorsType}}"
-    data="{{sponsors}}"></polymerday-data>
-
-  <template is="dom-if" if="[[sponsors.length]]">
-    <polymerday-section-title title="[[sponsorsTitle]]"></polymerday-section-title>
     <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
         <a href="[[sponsor.link]]">
           <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
         </a>
     </template>
-  </template>
-
   </template>
 
   <script>
@@ -36,13 +24,30 @@
       is: 'polymerday-sponsors-list',
 
       properties: {
-        sponsors: Array,
-        sponsorsType: String,
-        sponsorsTitle: String
+
+        sponsorType: String,
+
+        _title: {
+          type: String,
+          computed: '_computedTitle(sponsorType)'
+        },
+
+        _titlesMap: {
+          type: Object,
+          value: {
+            platinum: 'Platinum',
+            gold: 'Gold',
+            iron: 'Iron'
+          }
+        }
+
+      },
+
+      _computedTitle: function(sponsorType) {
+        return this._titlesMap[sponsorType];
       }
 
     });
 
   </script>
-
 </dom-module>
