@@ -1,0 +1,165 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+
+<dom-module id="polymerday-schedule-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+        line-height: normal;
+        padding: 40px 0;
+
+        --paper-button-background: var(--color-blue-primary);
+        --paper-fab-background: var(--paper-button-background);
+        --paper-fab-keyboard-focus-background: var(--paper-button-background);
+      }
+
+      .header {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+      }
+
+      .header__title {
+        -ms-flex: 1 0 100%;
+        flex: 1 0 100%;
+        margin-bottom: -3px;
+      }
+
+      .header__date {
+        -ms-flex-order: -1;
+        order: -1;
+      }
+
+      .header__btn {
+        width: 32px;
+        height: 32px;
+        -ms-flex-order: -1;
+        order: -1;
+      }
+
+      .date {
+        font-size: 16px;
+        padding-top: 5px;
+        min-width: 128px;
+      }
+
+      .date__label {
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .title {
+        @apply(--text-subtitle);
+        text-transform: uppercase;
+        color: var(--color-blue-primary);
+        margin: 0 0 9px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        font-weight: 100;
+        letter-spacing: 1px;
+        color: var(--color-blue-medium);
+        margin: 0;
+      }
+
+      .summary__content {
+        line-height: 2;
+        margin: 1.5em 0;
+      }
+
+      paper-button {
+        background: var(--paper-button-background);
+        color: #fff;
+        padding: 15px 32px;
+        margin: 0;
+      }
+
+      paper-button,
+      paper-fab {
+        @apply(--button-shadow);
+      }
+
+      /* from 769px */
+      @media (min-width: 48.06em) {
+        .header__btn {
+          -ms-flex-order: 0;
+          order: 0;
+        }
+        .header__title {
+          -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+          margin-bottom: 5px;
+        }
+
+        .date__label {
+          display: block;
+          margin-top: 10px;
+        }
+
+        .summary { padding-left: 128px; }
+      }
+    </style>
+
+    <div class="header">
+      <header class="header__title">
+        <h2 class="title">[[event.name]]</h2>
+        <p class="subtitle">[[event.speaker]]</p>
+      </header>
+
+      <div class="header__date date">[[event.schedule]]<span class="date__label">hours</span></div>
+
+      <paper-fab mini class="header__btn" aria-label$="[[_computeToggleLabel(opened)]]" on-click="toggle" icon="[[_computeToggleIcon(opened)]]"></paper-fab>
+    </div>
+
+    <iron-collapse opened$="[[opened]]">
+      <div class="summary">
+        <p class="summary__content">[[event.description]]</p>
+        <template is="dom-if" if="[[_isTalk(event)]]">
+          <paper-button on-click="select">Show speaker</paper-button>
+        </template>
+      </div>
+    </iron-collapse>
+  </template>
+
+  <script>
+  Polymer({
+    is: 'polymerday-schedule-item',
+
+    properties: {
+      event: Object,
+      opened: {
+        type: Boolean,
+        value: false,
+        notify: true
+      }
+    },
+
+    toggle: function() {
+      this.opened = !this.opened;
+    },
+
+    _computeToggleLabel: function(opened) {
+      return opened ? 'Hide summary' : 'Show summary';
+    },
+
+    _computeToggleIcon: function(opened) {
+      return opened ? 'minus' : 'plus';
+    },
+
+    _isTalk: function(event) {
+      return event.type === 'talk';
+    },
+
+    select: function() {
+      this.fire('select');
+    }
+  });
+  </script>
+</dom-module>
