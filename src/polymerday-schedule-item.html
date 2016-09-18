@@ -3,7 +3,7 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 
-<dom-module id="polymerday-talk">
+<dom-module id="polymerday-schedule-item">
   <template>
     <style>
       :host {
@@ -109,29 +109,31 @@
 
     <div class="header">
       <header class="header__title">
-        <h2 class="title">[[talk.title]]</h2>
-        <p class="subtitle">[[talk.speaker]]</p>
+        <h2 class="title">[[event.name]]</h2>
+        <p class="subtitle">[[event.speaker]]</p>
       </header>
 
-      <div class="header__date date">[[talk.startTime]] - [[talk.endTime]] <span class="date__label">hours</span></div>
+      <div class="header__date date">[[event.schedule]]<span class="date__label">hours</span></div>
 
       <paper-fab mini class="header__btn" aria-label$="[[_computeToggleLabel(opened)]]" on-click="toggle" icon="[[_computeToggleIcon(opened)]]"></paper-fab>
     </div>
 
     <iron-collapse opened$="[[opened]]">
       <div class="summary">
-        <p class="summary__content">[[talk.summary]]</p>
-        <paper-button on-click="select">Show speaker</paper-button>
+        <p class="summary__content">[[event.description]]</p>
+        <template is="dom-if" if="[[_isTalk(event)]]">
+          <paper-button on-click="select">Show speaker</paper-button>
+        </template>
       </div>
     </iron-collapse>
   </template>
 
   <script>
   Polymer({
-    is: 'polymerday-talk',
+    is: 'polymerday-schedule-item',
 
     properties: {
-      talk: Object,
+      event: Object,
       opened: {
         type: Boolean,
         value: false,
@@ -149,6 +151,10 @@
 
     _computeToggleIcon: function(opened) {
       return opened ? 'minus' : 'plus';
+    },
+
+    _isTalk: function(event) {
+      return event.type === 'talk';
     },
 
     select: function() {
