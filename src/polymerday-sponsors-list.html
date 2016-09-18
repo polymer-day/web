@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="polymerday-data.html">
+<link rel="import" href="polymerday-sponsor-item.html">
 
 <dom-module id="polymerday-sponsors-list">
   <template>
@@ -11,9 +12,7 @@
     <polymerday-section-title title="{{_title}}"></polymerday-section-title>
 
     <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
-        <a href="[[sponsor.link]]">
-          <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
-        </a>
+      <polymerday-sponsor-item sponsor="[[sponsor]]"></polymerday-sponsor-item>
     </template>
   </template>
 
