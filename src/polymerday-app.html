@@ -4,8 +4,9 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<!-- <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html"> -->
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
@@ -17,10 +18,12 @@
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
+<link rel="import" href="polymerday-footer.html">
 <link rel="import" href="polymerday-theme.html">
 <link rel="import" href="polymerday-icons.html">
-<link rel="import" href="polymerday-signin.html">
+<!-- <link rel="import" href="polymerday-signin.html"> -->
 
 <dom-module id="polymerday-app">
   <style include="iron-flex iron-flex-alignment"></style>
@@ -126,6 +129,34 @@
         display: none;
       }
 
+      .tickets {
+        @apply(--text-small);
+        position: fixed;
+        right: 32px;
+        text-align: center;
+        text-decoration: none;
+        top: 198px;
+        display: none;
+      }
+
+      .tickets paper-fab {
+        background: var(--color-magenta-primary);
+        box-shadow: 8px 8px 8px 0px rgba(60,71,78,0.24);
+        height: 80px;
+        margin-bottom: 8px;
+        width: 80px;
+      }
+
+      .tickets-mobile {
+        height: 64px;
+        text-align: center;
+        width: 64px;
+      }
+
+      .tickets-mobile iron-icon {
+        width: 24px;
+      }
+
       paper-tabs {
         --paper-tabs: {
           padding-bottom: 8px;
@@ -137,52 +168,23 @@
         margin: 0 16px;
       }
 
-      paper-tab > a {
+      paper-tab a {
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
         @apply(--text-normal-white);
         text-decoration: none;
-      );
+      }
+
+      paper-tab:focus a {
+        font-weight:bold;
         outline: 0;
       }
 
-      .footer{
-        background-image: url('images/bg-footer.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: bottom right;
-        height: 30vh;
-        position: relative;
-      }
-
-      .footer .links {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        margin-bottom: 16px;
-      }
-
-      .footer a:first-child {
-        margin: 0 16px;
-      }
-
-      .footer a {
-        text-decoration: none;
-        color: var(--color-grey-primary);
-      }
-
-      .footer [icon="twitter"] {
-        border-radius: 50%;
-        overflow: hidden;
-        width: 32px;
-        height: 32px;
-      }
-
-      .footer [title="Eventbrite"] {
-        width: auto;
-        height: auto;
-        padding-bottom: 6px;
-
+      .view {
+        box-sizing: border-box;
+        display: block;
+        min-height: 100vh;
+        overflow: visible;
       }
 
 
@@ -194,15 +196,26 @@
           font-size: 36px;
         }
 
-        .menu-desktop {
+        .menu-desktop, .tickets {
           display: block;
         }
-        .view {
-          min-height: calc( 70vh - 150px );
-          box-sizing: border-box;
+
+        :host([page="home"]) .tickets {
+          position: absolute;
+          top: 390px;
+        }
+
+        .tickets-mobile {
+          display: none;
         }
       }
     </style>
+
+    <firebase-app auth-domain="{{firebaseData.authDomain}}"
+      database-url="{{firebaseData.databaseUrl}}"
+      api-key="{{firebaseData.apiKey}}"
+      storageBucket="{{firebaseData.storageBucket}}">
+    </firebase-app>
 
     <app-location route="{{route}}"></app-location>
     <app-route
@@ -211,9 +224,11 @@
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
+    <!--
     <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
-      <polymerday-signin user="{{user}}" firebase-data="[[firebaseData]]"></polymerday-signin>
+      <polymerday-signin user="{{user}}"></polymerday-signin>
     </paper-dialog>
+    -->
 
     <app-drawer-layout force-narrow>
 
@@ -223,8 +238,8 @@
           <img src="./images/logo_polymerday_white.png" alt="Polymer Day">
         </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation">
-          <template is="dom-repeat" items="[[_toArray(menu)]]">
-            <a menu-name="[[item.name]]" href$="/[[item.__id]]" class$="[[item.className]]">
+          <template is="dom-repeat" items="[[_menuVisible]]">
+            <a menu-name="[[item.name]]" href$="/[[item.name]]" class$="[[item.className]]">
               <template is="dom-if" if="[[item.icon]]">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
               </template>
@@ -244,9 +259,9 @@
           </app-toolbar>
           <app-toolbar class="tall">
             <paper-tabs class="menu-desktop bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
-              <template is="dom-repeat" items="[[_toArray(menu)]]">
+              <template is="dom-repeat" items="[[_menuVisible]]">
                 <paper-tab menu-name="[[item.name]]" link>
-                  <a tabindex="-1" href="/[[item.__id]]">
+                  <a tabindex="-1" href="/[[item.name]]">
                     <template is="dom-if" if="[[item.icon]]">
                       <iron-icon icon="[[item.icon]]"></iron-icon>
                     </template>
@@ -255,6 +270,9 @@
                 </paper-tab>
               </template>
             </paper-tabs>
+            <a class="tickets-mobile" href="http://polymerday.eventbrite.es/" target="_blank">
+              <iron-icon src="images/icon-tickets.svg"></iron-icon>
+            </a>
           </app-toolbar>
         </app-header>
 
@@ -265,16 +283,11 @@
           <polymerday-venue name="venue" class="view"></polymerday-venue>
           <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
         </iron-pages>
-        <div class="footer">
-          <div class="links">
-            <a href="http://polymerday.eventbrite.es/" tabindex="-1" target="_blank">
-              <span class="card-actions__label eventbrite">registration at</span> <iron-icon src="images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
-            </a>
-            <a href="https://twitter.com/polymerday" tabindex="-1" target="_blank">
-              <span class="card-actions__label">@polymerday</span> <iron-icon icon="twitter"></iron-icon>
-            </a>
-          </div>
-        </div>
+        <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
+          <paper-fab src="images/icon-tickets.svg"></paper-fab>
+          <span>TICKETS</span>
+        </a>
+        <polymerday-footer></polymerday-footer>
 
       </app-header-layout>
 
@@ -300,30 +313,26 @@
         },
 
         menu: {
-          type: Object,
-          value: {
-            'home': {
-              'name': 'home',
-              'title': 'Home',
-              'default': true
-            },
-            'speakers': {
-              'name': 'speakers',
-              'title': 'Speakers'
-            },
-            'schedule': {
-              'name': 'schedule',
-              'title': 'Schedule'
-            },
-            'venue': {
-              'name': 'venue',
-              'title': 'Venue'
-            },
-            'sponsors': {
-              'name': 'sponsors',
-              'title': 'Sponsors'
-            },
-          },
+          type: Array,
+          value: [{
+            name: 'home',
+            title: 'Home',
+            default: true
+          }, {
+            name: 'speakers',
+            title: 'Speakers',
+            hidden: true
+          }, {
+            name: 'schedule',
+            title: 'Schedule',
+            hidden: true
+          }, {
+            name: 'venue',
+            title: 'Venue'
+          }, {
+            name: 'sponsors',
+            title: 'Sponsors'
+          }]
         },
 
         firebaseData: Object,
@@ -351,6 +360,11 @@
           computed: '_computeDefaultView(menu)'
         },
 
+        _menuVisible: {
+          type: Array,
+          computed: '_computeMenuVisible(menu)'
+        }
+
       },
 
       observers: [
@@ -364,13 +378,26 @@
       _computeDefaultView: function(menu) {
         var name;
 
-        for (var item in menu) {
-          if (menu[item].default) {
-            return name = item;
+        for (var i = 0; i < menu.length; i++) {
+          if (menu[i].default) {
+            name = menu[i].name;
+            break;
           }
         }
 
-        return name;
+        return name || (menu.length ? name = menu[0].name : '');
+      },
+
+      _computeMenuVisible: function(menu) {
+        var menuVisible = [];
+
+        for (var i = 0; i < menu.length; i++) {
+          if (menu[i].hidden !== true) {
+            menuVisible.push(menu[i]);
+          }
+        }
+
+        return menuVisible;
       },
 
       _pageChanged: function(page) {
@@ -382,7 +409,6 @@
 
       goTo: function(page) {
         page = page || this._defaultView;
-        var page = this.menu[page].name;
 
         if (this.page === page) {
           return;
@@ -411,14 +437,7 @@
 
       _showAccountDialog: function() {
         this.$.accountDialog.open();
-      },
-
-      _toArray: function(obj) {
-        return obj ? Object.keys(obj).map(function(key) {
-          obj[key].__id = key;
-          return obj[key];
-        }) : null;
-      },
+      }
 
     });
 

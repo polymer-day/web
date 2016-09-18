@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="polymerday-section-title">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        font-family: Roboto;
+        margin;
+        text-align: center;
+        width: 100%;
+        padding:85px 0;
+      }
+      .title--container h1{
+        margin:0 0 17px 0;
+        color: var(--color-blue-primary);
+        font-size: 4em;
+        font-weight: 100;
+        letter-spacing: 5px;
+      }
+      .message--container span{
+        font-size: 2em;
+        color: #616161;
+      }
+      div{
+        padding:15px;
+        height: auto;
+      }
+      @media (max-width: 600px) {
+        :host {
+          padding: 0;
+        };
+    };
+    </style>
+      <div class="title--container">
+        <h1>[[title]]</h1>
+      </div>
+      <div class="message--container">
+        <span>[[message]]</span>
+      </div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-section-title',
+      properties: {
+        title: {
+          type: String
+        },
+        message: {
+          type: String
+        }
+      }
+
+    })
+
+  </script>
+
+</dom-module>

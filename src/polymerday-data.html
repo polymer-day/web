@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-query.html">
+
+<dom-module id="polymerday-data">
+  <template>
+    <firebase-query
+      path="{{_path}}"
+      data="{{data}}">
+    </firebase-query>
+  </template>
+
+<script>
+
+    Polymer({
+
+      is: 'polymerday-data',
+
+      properties: {
+        page: {
+          type: String
+        },
+
+        subpage: {
+          type: String
+        },
+
+        _path: {
+          type: String,
+          computed: '_computedPath(page, subpage)'
+        },
+
+        data: {
+          type: Object,
+          notify: true
+        }
+      },
+
+      _computedPath: function(page, subpage){
+        var path = '/' + page;
+        if (subpage) {
+          path += '/' + subpage;
+        }
+        return path;
+      }
+
+    });
+
+  </script>
+
+</dom-module>
