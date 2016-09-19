@@ -20,6 +20,7 @@
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
+<link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-footer.html">
 <link rel="import" href="polymerday-theme.html">
 <link rel="import" href="polymerday-icons.html">
@@ -223,6 +224,9 @@
         pattern="/:page"
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
+    <polymerday-data
+      data="{{menu}}"
+      page="menu"></polymerday-data>
 
     <!--
     <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
@@ -314,25 +318,7 @@
 
         menu: {
           type: Array,
-          value: [{
-            name: 'home',
-            title: 'Home',
-            default: true
-          }, {
-            name: 'speakers',
-            title: 'Speakers',
-            hidden: true
-          }, {
-            name: 'schedule',
-            title: 'Schedule',
-            hidden: true
-          }, {
-            name: 'venue',
-            title: 'Venue'
-          }, {
-            name: 'sponsors',
-            title: 'Sponsors'
-          }]
+          value: []
         },
 
         firebaseData: Object,
@@ -355,49 +341,52 @@
           observer: '_pageChanged'
         },
 
-        _defaultView: {
-          type: String,
-          computed: '_computeDefaultView(menu)'
-        },
-
         _menuVisible: {
           type: Array,
-          computed: '_computeMenuVisible(menu)'
+          value: function() {
+            return [];
+          }
         }
 
       },
 
       observers: [
-        'goTo(routeData.page)'
+        'goTo(routeData.page)',
+        '_menuChanged(menu.splices)'
       ],
 
       listeners: {
         'showAccountDialog': '_showAccountDialog'
       },
 
-      _computeDefaultView: function(menu) {
-        var name;
-
-        for (var i = 0; i < menu.length; i++) {
-          if (menu[i].default) {
-            name = menu[i].name;
-            break;
+      _menuChanged: function(splices) {
+        if(splices && splices.indexSplices) {
+          for (var i = 0, splice; i < splices.indexSplices.length; i++) {
+            this._addMenuItems(splices.indexSplices[i]);
+            this._removeMenuItems(splices.indexSplices[i]);
           }
         }
-
-        return name || (menu.length ? name = menu[0].name : '');
       },
 
-      _computeMenuVisible: function(menu) {
-        var menuVisible = [];
-
-        for (var i = 0; i < menu.length; i++) {
-          if (menu[i].hidden !== true) {
-            menuVisible.push(menu[i]);
+      _addMenuItems: function(splice) {
+        var item;
+        for (var j = 0; j < splice.addedCount; j++) {
+          item = splice.object[splice.index+j];
+          if (item.hidden !== true) {
+            this.push('_menuVisible', item);
+          }
+          if (!this.page && item.default) {
+            this.set('page', item.name);
           }
         }
+      },
 
-        return menuVisible;
+      _removeMenuItems: function(splice) {
+        var index;
+        for (var i = 0, index; i < splice.removed.length; i++) {
+          index = this._menuVisible.indexOf(splice.removed[i]);
+          this.splice('_menuVisible', index, 1);
+        }
       },
 
       _pageChanged: function(page) {
