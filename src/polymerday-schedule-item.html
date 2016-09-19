@@ -113,9 +113,11 @@
         <p class="subtitle">[[event.speaker]]</p>
       </header>
 
-      <div class="header__date date">[[event.schedule]]<span class="date__label">hours</span></div>
+      <div class="header__date date">[[_getTime(event.start, event.end)]]<span class="date__label">hours</span></div>
 
-      <paper-fab mini class="header__btn" aria-label$="[[_computeToggleLabel(opened)]]" on-click="toggle" icon="[[_computeToggleIcon(opened)]]"></paper-fab>
+      <template is="dom-if" if="[[event.description]]">
+        <paper-fab mini class="header__btn" aria-label$="[[_computeToggleLabel(opened)]]" on-click="toggle" icon="[[_computeToggleIcon(opened)]]"></paper-fab>
+      </template>
     </div>
 
     <iron-collapse opened$="[[opened]]">
@@ -159,6 +161,25 @@
 
     select: function() {
       this.fire('select');
+    },
+
+    _fix2Digits: function(num) {
+      if (num<10) {
+        num = '0' + num;
+      }
+      return num;
+    },
+
+    _getTimeMinutes: function(date) {
+      var hours = this._fix2Digits(date.getHours());
+      var minutes = this._fix2Digits(date.getMinutes());
+      return hours + ':' + minutes; 
+    },
+
+    _getTime: function(start, end) {
+      var dateStart = new Date(start);
+      var dateEnd = new Date(end);
+      return this._getTimeMinutes(dateStart) + ' - ' + this._getTimeMinutes(dateEnd);
     }
   });
   </script>

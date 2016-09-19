@@ -1,7 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 
+<link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
 <link rel="import" href="polymerday-schedule-item.html">
 
@@ -31,10 +33,30 @@
       margin: auto;
     }
 
+    paper-tabs {
+      width: 300px;
+      margin: 0 auto;
+      --paper-tabs: {
+        background: var(--color-blue-medium);
+        color: var(--color-white-primary);
+      }
+    }
+
+    paper-tabs paper-tab.iron-selected {
+      background: var(--color-blue-primary);
+    }
+
   </style>
 
   <polymerday-section-title title="Schedule" message="We dedicate one an a half days to talk about Web Components"></polymerday-section-title>
+  
+  <paper-tabs selected="{{daySelected}}" attr-for-selected="day" fallback-selection="friday" role="navigation" no-bar noink>
+    <paper-tab day="friday" link>Friday</paper-tab>
+    <paper-tab day="saturday" link>Saturday</paper-tab>
+  </paper-tabs>
+
   <div class="wrapper">
+    <polymerday-data id="events" data="{{events}}" page="schedule" subpage="{{daySelected}}"></polymerday-data>
     <template is="dom-repeat" items="[[events]]">
       <div class$="event [[_computeClass(item.type)]]">
         <polymerday-schedule-item event="[[item]]" on-select="doSomething"></polymerday-schedule-item>
@@ -45,37 +67,11 @@
   </template>
 
   <script>
-    var mockEvents = [{
-      name: 'Nombre de la charla',
-      type: 'talk',
-      speaker: 'John Doe',
-      schedule: '11:00 - 11:45',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, aperiam harum numquam enim sed totam possimus, similique mollitia inventore, vero eaque voluptatibus ut incidunt reprehenderit.'
-    }, {
-      name: 'Another talk',
-      type: 'talk',
-      speaker: 'Rob Dodson',
-      schedule: '11:45 - 13:00',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, aperiam harum numquam enim sed consectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, totam possimus, similique mollitia inventore, vero eaque voluptatibus ut incidunt reprehenderit.'
-    }, {
-      name: 'Lorem ipsum dolor',
-      type: 'activity',
-      speaker: 'Peter Graham',
-      schedule: '14:00 - 15:30',
-      description: 'Voluptatum ad eius atque, similique facere. Explicabo similique aliquid provident est numquam eaque ipsam culpa ab, adipisci rem obcaeca ticonsectetur adipisicing elit. Molestiae eligendi soluta, aperiam. Facere, dolore, hic iste quam.'
-    }];
-
     Polymer({
 
       is: 'polymerday-schedule',
 
-      properties: {
-        events: Array
-      },
-
-      ready: function() {
-        this.set('events', mockEvents);
-      },
+      properties: { },
 
       _computeClass: function(type) {
         return type === 'activity' ? 'event--highlight' : '';
