@@ -7,36 +7,43 @@
     <style>
       :host {
         display: block;
-        font-family: Roboto;
-        margin;
         text-align: center;
-        padding:32px 24px 40px;
+        margin: 32px 0 38px;
+        padding: 0 24px;
+        line-height: normal;
+        color: var(--color-grey-primary);
       }
-      .title--container h1{
-        margin:0 0 17px 0;
+
+      .title--container h1 {
+        margin: 0 0 20px;
+        font-size: 2.5em;
+        letter-spacing: 2px;
         color: var(--color-blue-primary);
-        font-size: 3em;
-        font-weight: 100;
-        letter-spacing: 5px;
         text-transform: uppercase;
+        @apply(--font-primary-thin);
       }
-      .message--container span{
-        font-size: 1.5em;
-        color: #616161;
+      .message--container span {
+        font-size: 1.38em;
+        line-height: 1.45;
+        @apply(--font-primary-light);
       }
-      div{
-        padding:15px;
-        height: auto;
-      }
-      @media (min-width:720px) {
+
+      /* from 720px */
+      @media (min-width: 45em) {
         :host {
-          padding: 56px 24px 80px;
+          margin: 50px 0 77px;
         }
 
-        .title--container h1{
+        .title--container h1 {
           font-size: 4em;
+          letter-spacing: 4px;
+          margin: 0 0 20px;
         }
-    };
+
+        .message--container span {
+          font-size: 1.5em;
+        }
+      }
     </style>
       <div class="title--container">
         <h1>[[title]]</h1>
