@@ -16,16 +16,12 @@
       display: block;
     }
 
-    .wrapper {
-      padding: 32px 0;
-    }
-
     .event {
       padding: 0 24px;
     }
 
     .event--highlight {
-      background: #E7F0F9;
+      background: var(--color-blue-light);
     }
 
     polymerday-schedule-item {
@@ -33,27 +29,49 @@
       margin: auto;
     }
 
-    paper-tabs {
-      width: 300px;
-      margin: 0 auto;
-      --paper-tabs: {
-        background: var(--color-blue-medium);
-        color: var(--color-white-primary);
-      }
+    .tabs {
+      margin: 0 auto 40px;
     }
 
-    paper-tab a {
+    .tabs__item {
+      background: var(--color-blue-medium);
+      color: var(--color-white-primary);
+    }
+
+    .tabs__item,
+    .tabs__item a {
+      -ms-flex: 1;
+      flex: 1;
+    }
+
+    paper-tab.iron-selected {
+      background: var(--color-blue-primary);
+    }
+
+    .tabs__item a {
       @apply(--layout-horizontal);
       @apply(--layout-center-center);
       @apply(--text-normal-white);
       text-decoration: none;
+      text-transform: uppercase;
     }
 
-    paper-tabs paper-tab.iron-selected {
-      background: var(--color-blue-primary);
-    }
-    
+    /* from 720px */
+    @media (min-width: 45em) {
+      .tabs {
+        width: 384px;
+        margin-bottom: 80px;
+      }
 
+      .tabs__item,
+      .tabs__item a {
+        -ms-flex: 0 1 192px;
+        flex: 0 1 192px;
+      }
+
+      .tabs__item:first-child { border-radius: 4px 0 0 4px; }
+      .tabs__item:last-child { border-radius: 0 4px 4px 0; }
+    }
   </style>
 
   <app-route
@@ -63,12 +81,12 @@
     tail="{{subroute}}"></app-route>
 
   <polymerday-section-title title="Schedule" message="We dedicate one an a half days to talk about Web Components"></polymerday-section-title>
-  
-  <paper-tabs selected="{{day}}" attr-for-selected="day" fallback-selection="[[defaultDay]]" role="navigation" no-bar noink>
-    <paper-tab day="friday" link>
+
+  <paper-tabs class="tabs" selected="{{day}}" attr-for-selected="day" fallback-selection="[[defaultDay]]" role="navigation" no-bar noink>
+    <paper-tab day="friday" link class="tabs__item">
       <a href$="[[route.prefix]]/friday/">Friday</a>
     </paper-tab>
-    <paper-tab day="saturday" link>
+    <paper-tab day="saturday" link class="tabs__item">
       <a href$="[[route.prefix]]/saturday/">Saturday</a>
     </paper-tab>
   </paper-tabs>
