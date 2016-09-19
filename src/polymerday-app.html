@@ -283,7 +283,7 @@
         <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
           <polymerday-home name="home" user="[[user]]" class="view"></polymerday-home>
           <polymerday-speakers name="speakers" class="view"></polymerday-speakers>
-          <polymerday-schedule name="schedule" class="view"></polymerday-schedule>
+          <polymerday-schedule name="schedule" route="{{subroute}}" class="view"></polymerday-schedule>
           <polymerday-venue name="venue" class="view"></polymerday-venue>
           <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
         </iron-pages>

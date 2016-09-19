@@ -42,21 +42,39 @@
       }
     }
 
+    paper-tab a {
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+      @apply(--text-normal-white);
+      text-decoration: none;
+    }
+
     paper-tabs paper-tab.iron-selected {
       background: var(--color-blue-primary);
     }
+    
 
   </style>
 
+  <app-route
+    route="{{route}}"
+    pattern="/:day"
+    data="{{routeData}}"
+    tail="{{subroute}}"></app-route>
+
   <polymerday-section-title title="Schedule" message="We dedicate one an a half days to talk about Web Components"></polymerday-section-title>
   
-  <paper-tabs selected="{{daySelected}}" attr-for-selected="day" fallback-selection="friday" role="navigation" no-bar noink>
-    <paper-tab day="friday" link>Friday</paper-tab>
-    <paper-tab day="saturday" link>Saturday</paper-tab>
+  <paper-tabs selected="{{day}}" attr-for-selected="day" fallback-selection="[[defaultDay]]" role="navigation" no-bar noink>
+    <paper-tab day="friday" link>
+      <a href$="[[route.prefix]]/friday/">Friday</a>
+    </paper-tab>
+    <paper-tab day="saturday" link>
+      <a href$="[[route.prefix]]/saturday/">Saturday</a>
+    </paper-tab>
   </paper-tabs>
 
   <div class="wrapper">
-    <polymerday-data id="events" data="{{events}}" page="schedule" subpage="{{daySelected}}"></polymerday-data>
+    <polymerday-data id="events" data="{{events}}" page="schedule" subpage="{{day}}"></polymerday-data>
     <template is="dom-repeat" items="[[events]]">
       <div class$="event [[_computeClass(item.type)]]">
         <polymerday-schedule-item event="[[item]]" on-select="doSomething"></polymerday-schedule-item>
@@ -71,7 +89,28 @@
 
       is: 'polymerday-schedule',
 
-      properties: { },
+      properties: {
+        route: {
+          type: Object
+        },
+
+        routeData: {
+          type: Object
+        },
+
+        subroute: {
+          type: Object
+        },
+
+        defaultDay: {
+          type: String,
+          value: 'friday'
+        }
+      },
+
+      observers: [
+        'selectDay(routeData.day)'
+      ],
 
       _computeClass: function(type) {
         return type === 'activity' ? 'event--highlight' : '';
@@ -79,7 +118,18 @@
 
       doSomething: function(e) {
         console.log(e.model.item);
-      }
+      },
+
+      selectDay: function(day) {
+        day = day || this.defaultDay;
+        if (this.day !== day) {
+          this.day = day;
+
+          this.async(function() {
+            this.set('routeData.day', day);
+          }, 50);
+        }
+      },
     });
 
   </script>
