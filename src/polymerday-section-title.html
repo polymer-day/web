@@ -10,28 +10,32 @@
         font-family: Roboto;
         margin;
         text-align: center;
-        width: 100%;
-        padding:85px 0;
+        padding:32px 24px 40px;
       }
       .title--container h1{
         margin:0 0 17px 0;
         color: var(--color-blue-primary);
-        font-size: 4em;
+        font-size: 3em;
         font-weight: 100;
         letter-spacing: 5px;
+        text-transform: uppercase;
       }
       .message--container span{
-        font-size: 2em;
+        font-size: 1.5em;
         color: #616161;
       }
       div{
         padding:15px;
         height: auto;
       }
-      @media (max-width: 600px) {
+      @media (min-width:720px) {
         :host {
-          padding: 0;
-        };
+          padding: 56px 24px 80px;
+        }
+
+        .title--container h1{
+          font-size: 4em;
+        }
     };
     </style>
       <div class="title--container">
