@@ -35,7 +35,7 @@
     }
 
     .tabs__item {
-      background: var(--color-blue-medium);
+      background: var(--color-blue-light);
       color: var(--color-white-primary);
     }
 
@@ -45,16 +45,21 @@
       flex: 1;
     }
 
-    paper-tab.iron-selected {
-      background: var(--color-blue-primary);
-    }
-
     .tabs__item a {
       @apply(--layout-horizontal);
       @apply(--layout-center-center);
       @apply(--text-normal-white);
       text-decoration: none;
       text-transform: uppercase;
+      color: var(--color-blue-secondary);
+    }
+
+    paper-tab.iron-selected {
+      background: var(--color-blue-primary);
+    }
+
+    paper-tab.iron-selected a {
+      color: var(--color-white-primary)
     }
 
     /* from 720px */
