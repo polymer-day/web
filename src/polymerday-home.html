@@ -32,11 +32,19 @@
       }
 
       .location {
+        display: block;
+        margin-bottom: 20px;
         @apply(--text-title-secondary);
       }
 
+
       .logo {
-        max-width: 50%;
+        margin: 0 0 20px 0;
+        padding: 0;
+      }
+
+      .logo img {
+        max-width: 90%;
         min-width: 300px;
       }
 
@@ -82,9 +90,9 @@
 
     <timer-days target-date="[[_dateforTimer(date)]]"></timer-days>
     <div class="content">
-      <h2 class="date">[[formatedDate(date)]]</h2>
-      <img class="logo" src="images/logo_polymerday.png" alt="PolymerDay" />
-      <h3 class="location">MADRID</h3>
+      <span class="date">[[formatedDate(date)]]</span>
+      <h1 class="logo"><img src="images/logo_polymerday.png" alt="PolymerDay" /></h1>
+      <span class="location">MADRID</span>
       <p class="description">The first event focused on Google's Polymer Library and App's Toolbox in Spain.
 We will dedicate a day and a half to talk about Web Components technology. More than 10 talks from developers who are using Polymer during long time and for real projects.</p>
     </div>
