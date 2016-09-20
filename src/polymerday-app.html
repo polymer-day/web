@@ -176,7 +176,8 @@
         text-decoration: none;
       }
 
-      paper-tab:focus a {
+      paper-tab:focus a,
+      paper-tab.iron-selected a {
         font-weight:bold;
         outline: 0;
       }
@@ -186,6 +187,7 @@
         display: block;
         min-height: 100vh;
         overflow: visible;
+        padding: 0;
       }
 
 
@@ -203,7 +205,7 @@
 
         :host([page="home"]) .tickets {
           position: absolute;
-          top: 390px;
+          top: 320px;
         }
 
         .tickets-mobile {
@@ -277,6 +279,10 @@
             <a class="tickets-mobile" href="http://polymerday.eventbrite.es/" target="_blank">
               <iron-icon src="images/icon-tickets.svg"></iron-icon>
             </a>
+            <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
+              <paper-fab src="images/icon-tickets.svg"></paper-fab>
+              <span>TICKETS</span>
+            </a>
           </app-toolbar>
         </app-header>
 
@@ -287,10 +293,7 @@
           <polymerday-venue name="venue" class="view"></polymerday-venue>
           <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
         </iron-pages>
-        <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
-          <paper-fab src="images/icon-tickets.svg"></paper-fab>
-          <span>TICKETS</span>
-        </a>
+
         <polymerday-footer></polymerday-footer>
 
       </app-header-layout>
