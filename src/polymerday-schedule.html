@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/iron-a11y-announcer/iron-a11y-announcer.html">
 
 <link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
@@ -91,7 +92,7 @@
     </paper-tab>
   </paper-tabs>
 
-  <div class="wrapper">
+  <div class="wrapper" role="tabpanel">
     <polymerday-data id="events" data="{{events}}" page="schedule" subpage="{{day}}"></polymerday-data>
     <template is="dom-repeat" items="[[events]]">
       <div class$="event [[_computeClass(item.type)]]">
@@ -130,6 +131,12 @@
         'selectDay(routeData.day)'
       ],
 
+      attached: function() {
+        // This will create the singleton element if it has not
+        // been created yet:
+        Polymer.IronA11yAnnouncer.requestAvailability();
+      },
+
       _computeClass: function(type) {
         return type === 'activity' ? 'event--highlight' : '';
       },
@@ -140,14 +147,15 @@
 
       selectDay: function(day) {
         day = day || this.defaultDay;
+        this.fire('iron-announce', { 'text': 'Schedule for: ' + day }, { bubbles: true });
         if (this.day !== day) {
           this.day = day;
-
           this.async(function() {
             this.set('routeData.day', day);
           }, 50);
         }
-      },
+      }
+
     });
 
   </script>
