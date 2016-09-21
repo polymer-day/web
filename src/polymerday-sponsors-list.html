@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="polymerday-data.html">
+
+<dom-module id="polymerday-sponsors-list">
+
+  <template>
+
+  <style>
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="{{sponsorsType}}"
+    data="{{sponsors}}"></polymerday-data>
+
+  <template is="dom-if" if="[[sponsors.length]]">
+    <polymerday-section-title title="[[sponsorsTitle]]"></polymerday-section-title>
+    <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
+        <a href="[[sponsor.link]]">
+          <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
+        </a>
+    </template>
+  </template>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-sponsors-list',
+
+      properties: {
+        sponsors: Array,
+        sponsorsType: String,
+        sponsorsTitle: String
+      }
+
+    });
+
+  </script>
+
+</dom-module>

@@ -1,13 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="polymerday-section-title.html">
-<link rel="import" href="polymerday-data.html">
 
 <link rel="import" href="polymerday-section-title.html">
+<link rel="import" href="polymerday-sponsors-list.html">
+<link rel="import" href="polymerday-theme.html">
+
 <dom-module id="polymerday-sponsors">
 
   <template>
@@ -18,13 +14,6 @@
       font-family: "Roboto", sans-serif;
     }
 
-    .title {
-      font-size: 64px;
-      color: #224FBD;
-      font-weight: 100;
-      margin-bottom: 20px;
-    }
-
     .content {
       @apply(--layout-vertical);
       @apply(--layout-center-center);
@@ -32,30 +21,24 @@
       text-align: center;
     }
 
-    .description {
-      font-size: 24px;
-      font-weight: 300;
-      margin: 24px 0;
-      max-width: 900px;
-      padding: 0 16px;
-    }
-
     .jumbotron {
-      margin: 80px 0;
-      background-color: #E7F0F9;
+      background-color: var(--color-blue-light);
+      width: calc(100vw - 160px);
       padding: 45px 80px;
     }
 
     @media (max-width:600px) {
       .jumbotron {
         padding: 45px 10px;
+        width: calc(100vw - 20px);
       }
     }
 
-    .subtitle {
+    .title {
       font-size: 24px;
       font-weight: 300;
-      color: #2B5DA4;
+      text-transform: uppercase;
+      color: var(--color-blue-secondary);
       margin-top: 0;
       margin-bottom: 16px;
     }
@@ -65,12 +48,14 @@
       color: #4687C7;
     }
 
-    paper-button {
+    a {
+      display: inline-block;
       font-size: 16px;
-      color: #fff;
-      background-color: #2B5DA4;
-      height: 48px;
-      width: 192px;
+      color: var(--color-white-primary);
+      background-color: var(--color-blue-secondary);
+      text-transform: uppercase;
+      min-width: 11em;
+      padding: 0.7em 0.57em;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 50);
     }
 
@@ -83,47 +68,19 @@
     }
   </style>
 
-  <polymerday-data
-    page="sponsors"
-    subpage="platinum"
-    data="{{platinumSponsor}}"></polymerday-data>
-  <polymerday-data
-    page="sponsors"
-    subpage="gold"
-    data="{{goldSponsor}}"></polymerday-data>
-  <polymerday-data
-    page="sponsors"
-    subpage="iron"
-    data="{{ironSponsor}}"></polymerday-data>
-
   <div class="content">
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
     <div class="jumbotron">
-      <h4 class="subtitle">BECOME ONE OF OUR SPONSORS</h4>
-      <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum aliquid, ratione quis eum nostrum, illum ipsam officia, illo sunt maiores autem itaque praesentium eveniet culpa expedita blanditiis, voluptate ad reiciendis.</p>
-      <paper-button raised>I WANT</paper-button>
+      <h4 class="title">Become one of our sponsors</h4>
+      <p class="text">Do you want to be part of the fist event about Polymer in Spain?</p>
+      <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn">I want</a></p>
     </div>
 
     <div class="sponsors">
-      <polymerday-section-title title="Platinum"></polymerday-section-title>
-      <template is="dom-repeat" items="{{platinumSponsor}}" as="platinum">
-          <a href="[[platinum.link]]">
-            <img src="[[platinum.logo]]" alt="[[platinum.name]]"/>
-          </a>
-      </template>
-      <polymerday-section-title title="Gold"></polymerday-section-title>
-      <template is="dom-repeat" items="{{goldSponsor}}" as="sponsor">
-          <a href="[[sponsor.link]]">
-            <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
-          </a>
-      </template>
-      <polymerday-section-title title="Iron"></polymerday-section-title>
-      <template is="dom-repeat" items="{{ironSponsor}}" as="sponsor">
-          <a href="[[sponsor.link]]">
-            <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
-          </a>
-      </template>
+      <polymerday-sponsors-list sponsors-type="platinum" sponsors-title="Platinum"></polymerday-sponsors-list>
+      <polymerday-sponsors-list sponsors-type="gold" sponsors-title="Gold"></polymerday-sponsors-list>
+      <polymerday-sponsors-list sponsors-type="iron" sponsors-title="Iron"></polymerday-sponsors-list>
     </div>
   </div>
 
