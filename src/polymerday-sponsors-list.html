@@ -8,13 +8,14 @@
 
     <style>
 
-      :host {
+      .sponsors--container {
         display: flex;
         flex-flow: row wrap;
+        justify-content: flex-start;
       }
 
       .sponsor-platinum {
-        width: calc(100% / 3);
+        width: calc(100% / 2);
       }
 
       .sponsor-gold {
@@ -27,6 +28,30 @@
 
       .sponsor-paper {
         width: calc(100% / 8);
+      }
+
+      @media (max-width:767px) {
+
+        .sponsors--container--gold,
+        .sponsors--container--paper {
+          justify-content: center;
+        }
+
+        .sponsor-platinum {
+          width: 100%;
+        }
+
+        .sponsor-gold {
+          width: 80%;
+        }
+
+        .sponsor-iron {
+          width: calc(100% / 2);
+        }
+
+        .sponsor-paper {
+          width: calc(90% / 2);
+        }
       }
 
     </style>
@@ -43,9 +68,11 @@
 
     <polymerday-section-title title="{{_title}}"></polymerday-section-title>
 
-    <template is="dom-repeat" items="{{sponsors.sponsors}}" as="sponsor">
-      <polymerday-sponsor-item class$="sponsor-{{sponsor-type}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
-    </template>
+    <div class$="sponsors--container sponsors--container--{{sponsor-type}}">
+      <template is="dom-repeat" items="{{sponsors.sponsors}}" as="sponsor">
+        <polymerday-sponsor-item class$="sponsor-{{sponsor-type}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
+      </template>
+    </div>
   </template>
 
   <script>
