@@ -4,6 +4,32 @@
 
 <dom-module id="polymerday-sponsors-list">
   <template>
+
+    <style>
+
+      :host {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      .sponsor-platinum {
+        width: calc(100% / 3);
+      }
+
+      .sponsor-gold {
+        width: calc(100% / 3);
+      }
+
+      .sponsor-iron {
+        width: calc(100% / 4);
+      }
+
+      .sponsor-paper {
+        width: calc(100% / 8);
+      }
+
+    </style>
+
     <polymerday-data
       page="sponsors"
       subpage="{{sponsor-type}}"
@@ -12,7 +38,7 @@
     <polymerday-section-title title="{{_title}}"></polymerday-section-title>
 
     <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
-      <polymerday-sponsor-item sponsor="[[sponsor]]"></polymerday-sponsor-item>
+      <polymerday-sponsor-item class$="sponsor-{{sponsor-type}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
     </template>
   </template>
 
