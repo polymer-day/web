@@ -16,6 +16,17 @@
         --paper-fab-keyboard-focus-background: var(--paper-button-background);
       }
 
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0;
+      }
+
       .header {
         display: -ms-flexbox;
         display: flex;
@@ -124,7 +135,7 @@
       <div class="summary">
         <p class="summary__content">[[event.description]]</p>
         <template is="dom-if" if="[[_isTalk(event)]]">
-          <paper-button on-click="select">Show speaker</paper-button>
+          <paper-button on-click="select">Show speaker <span class="sr-only">&nbsp;[[event.speaker]]</span></paper-button>
         </template>
       </div>
     </iron-collapse>
@@ -148,7 +159,7 @@
     },
 
     _computeToggleLabel: function(opened) {
-      return opened ? 'Hide summary' : 'Show summary';
+      return opened ? 'Hide summary of talk by ' + this.event.speaker : 'Show summary of talk by ' + this.event.speaker;
     },
 
     _computeToggleIcon: function(opened) {
