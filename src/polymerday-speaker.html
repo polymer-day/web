@@ -1,0 +1,130 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="polymerday-theme.html">
+
+<dom-module id="polymerday-speaker">
+  <template>
+    <style>
+      :host {
+        display: block;
+        line-height: normal;
+        padding: 40px 0;
+      }
+
+      .container {
+        display: flex;
+        height: 14em;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .container.image-right {
+        flex-direction: row-reverse;
+      }
+
+      .image {
+        height: 14em;
+        width: 14em;
+        text-align: center;
+      }
+
+      .image iron-image {
+        height: 80%;
+        width: 80%;
+      }
+
+      paper-button {
+        background: var(--color-blue-primary);
+        color: #fff;
+        padding: 15px 32px;
+        margin: 0;
+      }
+
+      paper-button {
+        @apply(--button-shadow);
+      }
+
+      .speaker-info {
+        flex-grow: 1;
+      }
+
+      .speaker-info h2 {
+        @apply(--text-title-secondary);
+      }
+ 
+      .speaker-info span {
+        @apply(--text-subtitle);
+      }
+
+      .speaker-info p {
+        @apply(--text-normal);
+      }
+
+      .speaker-links {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .speaker-links a{
+        @apply(--text-normal);
+      }
+    </style>
+   
+    <div class$="container [[_imagePositionClass(imageRight)]]">
+      <div class="speaker-info">
+        <h2>[[speaker.name]]</h2>
+        <span>[[speaker.job]]</span>
+        <p>[[speaker.description]]</p>
+        <div class="speaker-links">
+          <paper-button>SHOW TALK</paper-button>
+          <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">[[speaker.linkedin]]<iron-icon icon="linkedin"></iron-icon></a>
+          <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">[[speaker.twitter]]<iron-icon icon="twitter"></iron-icon></a>
+        </div>
+      </div>
+
+      <div class="image">
+        <iron-image preload sizing="cover" placeholder="[[_placeholder]]" src="[[speaker.image]]" alt="[[_computeImgAlt(speaker.name)]]"></iron-image>
+      </div>
+    </div>
+  </template>
+
+  <script>
+  Polymer({
+    is: 'polymerday-speaker',
+
+    properties: {
+      speaker: Object,
+
+      imageRight: {
+        type: Boolean,
+        value: false
+      },
+
+      _placeholder: {
+        type: String,
+        value: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkNhbHF1ZV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjIwMHB4IiBoZWlnaHQ9IjIwMHB4IiB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjAwIDIwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Y2lyY2xlIGZpbGw9IiNFRUVFRUUiIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIvPg0KPGc+DQoJPGRlZnM+DQoJCTxjaXJjbGUgaWQ9IlNWR0lEXzFfIiBjeD0iOTkuOTYyIiBjeT0iOTkuOTYyIiByPSI5OS45NjIiLz4NCgk8L2RlZnM+DQoJPGNsaXBQYXRoIGlkPSJTVkdJRF8yXyI+DQoJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzFfIiAgb3ZlcmZsb3c9InZpc2libGUiLz4NCgk8L2NsaXBQYXRoPg0KCTxwYXRoIGNsaXAtcGF0aD0idXJsKCNTVkdJRF8yXykiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBmaWxsPSIjQzRDNEM0IiBkPSJNMjUuMjA4LDE2Ni4zOTYNCgkJYzEwLjk2Mi0xNC42NywyNy4zNS0yMC45ODEsNDMuMzE3LTI3Ljc2NmMxMS45Ny01LjA4NiwxNC4yMjEtMTIuMjY0LDYuMzU4LTIyLjg0NEM2MS4zODcsOTcuNjI2LDU0LjE0Niw3Ny45MjEsNTguODYxLDU0Ljg5DQoJCWMzLjgzMy0xOC43MjEsMjAuODcyLTMyLjI4OCw0MS4yMTItMzIuMjdjMjAuMzQ0LDAuMDE4LDM3LjI5NCwxMy42Miw0MS4wODUsMzIuNDEyYzQuMjcsMjEuMTc1LTEuMzQ0LDM5LjgxMy0xMy41OCw1Ni45NjgNCgkJYy0xLjYyMywyLjI3NC0zLjM0MSw0LjUwNS00LjczNSw2LjkxNmMtNC44NjEsOC40MTEtMi45NiwxNC44ODksNS45NDYsMTguODg5YzkuMzMxLDQuMTkxLDE4Ljk4Miw3LjY1MSwyNy44MDcsMTIuOTU5DQoJCWM2Ljk2OSw0LjE5MSwxMy42MjMsOC42ODYsMTguMjAzLDE1LjYzMmMwLjg1MSw1LjM0Mi0zLjM0OSw3LjYyMi02LjUzNSwxMC4yODZjLTE3LjA1MiwxNC4yNjMtMzYuNDkyLDIyLjYxMi01OC45MzQsMjMuMzE4DQoJCWMtNi44NDYsMC0xMy42OTIsMC0yMC41MzksMGMtMjEuNzE3LTEuMTc2LTQwLjUyOC05LjUyNi01Ny4wNTYtMjMuMzNDMjguNTUyLDE3NC4wMSwyNC4zMjksMTcxLjc0NywyNS4yMDgsMTY2LjM5NnoiLz4NCjwvZz4NCjwvc3ZnPg0K',
+        readOnly: true
+      }
+    },
+
+    _imagePositionClass: function(right) {
+      return right ? 'image-right' : 'image-left';
+    },
+
+    _computeLinkedinURL: function(linkedin) {
+      return 'https://es.linkedin.com/in' + linkedin;
+    },
+
+    _computeTwitterURL: function(twitter) {
+      return 'https://twitter.com/' + twitter.substr(1);
+    },
+
+    _computeImgAlt: function(name) {
+      return name + ' photo';
+    }
+  });
+  </script>
+</dom-module>
