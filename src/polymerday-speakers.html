@@ -3,8 +3,11 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
 <link rel="import" href="polymerday-theme.html">
+<link rel="import" href="polymerday-speaker.html">
 
 <dom-module id="polymerday-speakers">
 
@@ -17,18 +20,39 @@
       @apply(--layout-vertical)
     }
 
+    polymerday-speaker {
+      width: 90%;
+      max-width: 45em;
+      margin: auto;
+    }
+
   </style>
 
     <polymerday-section-title title="SPEAKERS" message="More than 10 talks from developers with Polymer"></polymerday-section-title>
 
+    <div class="wrapper">
+      <polymerday-data id="events" data="{{speakers}}" page="speakers"></polymerday-data>
+      <template is="dom-repeat" items="[[speakers]]">
+        <polymerday-speaker speaker="[[item]]" image-right="[[_computeImageRight(index)]]"></polymerday-speaker>
+      </template>
+    </div>
   </template>
 
   <script>
 
     Polymer({
 
-      is: 'polymerday-speakers'
+      is: 'polymerday-speakers',
 
+      properties: {
+        speakers: {
+          type: Array
+        }
+      },
+
+      _computeImageRight: function(index) {
+        return !!(index % 2);
+      }
     });
 
   </script>
