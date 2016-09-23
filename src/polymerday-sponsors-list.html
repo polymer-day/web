@@ -54,7 +54,7 @@
 
     </style>
 
-    <polymerday-section-title title="{{_title}}"></polymerday-section-title>
+    <polymerday-section-title title="{{header}}"></polymerday-section-title>
 
     <div class$="sponsors--container sponsors--container--{{sponsor-type}}">
       <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
@@ -75,25 +75,8 @@
 
         sponsorType: String,
 
-        _title: {
-          type: String,
-          computed: '_computedTitle(sponsorType)'
-        },
+        header: String
 
-        _titlesMap: {
-          type: Object,
-          value: {
-            platinum: 'Platino Sponsoring',
-            gold: 'Gold Sponsoring',
-            iron: 'Iron Sponsoring',
-            paper: 'Paper Sponsoring'
-          }
-        }
-
-      },
-
-      _computedTitle: function(sponsorType) {
-        return this._titlesMap[sponsorType];
       }
 
     });
