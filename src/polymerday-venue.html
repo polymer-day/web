@@ -17,7 +17,7 @@
       padding: 10px;
       @apply(--layout-vertical)
     }
-    
+
     paper-card{
       @apply(--layout-vertical);
       padding:40px 145px;
@@ -49,7 +49,7 @@
     paper-card  .card-content__link a{
       color: var(--color-blue-medium);
     }
-    
+
     paper-card .card-content__link iron-icon {
       height: 16px;
     }
@@ -73,7 +73,7 @@
       font-weight: 100;
       text-decoration: none;
     }
-    
+
     paper-button {
       width: 190px;
      --paper-button:{
@@ -82,7 +82,7 @@
         margin:30px 0;
       };
     }
-   
+
 
     google-map {
       width: 100%;
@@ -90,29 +90,29 @@
     }
 
 
-    .gallery { 
+    .gallery {
       display: -ms-flexbox;
       -ms-flex-wrap: wrap;
       -ms-flex-direction: column;
-      -webkit-flex-flow: row wrap; 
-      flex-flow: row wrap; 
+      -webkit-flex-flow: row wrap;
+      flex-flow: row wrap;
       display: -webkit-box;
       display: flex;
-      margin: 0;
+      margin: 0 0 2em 0;
       padding: 0;
       list-style: none;
     }
-    .gallery li { 
+    .gallery li {
       margin: 0;
       -webkit-box-flex: auto;
       -ms-flex: auto;
-      flex: auto; 
-      width: 320px; 
+      flex: auto;
+      width: 320px;
     }
-    .gallery li img { 
+    .gallery li img {
       display: block;
-      width: 100%; 
-      height: auto; 
+      width: 100%;
+      height: auto;
     }
 
     @media (max-width: 600px) {
@@ -126,9 +126,9 @@
     <google-map api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15" disable-zoom>
       <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
     </google-map>
-    <paper-card elevation="0"> 
+    <paper-card elevation="0">
       <div class="card-content">
-        <h2 class="card-title">La Estación Gran Teatro Príncipe Pío</h2>        
+        <h2 class="card-title">La Estación Gran Teatro Príncipe Pío</h2>
         <p class="card-content__link">
           <a href="https://www.google.es/maps/place/La+Estaci%C3%B3n+Gran+Teatro+Pr%C3%ADncipe+P%C3%ADo/@40.4208415,-3.7188506,15z/data=!4m2!3m1!1s0x0:0x89ba0fea276d4684?sa=X&ved=0ahUKEwj3-sWwuevOAhVIOhoKHRz-CEwQ_BIIhQEwCg" tabindex="-1">
             <iron-icon icon="place"></iron-icon>Cuesta de San Vicente 44, 28008 Madrid
@@ -140,7 +140,7 @@
           </a>
         </p>
         <p>Imported from Holland, it has come to Madrid the first Spiegeltent, built on the premises of the new complex Station. This is a big tent of 29 meters wide, baroque style, built in wood and decorated with mirrors, textiles and stained glass. It has a capacity for 600 spectators, and it can be offered shows of different formats. Its particular characteristics make enjoy the events in this unique environment is an experience, very appetizing and appealing.</p>
-        
+
         <ul class="gallery">
           <li><img src="images/venue/venue-1.jpg" alt="Photo venue 1" /></li>
           <li><img src="images/venue/venue-2.jpg" alt="Photo venue 2" /></li>
@@ -148,6 +148,16 @@
           <li><img src="images/venue/venue-4.jpg" alt="Photo venue 4" /></li>
           <li><img src="images/venue/venue-5.jpg" alt="Photo venue 5" /></li>
           <li><img src="images/venue/venue-6.jpg" alt="Photo venue 6" /></li>
+        </ul>
+
+        <h2 class="card-title">Accommodation</h2>
+        <p>We have reached an agreement with some hotels to apply a discount for those attending the evet. Using the coupon code <strong>POLYMER</strong> you'll obtain a discount on breakfast from 25% to 100% depending on the length of stay. According to the hotel will also include parking.</p>
+        <ul>
+          <li><a href="http://www.jardinesdesabatini.com/">Jardines de Sabatini</a> <span title="4 stars">****</span></li>
+          <li><a href="http://www.senatorgranvia70spahotel.com/">Senator Gran Vía 70</a> <span title="4 stars">****</span></li>
+          <li><a href="http://www.jchoteles-puertadelsol.com/">JC Puerta del Sol</a> <span title="3 stars">***</span></li>
+          <li><a href="http://www.jchoteles-santodomingo.com/">JC Santo Domingo</a> <span title="3 stars">***</span></li>
+          <li><a href="http://www.jchoteles-santaana.com/">JC Santa Ana</a> <span title="3 stars">***</span></li>
         </ul>
       </div>
     </paper-card>
