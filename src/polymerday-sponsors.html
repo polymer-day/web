@@ -1,5 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-
+<link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
 <link rel="import" href="polymerday-sponsors-list.html">
 <link rel="import" href="polymerday-theme.html">
@@ -69,6 +69,28 @@
     }
   </style>
 
+
+  <polymerday-data
+    page="sponsors"
+    subpage="platinum"
+    data="{{sponsorsPlatinum}}"></polymerday-data>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="gold"
+    data="{{sponsorsGold}}"></polymerday-data>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="iron"
+    data="{{sponsorsIron}}"></polymerday-data>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="paper"
+    data="{{sponsorsPaper}}"></polymerday-data>
+
+
   <div class="content">
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
@@ -79,10 +101,10 @@
     </div>
 
     <div class="sponsors">
-      <polymerday-sponsors-list sponsor-type="platinum"></polymerday-sponsors-list>
-      <polymerday-sponsors-list sponsor-type="gold"></polymerday-sponsors-list>
-      <polymerday-sponsors-list sponsor-type="iron"></polymerday-sponsors-list>      
-      <polymerday-sponsors-list sponsor-type="paper"></polymerday-sponsors-list>      
+      <polymerday-sponsors-list sponsor-type="platinum" sponsors="{{sponsorsPlatinum}}"></polymerday-sponsors-list>
+      <polymerday-sponsors-list sponsor-type="gold" sponsors="{{sponsorsGold}}"></polymerday-sponsors-list>
+      <polymerday-sponsors-list sponsor-type="iron" sponsors="{{sponsorsIron}}"></polymerday-sponsors-list>      
+      <polymerday-sponsors-list sponsor-type="paper" sponsors="{{sponsorsPaper}}"></polymerday-sponsors-list>      
     </div>
   </div>
 
