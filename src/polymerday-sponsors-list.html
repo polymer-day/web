@@ -12,42 +12,42 @@
         justify-content: flex-start;
       }
 
-      .sponsor-platinum {
+      .logos-size--xl {
         width: calc(100% / 2);
       }
 
-      .sponsor-gold {
+      .logos-size--l {
         width: calc(100% / 3);
       }
 
-      .sponsor-iron {
+      .logos-size--m {
         width: calc(100% / 4);
       }
 
-      .sponsor-paper {
+      .logos-size--s {
         width: calc(100% / 8);
       }
 
       @media (max-width:767px) {
 
-        .sponsors--container--gold,
-        .sponsors--container--paper {
+        .sponsors--container--xl,
+        .sponsors--container--s {
           justify-content: center;
         }
 
-        .sponsor-platinum {
+        .logos-size--xl {
           width: 100%;
         }
 
-        .sponsor-gold {
+        .logos-size--l {
           width: 80%;
         }
 
-        .sponsor-iron {
+        .logos-size--m {
           width: calc(100% / 2);
         }
 
-        .sponsor-paper {
+        .logos-size--s {
           width: calc(90% / 2);
         }
       }
@@ -56,9 +56,9 @@
 
     <polymerday-section-title title="{{header}}"></polymerday-section-title>
 
-    <div class$="sponsors--container sponsors--container--{{sponsor-type}}">
+    <div class$="sponsors--container sponsors--container--{{logos-size}}">
       <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
-        <polymerday-sponsor-item class$="sponsor-{{sponsor-type}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
+        <polymerday-sponsor-item class$="logos-size--{{logos-size}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
       </template>
     </div>
   </template>
@@ -75,7 +75,9 @@
 
         sponsorType: String,
 
-        header: String
+        header: String,
+
+        logosSize: String
 
       }
 
