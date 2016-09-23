@@ -1,5 +1,4 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-sponsor-item.html">
 
@@ -56,20 +55,15 @@
 
     </style>
 
-    <iron-ajax
-      auto
-      url="mocks/sponsors.json"
-      last-response="{{sponsors}}"></iron-ajax>
-
-<!--     <polymerday-data
+    <polymerday-data
       page="sponsors"
       subpage="{{sponsor-type}}"
-      data="{{sponsors}}"></polymerday-data> -->
+      data="{{sponsors}}"></polymerday-data>
 
     <polymerday-section-title title="{{_title}}"></polymerday-section-title>
 
     <div class$="sponsors--container sponsors--container--{{sponsor-type}}">
-      <template is="dom-repeat" items="{{sponsors.sponsors}}" as="sponsor">
+      <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
         <polymerday-sponsor-item class$="sponsor-{{sponsor-type}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
       </template>
     </div>
