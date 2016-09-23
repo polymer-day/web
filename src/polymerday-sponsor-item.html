@@ -1,0 +1,34 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="polymerday-sponsor-item">
+  <template>
+
+    <style>
+
+      img {
+        width: 100%;
+      }
+
+    </style>
+
+    <a href="[[sponsor.link]]">
+      <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
+    </a>
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-sponsor-item',
+
+      properties: {
+
+        sponsor: Object
+
+      }
+
+    });
+
+  </script>
+</dom-module>

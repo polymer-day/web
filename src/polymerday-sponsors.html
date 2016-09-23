@@ -1,8 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-
+<link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
 <link rel="import" href="polymerday-sponsors-list.html">
 <link rel="import" href="polymerday-theme.html">
+
 
 <dom-module id="polymerday-sponsors">
 
@@ -68,6 +69,28 @@
     }
   </style>
 
+
+  <polymerday-data
+    page="sponsors"
+    subpage="platinum"
+    data="{{sponsorsPlatinum}}"></polymerday-data>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="gold"
+    data="{{sponsorsGold}}"></polymerday-data>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="iron"
+    data="{{sponsorsIron}}"></polymerday-data>
+
+  <polymerday-data
+    page="sponsors"
+    subpage="paper"
+    data="{{sponsorsPaper}}"></polymerday-data>
+
+
   <div class="content">
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
@@ -78,9 +101,26 @@
     </div>
 
     <div class="sponsors">
-      <polymerday-sponsors-list sponsors-type="platinum" sponsors-title="Platinum"></polymerday-sponsors-list>
-      <polymerday-sponsors-list sponsors-type="gold" sponsors-title="Gold"></polymerday-sponsors-list>
-      <polymerday-sponsors-list sponsors-type="iron" sponsors-title="Iron"></polymerday-sponsors-list>
+      <polymerday-sponsors-list 
+        sponsor-type="platinum" 
+        sponsors="{{sponsorsPlatinum}}"
+        header="Platino Sponsoring"
+        logos-size="xl"></polymerday-sponsors-list>
+      <polymerday-sponsors-list 
+        sponsor-type="gold" 
+        sponsors="{{sponsorsGold}}"
+        header="Gold Sponsoring"
+        logos-size="l"></polymerday-sponsors-list>
+      <polymerday-sponsors-list 
+        sponsor-type="iron" 
+        sponsors="{{sponsorsIron}}"
+        header="Iron Sponsoring"
+        logos-size="m"></polymerday-sponsors-list>      
+      <polymerday-sponsors-list 
+        sponsor-type="paper" 
+        sponsors="{{sponsorsPaper}}"
+        header="Paper Sponsorin"
+        logos-size="s"></polymerday-sponsors-list>      
     </div>
   </div>
 

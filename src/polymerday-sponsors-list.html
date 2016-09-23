@@ -1,32 +1,66 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-
-<link rel="import" href="polymerday-data.html">
+<link rel="import" href="polymerday-sponsor-item.html">
 
 <dom-module id="polymerday-sponsors-list">
-
   <template>
 
-  <style>
+    <style>
 
-    a {
-      text-decoration: none;
-    }
-  </style>
+      .sponsors--container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+      }
 
-  <polymerday-data
-    page="sponsors"
-    subpage="{{sponsorsType}}"
-    data="{{sponsors}}"></polymerday-data>
+      .logos-size--xl {
+        width: calc(100% / 2);
+      }
 
-  <template is="dom-if" if="[[sponsors.length]]">
-    <polymerday-section-title title="[[sponsorsTitle]]"></polymerday-section-title>
-    <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
-        <a href="[[sponsor.link]]">
-          <img src="[[sponsor.logo]]" alt="[[sponsor.name]]"/>
-        </a>
-    </template>
-  </template>
+      .logos-size--l {
+        width: calc(100% / 3);
+      }
 
+      .logos-size--m {
+        width: calc(100% / 4);
+      }
+
+      .logos-size--s {
+        width: calc(100% / 8);
+      }
+
+      @media (max-width:767px) {
+
+        .sponsors--container--xl,
+        .sponsors--container--s {
+          justify-content: center;
+        }
+
+        .logos-size--xl {
+          width: 100%;
+        }
+
+        .logos-size--l {
+          width: 80%;
+        }
+
+        .logos-size--m {
+          width: calc(100% / 2);
+        }
+
+        .logos-size--s {
+          width: calc(90% / 2);
+        }
+      }
+
+    </style>
+
+    <polymerday-section-title title="{{header}}"></polymerday-section-title>
+
+    <div class$="sponsors--container sponsors--container--{{logos-size}}">
+      <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
+        <polymerday-sponsor-item class$="logos-size--{{logos-size}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
+      </template>
+    </div>
   </template>
 
   <script>
@@ -36,13 +70,18 @@
       is: 'polymerday-sponsors-list',
 
       properties: {
+
         sponsors: Array,
-        sponsorsType: String,
-        sponsorsTitle: String
+
+        sponsorType: String,
+
+        header: String,
+
+        logosSize: String
+
       }
 
     });
 
   </script>
-
 </dom-module>
