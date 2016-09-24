@@ -24,27 +24,23 @@
       }
 
       .image {
-        width: 100%;
-        max-width: 295px;
-        height: 295px;
+        width: 300px;
+        height: 300px;
+        margin: 0 2em;
         text-align: center;
       }
 
       .image iron-image {
         border-radius: 50%;
-        height: 80%;
-        width: 80%;
-
+        height: 245px;
+        width: 245px;
       }
 
-      paper-button {
+      a.talk-link {
         background: var(--color-blue-primary);
         color: #fff;
-        padding: 15px 32px;
+        padding: 1em 2em;
         margin: 0;
-      }
-
-      paper-button {
         @apply(--button-shadow);
       }
 
@@ -58,11 +54,11 @@
         font-size: 24px;
         font-weight: 400;
         letter-spacing: 1px;
-        line-height: 32px;
-        margin: 10px 0;
+        line-height: 2em;
+        margin: 1em 0;
         text-transform: uppercase;
       }
- 
+
       .info__speaker-job {
         color: var(--color-blue-medium);
         font-family: Roboto;
@@ -81,13 +77,13 @@
         flex-direction: row;
       }
 
-      .info__speaker-links a{
+      .info__speaker-links a[target=_blank] {
         @apply(--text-normal);
         text-decoration: none;
         margin: 0 15px;
       }
 
-      .info__speaker-links iron-icon{
+      .info__speaker-links iron-icon {
         margin: 10px;
       }
 
@@ -95,27 +91,39 @@
         text-decoration: underline;
       }
 
-      .info__speaker-links paper-button{
+      .info__speaker-links a:not([target=_blank]) {
+        text-decoration: none;
         text-transform: uppercase;
-
       }
     </style>
-   
+
     <div class$="container [[_imagePositionClass(imageLeft)]]">
       <div class="info">
         <h2>[[speaker.name]]</h2>
         <span class="info__speaker-job">[[speaker.job]]</span>
         <p>[[speaker.description]]</p>
         <div class="info__speaker-links">
-          <paper-button>show talk</paper-button>
-          <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">
-            <span>[[speaker.linkedin]]</span>
-            <iron-icon icon="linkedin"></iron-icon>
-          </a>
-          <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">
-            <span>[[speaker.twitter]]</span>
-            <iron-icon icon="twitter"></iron-icon>
-          </a>
+          <template is="dom-if" if="[[speaker.talk]]">
+            <a class="talk-link" href="[[speaker.talk]]">show talk</a>
+          </template>
+          <template is="dom-if" if="[[speaker.web]]">
+            <a target="_blank" href$="[[_computeWebURL(speaker.web)]]">
+              <span>[[speaker.web]]</span>
+              <iron-icon icon="link"></iron-icon>
+            </a>
+          </template>
+          <template is="dom-if" if="[[speaker.linkedin]]">
+            <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">
+              <span>[[speaker.linkedin]]</span>
+              <iron-icon icon="linkedin"></iron-icon>
+            </a>
+          </template>
+          <template is="dom-if" if="[[speaker.twitter]]">
+            <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">
+              <span>[[speaker.twitter]]</span>
+              <iron-icon icon="twitter"></iron-icon>
+            </a>
+          </template>
         </div>
       </div>
 
@@ -144,8 +152,16 @@
       }
     },
 
+    attached: function(){
+      this._placeholder = this.speaker.placeholder || this._placeholder;
+    },
+
     _imagePositionClass: function(left) {
       return left ? 'image-right': 'image-left';
+    },
+
+    _computeWebURL: function(web) {
+      return '//' + web;
     },
 
     _computeLinkedinURL: function(linkedin) {
@@ -153,7 +169,7 @@
     },
 
     _computeTwitterURL: function(twitter) {
-      return 'https://twitter.com/' + twitter.substr(1);
+      return 'https://twitter.com/' + twitter.replace('@', '');
     },
 
     _computeImgAlt: function(name) {
