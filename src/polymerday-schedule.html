@@ -101,7 +101,7 @@
     <polymerday-data id="events" data="{{events}}" page="schedule" subpage="{{day}}"></polymerday-data>
     <template is="dom-repeat" items="[[events]]">
       <div class$="event [[_computeClass(item.type)]]">
-        <polymerday-schedule-item event="[[item]]"></polymerday-schedule-item>
+        <polymerday-schedule-item id="[[item.id]]" event="[[item]]"></polymerday-schedule-item>
       </div>
     </template>
   </div>
