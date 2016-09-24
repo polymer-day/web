@@ -19,23 +19,38 @@
       padding: 10px;
       @apply(--layout-vertical)
     }
+    .speakers {
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .speakers li {
+      display: flex;
+      justify-content: center;
+    }
 
     polymerday-speaker {
-      width: 90%;
-      max-width: 45em;
-      margin: auto;
+      width: 100%;
+      max-width: 950px;
     }
 
   </style>
+    <polymerday-data 
+      page="speakers" 
+      data="{{speakers}}"></polymerday-data>
 
     <polymerday-section-title title="SPEAKERS" message="More than 10 talks from developers with Polymer"></polymerday-section-title>
+    
+    <ul class="speakers">
+        <template is="dom-repeat" items="[[speakers]]">
+          <li>
+            <polymerday-speaker speaker="[[item]]" image-left="[[_computeImageLeft(index)]]"></polymerday-speaker>
+          </li>
+        </template>
+    </ul>
 
-    <div class="wrapper">
-      <polymerday-data id="events" data="{{speakers}}" page="speakers"></polymerday-data>
-      <template is="dom-repeat" items="[[speakers]]">
-        <polymerday-speaker speaker="[[item]]" image-right="[[_computeImageRight(index)]]"></polymerday-speaker>
-      </template>
-    </div>
   </template>
 
   <script>
@@ -50,7 +65,7 @@
         }
       },
 
-      _computeImageRight: function(index) {
+      _computeImageLeft: function(index) {
         return !!(index % 2);
       }
     });
