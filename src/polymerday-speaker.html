@@ -11,29 +11,30 @@
       :host {
         display: block;
         line-height: normal;
-        padding: 40px 0;
+        margin: 0 0 65px 0;
       }
 
       .container {
         display: flex;
-        height: 14em;
         flex-direction: row;
-        justify-content: space-between;
       }
 
-      .container.image-right {
+      .container.image-left {
         flex-direction: row-reverse;
       }
 
       .image {
-        height: 14em;
-        width: 14em;
+        width: 100%;
+        max-width: 295px;
+        height: 295px;
         text-align: center;
       }
 
       .image iron-image {
+        border-radius: 50%;
         height: 80%;
         width: 80%;
+
       }
 
       paper-button {
@@ -47,41 +48,74 @@
         @apply(--button-shadow);
       }
 
-      .speaker-info {
+      .info {
         flex-grow: 1;
       }
 
-      .speaker-info h2 {
-        @apply(--text-title-secondary);
+      .info h2 {
+        color: var(--color-blue-primary);
+        font-family: Roboto;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        line-height: 32px;
+        margin: 10px 0;
+        text-transform: uppercase;
       }
  
-      .speaker-info span {
-        @apply(--text-subtitle);
+      .info__speaker-job {
+        color: var(--color-blue-medium);
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        line-height: 32px;
       }
 
-      .speaker-info p {
+      .info p {
         @apply(--text-normal);
       }
 
-      .speaker-links {
+      .info__speaker-links {
         display: flex;
-        justify-content: space-between;
+        flex-direction: row;
       }
 
-      .speaker-links a{
+      .info__speaker-links a{
         @apply(--text-normal);
+        text-decoration: none;
+        margin: 0 15px;
+      }
+
+      .info__speaker-links iron-icon{
+        margin: 10px;
+      }
+
+      .info__speaker-links  a:hover {
+        text-decoration: underline;
+      }
+
+      .info__speaker-links paper-button{
+        text-transform: uppercase;
+
       }
     </style>
    
-    <div class$="container [[_imagePositionClass(imageRight)]]">
-      <div class="speaker-info">
+    <div class$="container [[_imagePositionClass(imageLeft)]]">
+      <div class="info">
         <h2>[[speaker.name]]</h2>
-        <span>[[speaker.job]]</span>
+        <span class="info__speaker-job">[[speaker.job]]</span>
         <p>[[speaker.description]]</p>
-        <div class="speaker-links">
-          <paper-button>SHOW TALK</paper-button>
-          <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">[[speaker.linkedin]]<iron-icon icon="linkedin"></iron-icon></a>
-          <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">[[speaker.twitter]]<iron-icon icon="twitter"></iron-icon></a>
+        <div class="info__speaker-links">
+          <paper-button>show talk</paper-button>
+          <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">
+            <span>[[speaker.linkedin]]</span>
+            <iron-icon icon="linkedin"></iron-icon>
+          </a>
+          <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">
+            <span>[[speaker.twitter]]</span>
+            <iron-icon icon="twitter"></iron-icon>
+          </a>
         </div>
       </div>
 
@@ -98,7 +132,7 @@
     properties: {
       speaker: Object,
 
-      imageRight: {
+      imageLeft: {
         type: Boolean,
         value: false
       },
@@ -110,8 +144,8 @@
       }
     },
 
-    _imagePositionClass: function(right) {
-      return right ? 'image-right' : 'image-left';
+    _imagePositionClass: function(left) {
+      return left ? 'image-right': 'image-left';
     },
 
     _computeLinkedinURL: function(linkedin) {
