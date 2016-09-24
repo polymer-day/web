@@ -46,7 +46,7 @@
     <ul class="speakers">
         <template is="dom-repeat" items="[[speakers]]">
           <li>
-            <polymerday-speaker id="[[speaker.id]]" speaker="[[item]]" image-left="[[_computeImageLeft(index)]]"></polymerday-speaker>
+            <polymerday-speaker id="[[item.id]]" speaker="[[item]]" image-left="[[_computeImageLeft(index)]]"></polymerday-speaker>
           </li>
         </template>
     </ul>
