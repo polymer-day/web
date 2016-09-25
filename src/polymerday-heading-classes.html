@@ -1,0 +1,17 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<dom-module id="heading-classes">
+  <template>
+    <style>
+      .page-title { @apply(--page-title); }
+      .page-subtitle { @apply(--page-subtitle); }
+      .item-title { @apply(--item-title); }
+      .item-subtitle { @apply(--item-subtitle); }
+
+      /* from 769px */
+      @media (min-width: 48.06em) {
+        .page-title { @apply(--page-title-desktop); }
+        .page-subtitle { @apply(--page-subtitle-desktop); }
+      }
+    </style>
+  </template>
+</dom-module>

@@ -1,6 +1,6 @@
 <style is="custom-style">
   :root {
-
+    --color-blue-dark: #224FBD;
     --color-blue-primary: #2c5ea5;
     --color-blue-secondary: #2B5DA4;
     --color-blue-medium: #68a3d8;
@@ -36,6 +36,56 @@
     --font-primary-light: {
       @apply(--font-primary);
       font-weight: 300;
+    };
+
+    /**
+     * Heading styles mobile (default)
+     */
+    --page-title: {
+      @apply(--font-primary-thin);
+      font-size: 40px;
+      letter-spacing: 2px;
+      line-height: 1.2; /* 48 */
+      color: var(--color-blue-dark);
+      text-transform: uppercase;
+    };
+
+    --page-subtitle: {
+      @apply(--font-primary-light);
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.4545; /* 32px */
+      color: var(--color-grey-primary);
+    };
+
+    --item-title: {
+      @apply(--font-primary-light);
+      font-size: var(--text-size-big);
+      line-height: 1.33; /* 32px */
+      letter-spacing: 1px;
+      color: var(--color-blue-secondary);
+      text-transform: uppercase;
+    };
+
+    --item-subtitle: {
+      @apply(--font-primary-light);
+      font-size: var(--text-size-default);
+      line-height: 1.5; /* 24px */
+      letter-spacing: 1px;
+      color: #4687C7;
+    };
+
+    /**
+     * Heading styles desktop
+     */
+    --page-title-desktop: {
+      font-size: 64px;
+      letter-spacing: 4px;
+      line-height: 1;
+    };
+
+    --page-subtitle-desktop: {
+      font-size: var(--text-size-big);
     };
 
     /**
