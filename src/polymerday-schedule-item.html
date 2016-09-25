@@ -117,7 +117,7 @@
 
     <iron-collapse opened$="[[opened]]">
       <div class="summary">
-        <p class="summary__content">[[event.description]]</p>
+        <p class="summary__content text--default">[[event.description]]</p>
         <template is="dom-if" if="[[_isTalk(event)]]">
           <paper-button on-click="select" class="btn--primary">Show speaker <span class="sr-only">&nbsp;[[event.speaker]]</span></paper-button>
         </template>
