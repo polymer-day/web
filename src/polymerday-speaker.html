@@ -47,14 +47,6 @@
         width: 192px;
       }
 
-      a.talk-link {
-        background: var(--color-blue-primary);
-        color: #fff;
-        padding: 1em 2em;
-        margin: 0;
-        @apply(--button-shadow);
-      }
-
       .info {
         flex-grow: 1;
       }
@@ -124,7 +116,7 @@
         <p>[[speaker.description]]</p>
         <div class="info__speaker-links">
           <template is="dom-if" if="[[speaker.talk]]">
-            <a class="talk-link" href="[[speaker.talk]]">show talk <span class="sr-only">&nbsp; of [[speaker.name]]</span></a>
+            <a class="talk-link" href="[[speaker.talk]]"><paper-button class="btn--primary">show talk <span class="sr-only">&nbsp; of [[speaker.name]]</span></paper-button></a>
           </template>
           <template is="dom-if" if="[[speaker.web]]">
             <span class="sr-only">Speaker web: </span>
