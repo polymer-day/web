@@ -11,8 +11,7 @@
         line-height: normal;
         padding: 40px 0;
 
-        --paper-button-background: var(--color-blue-primary);
-        --paper-fab-background: var(--paper-button-background);
+        --paper-fab-background: var(--color-blue-primary);
         --paper-fab-keyboard-focus-background: var(--paper-button-background);
       }
 
@@ -78,14 +77,6 @@
         margin: 1.5em 0;
       }
 
-      paper-button {
-        background: var(--paper-button-background);
-        color: #fff;
-        padding: 15px 32px;
-        margin: 0;
-      }
-
-      paper-button,
       paper-fab {
         @apply(--button-shadow);
       }
@@ -128,7 +119,7 @@
       <div class="summary">
         <p class="summary__content">[[event.description]]</p>
         <template is="dom-if" if="[[_isTalk(event)]]">
-          <paper-button on-click="select">Show speaker <span class="sr-only">&nbsp;[[event.speaker]]</span></paper-button>
+          <paper-button on-click="select" class="btn--primary">Show speaker <span class="sr-only">&nbsp;[[event.speaker]]</span></paper-button>
         </template>
       </div>
     </iron-collapse>
@@ -177,7 +168,7 @@
     _getTimeMinutes: function(date) {
       var hours = this._fix2Digits(date.getHours());
       var minutes = this._fix2Digits(date.getMinutes());
-      return hours + ':' + minutes; 
+      return hours + ':' + minutes;
     },
 
     _getTime: function(start, end) {
