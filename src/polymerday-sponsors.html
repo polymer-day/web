@@ -9,10 +9,9 @@
 
   <template>
 
-  <style>
+  <style include="heading-classes">
     :host {
       display: block;
-      font-family: "Roboto", sans-serif;
     }
 
     .content {
@@ -36,17 +35,8 @@
     }
 
     .title {
-      font-size: 24px;
-      font-weight: 300;
-      text-transform: uppercase;
-      color: var(--color-blue-primary);
       margin-top: 0;
       margin-bottom: 16px;
-    }
-
-    .text {
-      font-size: 16px;
-      color: var(--color-grey-primary);
     }
 
     a {
@@ -95,8 +85,8 @@
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
     <div class="jumbotron">
-      <h2 class="title">Become one of our sponsors</h2>
-      <p class="text">Do you want to be part of the fist event about Polymer in Spain?</p>
+      <h2 class="title item-title">Become one of our sponsors</h2>
+      <p class="item-subtitle">Do you want to be part of the fist event about Polymer in Spain?</p>
       <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn">I want</a></p>
     </div>
 
