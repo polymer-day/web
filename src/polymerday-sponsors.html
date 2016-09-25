@@ -1,8 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
 <link rel="import" href="polymerday-sponsors-list.html">
-<link rel="import" href="polymerday-theme.html">
 
 
 <dom-module id="polymerday-sponsors">
@@ -12,6 +12,10 @@
   <style include="polymerday-classes">
     :host {
       display: block;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     .content {
@@ -39,23 +43,8 @@
       margin-bottom: 16px;
     }
 
-    a {
-      display: inline-block;
-      font-size: 16px;
-      color: var(--color-white-primary);
-      background-color: var(--color-blue-secondary);
-      text-transform: uppercase;
-      min-width: 11em;
-      padding: 0.7em 0.57em;
-      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 50);
-    }
-
     .sponsors {
       max-width: 80%;
-    }
-
-    a {
-      text-decoration: none;
     }
   </style>
 
@@ -87,7 +76,7 @@
     <div class="jumbotron">
       <h2 class="title item-title">Become one of our sponsors</h2>
       <p class="item-subtitle">Do you want to be part of the fist event about Polymer in Spain?</p>
-      <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn">I want</a></p>
+      <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn" tabindex="-1"><paper-button class="btn--primary">I want</paper-button></a></p>
     </div>
 
     <div class="sponsors">
