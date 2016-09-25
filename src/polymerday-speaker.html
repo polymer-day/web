@@ -11,7 +11,7 @@
       :host {
         display: block;
         line-height: normal;
-        margin: 0 0 65px 0;
+        margin: 0 0 80px 0;
       }
 
       .sr-only {
@@ -25,6 +25,8 @@
         border: 0;
       }
 
+      a { text-decoration: none; }
+
       .container {
         display: flex;
         flex-direction: row;
@@ -36,9 +38,12 @@
 
       .image {
         width: 300px;
-        height: 300px;
-        margin: 0 2em;
+        margin: 0 32px 0 0;
         text-align: center;
+      }
+
+      .image-right .image {
+        margin: 0 0 0 32px;
       }
 
       .image iron-image {
@@ -59,53 +64,41 @@
         @apply(--text-normal);
       }
 
+      .description {
+        margin: 24px 0;
+      }
+
       .info__speaker-links {
         display: flex;
-        flex-direction: row;
+        align-items: baseline;
       }
 
-      .info__speaker-links a[target=_blank] {
-        @apply(--text-normal);
+      .info__speaker-links > * { margin-right: 24px; }
+
+      .text-icon-link {
+        @apply(--font-primary-light);
+        font-size: var(--text-size-default);
+        color: var(--color-grey-primary);
         text-decoration: none;
-        margin: 0 15px;
+        display: flex;
+        align-items: center;
       }
 
-      .info__speaker-links iron-icon {
-        margin: 10px;
+      .text-icon-link iron-icon {
+        margin-left: 8px;
+        width: 32px;
+        height: 32px;
+      }
+      .text-icon-link:hover span { text-decoration: underline; }
+
+      [icon="twitter"] {
+        border-radius: 50%;
+        overflow: hidden;
       }
 
-      .info__speaker-links  a:hover {
-        text-decoration: underline;
+      [icon="linkedin"] {
+        color: #0065A1;
       }
-
-      .info__speaker-links a:not([target=_blank]) {
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      @media (min-width: 768px) {
-
-        .image {
-          margin: 0 2em ;
-        }
-
-        .image iron-image{
-          width: 200px;
-          height: 200px;
-          text-align: center;
-        }
-        .image-left .info {
-          margin-right: 35px;
-        }
-
-        .image-right .info {
-          margin-left: 35px;          
-        }
-
-        .info__speaker-links a[target=_blank] {
-          margin: 0 0 0 15px;
-        }
-      };
 
     </style>
 
@@ -113,28 +106,27 @@
       <div class="info">
         <h2 class="item-title">[[speaker.name]]</h2>
         <span class="item-subtitle">[[speaker.job]]</span>
-        <p>[[speaker.description]]</p>
+        <p class="description">[[speaker.description]]</p>
         <div class="info__speaker-links">
           <template is="dom-if" if="[[speaker.talk]]">
-            <a class="talk-link" href="[[speaker.talk]]"><paper-button class="btn--primary">show talk <span class="sr-only">&nbsp; of [[speaker.name]]</span></paper-button></a>
+            <a class="talk-link" href="[[speaker.talk]]" tabindex="-1">
+              <paper-button class="btn--primary">show talk</paper-button>
+            </a>
           </template>
           <template is="dom-if" if="[[speaker.web]]">
-            <span class="sr-only">Speaker web: </span>
-            <a target="_blank" href$="[[_computeWebURL(speaker.web)]]">
+            <a target="_blank" href$="[[_computeWebURL(speaker.web)]]" class="text-icon-link">
               <span>[[speaker.web]]</span>
               <iron-icon icon="link"></iron-icon>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.linkedin]]">
-            <span class="sr-only">Linkedin account: </span>
-            <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">
+            <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]" class="text-icon-link">
               <span>[[speaker.linkedin]]</span>
               <iron-icon icon="linkedin"></iron-icon>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.twitter]]">
-            <span class="sr-only">Twitter account: </span>
-            <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">
+            <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]" class="text-icon-link">
               <span>[[speaker.twitter]]</span>
               <iron-icon icon="twitter"></iron-icon>
             </a>
