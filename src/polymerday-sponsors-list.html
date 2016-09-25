@@ -28,6 +28,25 @@
         width: calc(100% / 8);
       }
 
+      .title--container h2 {
+        margin:0 0 17px 0;
+        padding: 32px 24px 40px;
+        color: var(--color-blue-primary);
+        font-size: 3em;
+        font-weight: 100;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+      }
+
+      @media (min-width:720px) {
+        .title--container {
+          padding: 40px 24px 80px;
+        }
+        .title--container h2{
+          font-size: 4em;
+        }
+      };
+
       @media (max-width:767px) {
 
         .sponsors--container--xl,
@@ -54,7 +73,9 @@
 
     </style>
 
-    <polymerday-section-title title="{{header}}"></polymerday-section-title>
+    <div class="title--container">
+      <h2>{{header}}</h2>
+    </div>
 
     <div class$="sponsors--container sponsors--container--{{logos-size}}">
       <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
