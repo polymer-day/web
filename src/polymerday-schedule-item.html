@@ -5,7 +5,7 @@
 
 <dom-module id="polymerday-schedule-item">
   <template>
-    <style>
+    <style include="heading-classes">
       :host {
         display: block;
         line-height: normal;
@@ -66,17 +66,10 @@
       }
 
       .title {
-        @apply(--text-subtitle);
-        text-transform: uppercase;
-        color: var(--color-blue-primary);
         margin: 0 0 9px;
       }
 
       .subtitle {
-        font-size: 16px;
-        font-weight: 100;
-        letter-spacing: 1px;
-        color: var(--color-blue-medium);
         margin: 0;
       }
 
@@ -120,8 +113,8 @@
 
     <div class="header">
       <header class="header__title">
-        <h2 class="title">[[event.name]]</h2>
-        <p class="subtitle">[[event.speaker]]</p>
+        <h2 class="title item-title">[[event.name]]</h2>
+        <p class="subtitle item-subtitle">[[event.speaker]]</p>
       </header>
 
       <div class="header__date date">[[_getTime(event.start, event.end)]]<span class="date__label">hours</span></div>
