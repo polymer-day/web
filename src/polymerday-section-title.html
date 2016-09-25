@@ -4,7 +4,7 @@
 
   <template>
 
-    <style>
+    <style include="heading-classes">
       :host {
         display: block;
         text-align: center;
@@ -16,16 +16,6 @@
 
       .title--container h1 {
         margin: 0 0 20px;
-        font-size: 2.5em;
-        letter-spacing: 2px;
-        color: var(--color-blue-primary);
-        text-transform: uppercase;
-        @apply(--font-primary-thin);
-      }
-      .message--container span {
-        font-size: 1.38em;
-        line-height: 1.45;
-        @apply(--font-primary-light);
       }
 
       /* from 720px */
@@ -35,21 +25,15 @@
         }
 
         .title--container h1 {
-          font-size: 4em;
-          letter-spacing: 4px;
           margin: 0 0 20px;
-        }
-
-        .message--container span {
-          font-size: 1.5em;
         }
       }
     </style>
       <div class="title--container">
-        <h1>[[title]]</h1>
+        <h1 class="page-title">[[title]]</h1>
       </div>
       <div class="message--container">
-        <span>[[message]]</span>
+        <span class="page-subtitle">[[message]]</span>
       </div>
 
   </template>
