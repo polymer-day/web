@@ -5,13 +5,12 @@
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
 <link rel="import" href="polymerday-section-title.html">
-<link rel="import" href="polymerday-theme.html">
 
 <dom-module id="polymerday-venue">
 
   <template>
 
-  <style>
+  <style include="polymerday-classes">
     :host {
       display: block;
       padding: 10px;
@@ -21,15 +20,6 @@
     paper-card{
       @apply(--layout-vertical);
       padding:40px 145px;
-    }
-
-    paper-card .card-title {
-      color: var(--color-blue-primary);
-      font-family: Roboto;
-      font-size: 2em;
-      font-weight: 100;
-      letter-spacing: 1px;
-      line-height: 32px;
     }
 
     paper-card .card-content__address--container p{
@@ -43,11 +33,7 @@
     }
 
     paper-card .card-title {
-      margin-bottom: 6px;
-    }
-
-    paper-card  .card-content__link a{
-      color: var(--color-blue-medium);
+      margin: 0 0 9px;
     }
 
     paper-card .card-content__link iron-icon {
@@ -67,28 +53,10 @@
       line-height: 32px;
     }
 
-    a,
-    paper-button {
-      font-family: Roboto;
-      font-weight: 100;
-      text-decoration: none;
-    }
-
-    paper-button {
-      width: 190px;
-     --paper-button:{
-        color: #fff;
-        background: var(--color-blue-primary);
-        margin:30px 0;
-      };
-    }
-
-
     google-map {
       width: 100%;
       height: 400px;
     }
-
 
     .gallery {
       display: -ms-flexbox;
@@ -115,11 +83,21 @@
       height: auto;
     }
 
+    .text-list li {
+      margin: 16px 0;
+    }
+
+    .text-list a {
+      color: var(--color-blue-primary);
+    }
+
+
+
     @media (max-width: 600px) {
-        paper-card {
-          padding: 0;
-        };
-    };
+      paper-card {
+        padding: 0;
+      }
+    }
 
   </style>
     <polymerday-section-title title="Venue" message="La Estación Gran Teatro Príncipe Pío"></polymerday-section-title>
@@ -128,18 +106,18 @@
     </google-map>
     <paper-card elevation="0">
       <div class="card-content">
-        <h2 class="card-title">La Estación Gran Teatro Príncipe Pío</h2>
-        <p class="card-content__link">
+        <h2 class="card-title item-title">La Estación Gran Teatro Príncipe Pío</h2>
+        <p class="card-content__link item-subtitle">
           <a href="https://www.google.es/maps/place/La+Estaci%C3%B3n+Gran+Teatro+Pr%C3%ADncipe+P%C3%ADo/@40.4208415,-3.7188506,15z/data=!4m2!3m1!1s0x0:0x89ba0fea276d4684?sa=X&ved=0ahUKEwj3-sWwuevOAhVIOhoKHRz-CEwQ_BIIhQEwCg" tabindex="-1">
             <iron-icon icon="place"></iron-icon>Cuesta de San Vicente 44, 28008 Madrid
           </a>
         </p>
-        <p class="card-content__link">
+        <p class="card-content__link item-subtitle">
           <a href="http://laestacion.com">
             <iron-icon icon="link"></iron-icon>www.laestacion.com
           </a>
         </p>
-        <p>Imported from Holland, it has come to Madrid the first Spiegeltent, built on the premises of the new complex Station. This is a big tent of 29 meters wide, baroque style, built in wood and decorated with mirrors, textiles and stained glass. It has a capacity for 600 spectators, and it can be offered shows of different formats. Its particular characteristics make enjoy the events in this unique environment is an experience, very appetizing and appealing.</p>
+        <p class="text--default">Imported from Holland, it has come to Madrid the first Spiegeltent, built on the premises of the new complex Station. This is a big tent of 29 meters wide, baroque style, built in wood and decorated with mirrors, textiles and stained glass. It has a capacity for 600 spectators, and it can be offered shows of different formats. Its particular characteristics make enjoy the events in this unique environment is an experience, very appetizing and appealing.</p>
 
         <ul class="gallery">
           <li><img src="images/venue/venue-1.jpg" alt="Photo venue 1" /></li>
@@ -150,9 +128,9 @@
           <li><img src="images/venue/venue-6.jpg" alt="Photo venue 6" /></li>
         </ul>
 
-        <h2 class="card-title">Accommodation</h2>
-        <p>We have reached an agreement with some hotels to apply a discount for those attending the evet. Using the coupon code <strong>POLYMER</strong> you'll obtain a discount on breakfast from 25% to 100% depending on the length of stay. According to the hotel will also include parking.</p>
-        <ul>
+        <h2 class="card-title item-title">Accommodation</h2>
+        <p class="text--default">We have reached an agreement with some hotels to apply a discount for those attending the evet. Using the coupon code <strong>POLYMER</strong> you'll obtain a discount on breakfast from 25% to 100% depending on the length of stay. According to the hotel will also include parking.</p>
+        <ul class="text-list">
           <li><a href="http://www.jardinesdesabatini.com/">Jardines de Sabatini</a> <span title="4 stars">****</span></li>
           <li><a href="http://www.senatorgranvia70spahotel.com/">Senator Gran Vía 70</a> <span title="4 stars">****</span></li>
           <li><a href="http://www.jchoteles-puertadelsol.com/">JC Puerta del Sol</a> <span title="3 stars">***</span></li>
