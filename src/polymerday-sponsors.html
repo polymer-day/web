@@ -48,28 +48,6 @@
     }
   </style>
 
-
-  <polymerday-data
-    page="sponsors"
-    subpage="platinum"
-    data="{{sponsorsPlatinum}}"></polymerday-data>
-
-  <polymerday-data
-    page="sponsors"
-    subpage="gold"
-    data="{{sponsorsGold}}"></polymerday-data>
-
-  <polymerday-data
-    page="sponsors"
-    subpage="iron"
-    data="{{sponsorsIron}}"></polymerday-data>
-
-  <polymerday-data
-    page="sponsors"
-    subpage="paper"
-    data="{{sponsorsPaper}}"></polymerday-data>
-
-
   <div class="content">
     <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
 
@@ -80,26 +58,50 @@
     </div>
 
     <div class="sponsors">
-      <polymerday-sponsors-list 
-        sponsor-type="platinum" 
-        sponsors="{{sponsorsPlatinum}}"
-        header="Platino Sponsoring"
-        logos-size="xl"></polymerday-sponsors-list>
-      <polymerday-sponsors-list 
-        sponsor-type="gold" 
-        sponsors="{{sponsorsGold}}"
-        header="Gold Sponsoring"
-        logos-size="l"></polymerday-sponsors-list>
-      <polymerday-sponsors-list 
-        sponsor-type="iron" 
-        sponsors="{{sponsorsIron}}"
-        header="Iron Sponsoring"
-        logos-size="m"></polymerday-sponsors-list>      
-      <polymerday-sponsors-list 
-        sponsor-type="paper" 
-        sponsors="{{sponsorsPaper}}"
-        header="Paper Sponsorin"
-        logos-size="s"></polymerday-sponsors-list>      
+      <polymerday-data
+        page="sponsors"
+        subpage="platinum"
+        data="{{sponsorsPlatinum}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsPlatinum.length]]">
+        <polymerday-sponsors-list
+          sponsors="{{sponsorsPlatinum}}"
+          header="Platino Sponsoring"
+          logos-size="xl"></polymerday-sponsors-list>
+      </template>
+
+      <polymerday-data
+        page="sponsors"
+        subpage="gold"
+        data="{{sponsorsGold}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsGold.length]]">
+        <polymerday-sponsors-list
+          sponsors="{{sponsorsGold}}"
+          header="Gold Sponsoring"
+          logos-size="l"></polymerday-sponsors-list>
+      </template>
+
+
+      <polymerday-data
+        page="sponsors"
+        subpage="iron"
+        data="{{sponsorsIron}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsIron.length]]">
+        <polymerday-sponsors-list
+          sponsors="{{sponsorsIron}}"
+          header="Iron Sponsoring"
+          logos-size="m"></polymerday-sponsors-list>
+      </template>
+
+      <polymerday-data
+        page="sponsors"
+        subpage="paper"
+        data="{{sponsorsPaper}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsPaper.length]]">
+        <polymerday-sponsors-list
+          sponsors="{{sponsorsPaper}}"
+          header="Paper Sponsoring"
+          logos-size="s"></polymerday-sponsors-list>
+      </template>
     </div>
   </div>
 
