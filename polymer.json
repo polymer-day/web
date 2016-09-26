@@ -2,11 +2,12 @@
   "entrypoint": "index.html",
   "shell": "src/polymerday-app.html",
   "fragments": [
-    "src/polymerday-home.html",
-    "src/polymerday-schedule.html",
-    "src/polymerday-speakers.html",
-    "src/polymerday-sponsors.html",
-    "src/polymerday-venue.html"
+    "src/views/polymerday-home.html",
+    "src/views/polymerday-schedule.html",
+    "src/views/polymerday-speakers.html",
+    "src/views/polymerday-sponsors.html",
+    "src/views/polymerday-venue.html",
+    "src/views/polymerday-cookies.html"
   ],
   "sourceGlobs": [
    "src/**/*",
