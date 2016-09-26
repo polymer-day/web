@@ -4,7 +4,7 @@
 <dom-module id="polymerday-sponsors-list">
   <template>
 
-    <style>
+    <style include="polymerday-classes">
 
       .sponsors--container {
         display: flex;
@@ -73,9 +73,7 @@
 
     </style>
 
-    <div class="title--container">
-      <h2>{{header}}</h2>
-    </div>
+    <h2 class="item-title">{{header}}</h2>
 
     <div class$="sponsors--container sponsors--container--{{logos-size}}">
       <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
@@ -93,8 +91,6 @@
       properties: {
 
         sponsors: Array,
-
-        sponsorType: String,
 
         header: String,
 
