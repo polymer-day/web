@@ -1,73 +1,149 @@
 <style is="custom-style">
   :root {
-
+    --color-blue-dark: #224FBD;
     --color-blue-primary: #2c5ea5;
     --color-blue-secondary: #2B5DA4;
     --color-blue-medium: #68a3d8;
-    --color-blue-light: #F7FAFD;
+    --color-blue-light: #E7F0F9;
     --color-magenta-primary: #df4a62;
     --color-grey-primary: #3d474e;
     --color-white-primary: #fff;
 
+    /**
+     * Common text sizes
+     */
+    --text-size-small: 12px;
+    --text-size-default: 16px;
+    --text-size-big: 24px;
+    --text-size-large: 48px;
+
+    /**
+     * Font family and weights
+     */
+    --font-primary: {
+      font-family: Roboto, sans-serif;
+    };
+
+    --font-secondary: {
+      font-family: Roboto Condensed, sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    };
+
+    --font-primary-thin: {
+      @apply(--font-primary);
+      font-weight: 100;
+    };
+
+    --font-primary-light: {
+      @apply(--font-primary);
+      font-weight: 300;
+    };
+
+    /**
+     * Heading styles mobile (default)
+     */
+    --page-title: {
+      @apply(--font-primary-thin);
+      font-size: 40px;
+      letter-spacing: 2px;
+      line-height: 1.2; /* 48 */
+      color: var(--color-blue-dark);
+      text-transform: uppercase;
+    };
+
+    --page-subtitle: {
+      @apply(--font-primary-light);
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.4545; /* 32px */
+      color: var(--color-grey-primary);
+    };
+
+    --item-title: {
+      @apply(--font-primary-light);
+      font-size: var(--text-size-big);
+      line-height: 1.33; /* 32px */
+      letter-spacing: 1px;
+      color: var(--color-blue-secondary);
+      text-transform: uppercase;
+    };
+
+    --item-subtitle: {
+      @apply(--font-primary-light);
+      font-size: var(--text-size-default);
+      line-height: 1.5; /* 24px */
+      letter-spacing: 1px;
+      color: var(--color-blue-secondary);
+    };
+
+    /**
+     * Heading styles desktop
+     */
+    --page-title-desktop: {
+      font-size: 64px;
+      letter-spacing: 4px;
+      line-height: 1;
+    };
+
+    --page-subtitle-desktop: {
+      font-size: var(--text-size-big);
+    };
+
+    /**
+     * Text styles
+     */
     --text-title-secondary: {
       color: var(--color-blue-medium);
-      font-family: Roboto;
-      font-size: 24px;
-      font-weight: 100;
+      font-size: var(--text-size-big);
       letter-spacing: 1px;
       line-height: 32px;
+      @apply(--font-primary-light);
     }
 
     --text-subtitle: {
       color: var(--color-grey-primary);
-      font-family: Roboto;
-      font-size: 24px;
-      font-weight: 300;
+      font-size: var(--text-size-big);
       letter-spacing: 1px;
       line-height: 32px;
+      @apply(--font-primary-light);
     }
 
     --text-normal: {
       color: var(--color-grey-primary);
-      font-family: Roboto Condensed;
-      font-size: 16px;
+      font-size: var(--text-size-default);
       letter-spacing: 1px;
       line-height: 32px;
+      @apply(--font-secondary);
     }
 
     --text-normal-white: {
-      font-family: Roboto;
-      font-size: 16px;
-      font-weight: 300;
+      font-size: var(--text-size-default);
       color: var(--color-white-primary);
-      letter-spacing: 0px;
+      @apply(--font-primary-light);
     }
 
     --text-big-white: {
-      font-size: 48px;
-      color: var(--color-white-primary);;
+      font-size: var(--text-size-large);
+      color: var(--color-white-primary);
       letter-spacing: 2px;
       line-height: 56px;
     }
 
     --text-small: {
       color: var(--color-grey-primary);
-      font-family: Roboto;
-      font-size: 12px;
-      font-weight: 100;
-      letter-spacing: 0px;
+      font-size: var(--text-size-small);
       line-height: 16px;
       text-transform: uppercase;
+      @apply(--font-primary-thin);
     }
 
     --text-small-white: {
       color: var(--color-white-primary);
-      font-family: Roboto;
-      font-size: 12px;
-      font-weight: 100;
-      letter-spacing: 0px;
+      font-size: var(--text-size-small);
       line-height: 16px;
       text-transform: uppercase;
+      @apply(--font-primary-thin);
     }
 
     /**

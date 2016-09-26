@@ -35,8 +35,8 @@
     }
 
     .tabs__item {
-      background: var(--color-blue-light);
-      color: var(--color-white-primary);
+      background: var(--color-blue-medium);
+      font-size: var(--text-size-default);
     }
 
     .tabs__item,
@@ -48,26 +48,19 @@
     .tabs__item a {
       @apply(--layout-horizontal);
       @apply(--layout-center-center);
-      @apply(--text-normal-white);
+      @apply(--font-primary);
       text-decoration: none;
       text-transform: uppercase;
-      color: var(--color-blue-secondary);
+      color: var(--color-white-primary);
     }
 
     paper-tab.iron-selected {
       background: var(--color-blue-primary);
     }
 
-    paper-tab.iron-selected a {
-      color: var(--color-white-primary)
-    }
-
     /* from 720px */
     @media (min-width: 45em) {
-      .tabs {
-        width: 384px;
-        margin-bottom: 80px;
-      }
+      .tabs { width: 384px; }
 
       .tabs__item,
       .tabs__item a {

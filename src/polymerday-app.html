@@ -24,6 +24,7 @@
 <link rel="import" href="polymerday-footer.html">
 <link rel="import" href="polymerday-theme.html">
 <link rel="import" href="polymerday-icons.html">
+<link rel="import" href="polymerday-classes.html">
 <!-- <link rel="import" href="polymerday-signin.html"> -->
 
 <dom-module id="polymerday-app">
@@ -36,7 +37,6 @@
       :host {
         position: relative;
         display: block;
-        @apply(--text-normal);
       }
 
       app-header {
@@ -185,7 +185,6 @@
       .view {
         box-sizing: border-box;
         display: block;
-        min-height: 100vh;
         overflow: visible;
         padding: 0;
       }
@@ -210,6 +209,10 @@
 
         .tickets-mobile {
           display: none;
+        }
+
+        .view {
+          min-height: calc(70vh - 150px);
         }
       }
     </style>

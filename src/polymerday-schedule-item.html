@@ -5,15 +5,14 @@
 
 <dom-module id="polymerday-schedule-item">
   <template>
-    <style>
+    <style include="polymerday-classes">
       :host {
         display: block;
         line-height: normal;
         padding: 40px 0;
 
-        --paper-button-background: var(--color-blue-primary);
-        --paper-fab-background: var(--paper-button-background);
-        --paper-fab-keyboard-focus-background: var(--paper-button-background);
+        --paper-fab-background: var(--color-blue-primary);
+        --paper-fab-keyboard-focus-background: var(--color-blue-primary);
       }
 
       .sr-only {
@@ -45,6 +44,8 @@
       .header__date {
         -ms-flex-order: -1;
         order: -1;
+        min-height: 32px;
+        box-sizing: border-box;
       }
 
       .header__btn {
@@ -63,20 +64,14 @@
       .date__label {
         text-transform: uppercase;
         font-size: 12px;
+        margin: 0 0 0 16px;
       }
 
       .title {
-        @apply(--text-subtitle);
-        text-transform: uppercase;
-        color: var(--color-blue-primary);
         margin: 0 0 9px;
       }
 
       .subtitle {
-        font-size: 16px;
-        font-weight: 100;
-        letter-spacing: 1px;
-        color: var(--color-blue-medium);
         margin: 0;
       }
 
@@ -85,14 +80,6 @@
         margin: 1.5em 0;
       }
 
-      paper-button {
-        background: var(--paper-button-background);
-        color: #fff;
-        padding: 15px 32px;
-        margin: 0;
-      }
-
-      paper-button,
       paper-fab {
         @apply(--button-shadow);
       }
@@ -104,14 +91,14 @@
           order: 0;
         }
         .header__title {
-          -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+          -ms-flex: 1 1 70%;
+          flex: 1 1 70%;
           margin-bottom: 5px;
         }
 
         .date__label {
           display: block;
-          margin-top: 10px;
+          margin: 10px 0 0;
         }
 
         .summary { padding-left: 128px; }
@@ -120,8 +107,8 @@
 
     <div class="header">
       <header class="header__title">
-        <h2 class="title">[[event.name]]</h2>
-        <p class="subtitle">[[event.speaker]]</p>
+        <h2 class="title item-title">[[event.name]]</h2>
+        <p class="subtitle item-subtitle">[[event.speaker]]</p>
       </header>
 
       <div class="header__date date">[[_getTime(event.start, event.end)]]<span class="date__label">hours</span></div>
@@ -133,9 +120,9 @@
 
     <iron-collapse opened$="[[opened]]">
       <div class="summary">
-        <p class="summary__content">[[event.description]]</p>
+        <p class="summary__content text--default">[[event.description]]</p>
         <template is="dom-if" if="[[_isTalk(event)]]">
-          <paper-button on-click="select">Show speaker <span class="sr-only">&nbsp;[[event.speaker]]</span></paper-button>
+          <paper-button on-click="select" class="btn--primary">Show speaker <span class="sr-only">&nbsp;[[event.speaker]]</span></paper-button>
         </template>
       </div>
     </iron-collapse>
@@ -184,7 +171,7 @@
     _getTimeMinutes: function(date) {
       var hours = this._fix2Digits(date.getHours());
       var minutes = this._fix2Digits(date.getMinutes());
-      return hours + ':' + minutes; 
+      return hours + ':' + minutes;
     },
 
     _getTime: function(start, end) {
