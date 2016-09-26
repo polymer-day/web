@@ -14,7 +14,7 @@
       position: relative;
     }
 
-    .links {
+    ul.links {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -22,8 +22,14 @@
       @apply(--font-primary-light);
     }
 
-    a:first-child {
-      margin: 0 16px;
+    ul.links li {
+      display: inline-block;
+      line-height:2em;
+      margin: 0 16px 0;
+    }
+
+    ul.links li.cookies {
+      display: block;
     }
 
     a {
@@ -51,26 +57,36 @@
 
     @media (min-width:720px) {
       :host {
-        background-image: url('images/bg-footer.png');
+        background-image: url('../images/bg-footer.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: bottom right;
         height: 30vh;
       }
+      ul.links li.cookies {
+        display: inline-block;
+      }
 
       .twitter span {
-        display: inline;;
+        display: inline;
       }
     }
 
   </style>
-  <div class="links">
-    <a href="http://polymerday.eventbrite.es/" tabindex="-1" target="_blank" class="eventbrite">
-      <span class="card-actions__label eventbrite">registration at</span> <iron-icon src="../images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
-    </a>
-    <a href="https://twitter.com/polymerday" tabindex="-1" target="_blank" class="twitter">
-      <span class="card-actions__label">@polymerday</span> <iron-icon icon="twitter"></iron-icon>
-    </a>
+  <ul class="links">
+    <li>
+      <a href="http://polymerday.eventbrite.es/" tabindex="-1" target="_blank" class="eventbrite">
+        <span class="card-actions__label eventbrite">registration at</span> <iron-icon src="../images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/polymerday" tabindex="-1" target="_blank" class="twitter">
+        <span class="card-actions__label">@polymerday</span> <iron-icon icon="twitter"></iron-icon>
+      </a>
+    </li>
+    <li class="cookies">
+      <a href="/cookies">política de cookies</a>
+    </li>
   </div>
 
   </template>

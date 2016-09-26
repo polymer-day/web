@@ -3,7 +3,7 @@
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <!-- <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html"> -->
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
@@ -28,7 +28,7 @@
 <!-- <link rel="import" href="polymerday-signin.html"> -->
 
 <dom-module id="polymerday-app">
-  <style include="iron-flex iron-flex-alignment"></style>
+  <style include="iron-flex iron-flex-alignment polymerday-classes"></style>
 
   <template>
 
@@ -189,6 +189,24 @@
         padding: 0;
       }
 
+      #cookiesPolicy {
+        width: 100%;
+        margin: 0;
+        --paper-toast-background-color: var(--color-blue-light);
+        --paper-toast-color: var(--color-blue-secondary);
+      }
+
+      #cookiesPolicy a {
+        color: var(--color-blue-secondary)
+      }
+      #cookiesPolicy paper-fab {
+        --paper-fab-background: var(--color-blue-primary);
+        position: absolute;
+        top: -2em;
+        right: 1em;
+        font-size: 0.8em;
+      }
+
 
       @media (min-width:720px) {
         app-header paper-icon-button{
@@ -295,6 +313,7 @@
           <polymerday-schedule name="schedule" route="{{subroute}}" class="view"></polymerday-schedule>
           <polymerday-venue name="venue" class="view"></polymerday-venue>
           <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
+          <polymerday-cookies name="cookies" class="view view-cookies"></polymerday-cookies>
         </iron-pages>
 
         <polymerday-footer></polymerday-footer>
@@ -302,6 +321,11 @@
       </app-header-layout>
 
     </app-drawer-layout>
+
+    <paper-toast id="cookiesPolicy" opened="[[cookiesPolicyOpened]]" duration="0">
+      <p>Utilizamos cookies propias y de terceros para obtener datos estadísticos de la navegación de nuestros usuarios y mejorar nuestros servicios. Si acepta o continúa navegando, consideramos que acepta su uso. Puede cambiar la configuración u obtener más información sobre la <a href="/cookies">política de cookies</a>.</p>
+      <paper-fab mini icon="close" on-click="cookiesPolicyClose" title="Cerrar"></paper-fab>
+    </paper-toast>
 
   </template>
 
@@ -351,6 +375,13 @@
           type: Array,
           value: function() {
             return [];
+          }
+        },
+
+        cookiesPolicyOpened: {
+          type: Boolean,
+          value: function(){
+            return !localStorage.getItem('cookies-policy-accepted');
           }
         }
 
@@ -432,6 +463,11 @@
 
       _showAccountDialog: function() {
         this.$.accountDialog.open();
+      },
+
+      cookiesPolicyClose: function() {
+        localStorage.setItem('cookies-policy-accepted', true);
+        this.$.cookiesPolicy.close();
       }
 
     });
