@@ -1,12 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/iron-a11y-announcer/iron-a11y-announcer.html">
 
 <link rel="import" href="polymerday-data.html">
 <link rel="import" href="polymerday-section-title.html">
-<link rel="import" href="polymerday-schedule-item.html">
+<link rel="import" href="polymerday-schedule-list.html">
 
 <dom-module id="polymerday-schedule">
 
@@ -15,19 +16,6 @@
   <style>
     :host {
       display: block;
-    }
-
-    .event {
-      padding: 0 24px;
-    }
-
-    .event--highlight {
-      background: var(--color-blue-light);
-    }
-
-    polymerday-schedule-item {
-      max-width: 992px;
-      margin: auto;
     }
 
     .tabs {
@@ -79,6 +67,9 @@
     data="{{routeData}}"
     tail="{{subroute}}"></app-route>
 
+  <polymerday-data id="events" data="{{eventsFriday}}" page="schedule" subpage="friday"></polymerday-data>
+  <polymerday-data id="events" data="{{eventsSaturday}}" page="schedule" subpage="saturday"></polymerday-data>
+
   <polymerday-section-title title="Schedule" message="We dedicate one an a half days to talk about Web Components"></polymerday-section-title>
 
   <paper-tabs class="tabs" selected="{{day}}" attr-for-selected="day" fallback-selection="[[defaultDay]]" role="navigation" no-bar noink>
@@ -91,12 +82,10 @@
   </paper-tabs>
 
   <div class="wrapper" role="tabpanel">
-    <polymerday-data id="events" data="{{events}}" page="schedule" subpage="{{day}}"></polymerday-data>
-    <template is="dom-repeat" items="[[events]]">
-      <div class$="event [[_computeClass(item.type)]]">
-        <polymerday-schedule-item id="[[item.id]]" event="[[item]]"></polymerday-schedule-item>
-      </div>
-    </template>
+    <iron-pages selected="{{day}}" attr-for-selected="day">
+      <polymerday-schedule-list day="friday" events="[[eventsFriday]]"></polymerday-schedule-list>
+      <polymerday-schedule-list day="saturday" events="[[eventsSaturday]]"></polymerday-schedule-list>
+    </iron-pages>
   </div>
 
   </template>
@@ -133,10 +122,6 @@
         // This will create the singleton element if it has not
         // been created yet:
         Polymer.IronA11yAnnouncer.requestAvailability();
-      },
-
-      _computeClass: function(type) {
-        return type === 'activity' ? 'event--highlight' : '';
       },
 
       selectDay: function(day) {

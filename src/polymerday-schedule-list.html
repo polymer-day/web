@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="polymerday-schedule-item.html">
+
+<dom-module id="polymerday-schedule-list">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .event {
+        padding: 0 24px;
+      }
+
+      .event--highlight {
+        background: var(--color-blue-light);
+      }
+
+      polymerday-schedule-item {
+        max-width: 992px;
+        margin: auto;
+      }
+
+
+    </style>
+    <template is="dom-repeat" items="[[events]]">
+      <div class$="event [[_computeClass(item.type)]]">
+        <polymerday-schedule-item id="[[item.id]]" event="[[item]]"></polymerday-schedule-item>
+      </div>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'polymerday-schedule-list',
+
+      properties: {
+        events: Array
+      },
+
+      _computeClass: function(type) {
+        return type === 'activity' ? 'event--highlight' : '';
+      },
+    });
+    </script>
+</dom-module>
