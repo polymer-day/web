@@ -1,13 +1,13 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
-<link rel="import" href="polymerday-data.html">
-<link rel="import" href="polymerday-section-title.html">
-<link rel="import" href="polymerday-theme.html">
-<link rel="import" href="polymerday-speaker.html">
+<link rel="import" href="../commons/polymerday-data.html">
+<link rel="import" href="../commons/polymerday-section-title.html">
+<link rel="import" href="../styles/polymerday-theme.html">
+<link rel="import" href="./polymerday-speakers/polymerday-speaker.html">
 
 <dom-module id="polymerday-speakers">
 
@@ -37,12 +37,12 @@
     }
 
   </style>
-    <polymerday-data 
-      page="speakers" 
+    <polymerday-data
+      page="speakers"
       data="{{speakers}}"></polymerday-data>
 
     <polymerday-section-title title="SPEAKERS" message="More than 10 talks from developers with Polymer"></polymerday-section-title>
-    
+
     <ul class="speakers">
         <template is="dom-repeat" items="[[speakers]]">
           <li>

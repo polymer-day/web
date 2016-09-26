@@ -1,7 +1,7 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/timer-days/timer-days.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/timer-days/timer-days.html">
 
 <dom-module id="polymerday-home">
 
@@ -51,7 +51,7 @@
 
       timer-days {
         align-items: center;
-        background-image: url('images/bg-time-days.png');
+        background-image: url('../images/bg-time-days.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
@@ -92,7 +92,7 @@
     <timer-days target-date="[[_dateforTimer(date)]]"></timer-days>
     <div class="content">
       <span class="date">[[formatedDate(date)]]</span>
-      <h1 class="logo"><img src="images/logo_polymerday.png" alt="PolymerDay" /></h1>
+      <h1 class="logo"><img src="../images/logo_polymerday.png" alt="PolymerDay" /></h1>
       <span class="location">MADRID</span>
       <p class="description">The first event focused on Google's Polymer Library and App's Toolbox in Spain.
 We will dedicate a day and a half to talk about Web Components technology. More than 10 talks from developers who are using Polymer during long time and for real projects. Main language at this event: Spanish (some talks in english according the origin of the speaker)</p>

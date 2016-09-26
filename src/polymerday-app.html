@@ -20,11 +20,11 @@
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
-<link rel="import" href="polymerday-data.html">
-<link rel="import" href="polymerday-footer.html">
-<link rel="import" href="polymerday-theme.html">
-<link rel="import" href="polymerday-icons.html">
-<link rel="import" href="polymerday-classes.html">
+<link rel="import" href="./commons/polymerday-data.html">
+<link rel="import" href="./commons/polymerday-footer.html">
+<link rel="import" href="./commons/polymerday-icons.html">
+<link rel="import" href="./styles/polymerday-theme.html">
+<link rel="import" href="./styles/polymerday-classes.html">
 <!-- <link rel="import" href="polymerday-signin.html"> -->
 
 <dom-module id="polymerday-app">
@@ -396,7 +396,7 @@
       },
 
       _pageChanged: function(page) {
-        var url = this.resolveUrl('polymerday-' + page + '.html');
+        var url = this.resolveUrl('views/polymerday-' + page + '.html');
 
         // load page import on demand.
         this.importHref(url, null, null, true);
