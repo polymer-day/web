@@ -55,7 +55,7 @@
         font-weight: 400;
         letter-spacing: 1px;
         line-height: 2em;
-        margin: 1em 0;
+        margin: 1em 0 0 0;
         text-transform: uppercase;
       }
 
@@ -95,6 +95,31 @@
         text-decoration: none;
         text-transform: uppercase;
       }
+
+      @media (min-width: 768px) {
+
+        .image {
+          margin: 0 2em ;
+        }
+
+        .image iron-image{
+          width: 200px;
+          height: 200px;
+          text-align: center;
+        }
+        .image-left .info {
+          margin-right: 35px;
+        }
+
+        .image-right .info {
+          margin-left: 35px;          
+        }
+
+        .info__speaker-links a[target=_blank] {
+          margin: 0 0 0 15px;
+        }
+      };
+
     </style>
 
     <div class$="container [[_imagePositionClass(imageLeft)]]">
