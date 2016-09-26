@@ -14,6 +14,17 @@
         margin: 0 0 65px 0;
       }
 
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0;
+      }
+
       .container {
         display: flex;
         flex-direction: row;
@@ -129,21 +140,24 @@
         <p>[[speaker.description]]</p>
         <div class="info__speaker-links">
           <template is="dom-if" if="[[speaker.talk]]">
-            <a class="talk-link" href="[[speaker.talk]]">show talk</a>
+            <a class="talk-link" href="[[speaker.talk]]">show talk <span class="sr-only">&nbsp; of [[speaker.name]]</span></a>
           </template>
           <template is="dom-if" if="[[speaker.web]]">
+            <span class="sr-only">Speaker web: </span>
             <a target="_blank" href$="[[_computeWebURL(speaker.web)]]">
               <span>[[speaker.web]]</span>
               <iron-icon icon="link"></iron-icon>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.linkedin]]">
+            <span class="sr-only">Linkedin account: </span>
             <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]">
               <span>[[speaker.linkedin]]</span>
               <iron-icon icon="linkedin"></iron-icon>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.twitter]]">
+            <span class="sr-only">Twitter account: </span>
             <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]">
               <span>[[speaker.twitter]]</span>
               <iron-icon icon="twitter"></iron-icon>
