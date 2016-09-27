@@ -1,12 +1,18 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-query.html">
+<link rel="import" href="../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <dom-module id="polymerday-data">
   <template>
     <firebase-query
       path="{{_path}}"
-      data="{{data}}">
+      data="{{firebaseData}}">
     </firebase-query>
+    <app-indexeddb-mirror
+      key="{{_path}}"
+      data="{{firebaseData}}"
+      persisted-data="{{data}}">
+    </app-indexeddb-mirror>
   </template>
 
 <script>
@@ -28,6 +34,11 @@
         _path: {
           type: String,
           computed: '_computedPath(page, subpage)'
+        },
+
+        firebaseData: {
+          type: Object,
+          notify: true
         },
 
         data: {
