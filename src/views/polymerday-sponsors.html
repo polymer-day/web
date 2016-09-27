@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
 <link rel="import" href="../commons/polymerday-data.html">
 <link rel="import" href="../commons/polymerday-section-title.html">
 
@@ -51,12 +52,12 @@
   </style>
 
   <div class="content">
-    <polymerday-section-title title="Sponsors" message="Here are the people that make it happen"></polymerday-section-title>
+    <polymerday-section-title title="[[localize('sponsors.title')]]" message="[[localize('sponsors.text')]]"></polymerday-section-title>
 
     <div class="jumbotron">
-      <h2 class="title item-title">Become one of our sponsors</h2>
-      <p class="item-subtitle">Do you want to be part of the fist event about Polymer in Spain?</p>
-      <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn" tabindex="-1"><paper-button class="btn--primary">I want</paper-button></a></p>
+      <h2 class="title item-title">[[localize('sponsors.callForAction.title')]]</h2>
+      <p class="item-subtitle">[[localize('sponsors.callForAction.text')]]</p>
+      <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn" tabindex="-1"><paper-button class="btn--primary">[[localize('sponsors.callForAction.link')]]</paper-button></a></p>
     </div>
 
     <div class="sponsors">
@@ -67,7 +68,7 @@
       <template is="dom-if" if="[[sponsorsPlatinum.length]]">
         <polymerday-sponsors-list
           sponsors="{{sponsorsPlatinum}}"
-          header="Platino Sponsoring"
+          header="[[localize('sponsors.sponsoringType', 'type', 'Platino')]]"
           logos-size="xl"></polymerday-sponsors-list>
       </template>
 
@@ -78,7 +79,7 @@
       <template is="dom-if" if="[[sponsorsGold.length]]">
         <polymerday-sponsors-list
           sponsors="{{sponsorsGold}}"
-          header="Gold Sponsoring"
+          header="[[localize('sponsors.sponsoringType', 'type', 'Gold')]]"
           logos-size="l"></polymerday-sponsors-list>
       </template>
 
@@ -90,7 +91,7 @@
       <template is="dom-if" if="[[sponsorsIron.length]]">
         <polymerday-sponsors-list
           sponsors="{{sponsorsIron}}"
-          header="Iron Sponsoring"
+          header="[[localize('sponsors.sponsoringType', 'type', 'Iron')]]"
           logos-size="m"></polymerday-sponsors-list>
       </template>
 
@@ -101,7 +102,7 @@
       <template is="dom-if" if="[[sponsorsPaper.length]]">
         <polymerday-sponsors-list
           sponsors="{{sponsorsPaper}}"
-          header="Paper Sponsoring"
+          header="[[localize('sponsors.sponsoringType', 'type', 'Paper')]]"
           logos-size="s"></polymerday-sponsors-list>
       </template>
     </div>
@@ -113,7 +114,11 @@
 
     Polymer({
 
-      is: 'polymerday-sponsors'
+      is: 'polymerday-sponsors',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ]
 
     });
 

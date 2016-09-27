@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-localize-behavior/app-localize-behavior.html">
+
+
+<script>
+var Polymerday = Polymerday || {};
+
+Polymerday.AppLocalizeBehaviorImpl = {
+  properties: {
+    /**
+     * The language used for translation.
+     */
+    language: {
+      type: String,
+      value: document.documentElement.lang
+    }
+  },
+
+  attached: function() {
+    this.loadResources(this.resolveUrl('/src/locales.json'));
+  }
+}
+
+Polymerday.AppLocalizeBehavior = [
+  Polymer.AppLocalizeBehavior,
+  Polymerday.AppLocalizeBehaviorImpl
+];
+
+</script>

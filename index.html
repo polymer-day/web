@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
@@ -43,6 +43,10 @@
       lazyRegister: true,
       dom: 'shadow'
     };
+
+    var lang = navigator.language || navigator.userLanguage || document.documentElement.lang;
+    document.documentElement.lang = lang;
+
     var onload = function() {
       // For native Imports, manually fire WebComponentsReady so user code
       // can use the same code path for native and polyfill'd imports.

@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/timer-days/timer-days.html">
 
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
+
 <dom-module id="polymerday-home">
 
   <template>
@@ -35,6 +37,7 @@
       .location {
         display: block;
         margin-bottom: 20px;
+        text-transform: uppercase;
         @apply(--text-title-secondary);
       }
 
@@ -89,13 +92,12 @@
 
     </style>
 
-    <timer-days target-date="[[_dateforTimer(date)]]"></timer-days>
+    <timer-days lang="[[language]]" target-date="[[_dateforTimer(date)]]"></timer-days>
     <div class="content">
-      <span class="date">[[formatedDate(date)]]</span>
+      <span class="date">[[localize('home.date', 'eventDate', date)]]</span>
       <h1 class="logo"><img src="../images/logo_polymerday.png" alt="PolymerDay" /></h1>
-      <span class="location">MADRID</span>
-      <p class="description">The first event focused on Google's Polymer Library and App's Toolbox in Spain.
-We will dedicate a day and a half to talk about Web Components technology. More than 10 talks from developers who are using Polymer during long time and for real projects. Main language at this event: Spanish (some talks in english according the origin of the speaker)</p>
+      <span class="location">Madrid</span>
+      <p class="description">[[localize('home.intro')]]</p>
     </div>
 
 
@@ -106,6 +108,11 @@ We will dedicate a day and a half to talk about Web Components technology. More 
     Polymer({
 
       is: 'polymerday-home',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ],
+
       properties: {
         // user: {
         //   type: Object,
@@ -137,18 +144,6 @@ We will dedicate a day and a half to talk about Web Components technology. More 
 
       _dateforTimer: function(date){
         return new Date(date).toISOString().slice(0,-1);
-      },
-
-      _monthName: function(dt) {
-        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        return months[dt.getMonth()];
-      },
-
-      formatedDate: function(dt) {
-        return this._monthName(dt) + ' '
-          + dt.getDate() + 'th -'
-          + (dt.getDate()+1) + 'th, '
-          + dt.getFullYear();
       }
 
     });

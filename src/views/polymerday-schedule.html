@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/iron-a11y-announcer/iron-a11y-announcer.html">
 
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
 <link rel="import" href="../commons/polymerday-data.html">
 <link rel="import" href="../commons/polymerday-section-title.html">
 
@@ -71,14 +72,14 @@
   <polymerday-data id="events" data="{{eventsFriday}}" page="schedule" subpage="friday"></polymerday-data>
   <polymerday-data id="events" data="{{eventsSaturday}}" page="schedule" subpage="saturday"></polymerday-data>
 
-  <polymerday-section-title title="Schedule" message="We dedicate one an a half days to talk about Web Components"></polymerday-section-title>
+  <polymerday-section-title title="[[localize('schedule.title')]]" message="[[localize('schedule.text')]]"></polymerday-section-title>
 
   <paper-tabs class="tabs" selected="{{day}}" attr-for-selected="day" fallback-selection="[[defaultDay]]" role="navigation" no-bar noink>
     <paper-tab day="friday" link class="tabs__item">
-      <a href$="[[route.prefix]]/friday/">Friday</a>
+      <a href$="[[route.prefix]]/friday/">[[localize('schedule.friday')]]</a>
     </paper-tab>
     <paper-tab day="saturday" link class="tabs__item">
-      <a href$="[[route.prefix]]/saturday/">Saturday</a>
+      <a href$="[[route.prefix]]/saturday/">[[localize('schedule.saturday')]]</a>
     </paper-tab>
   </paper-tabs>
 
@@ -95,6 +96,10 @@
     Polymer({
 
       is: 'polymerday-schedule',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ],
 
       properties: {
         route: {

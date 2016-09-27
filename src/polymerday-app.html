@@ -20,6 +20,7 @@
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
+<link rel="import" href="./commons/polymerday-localize-behavior.html">
 <link rel="import" href="./commons/polymerday-data.html">
 <link rel="import" href="./commons/polymerday-footer.html">
 <link rel="import" href="./commons/polymerday-icons.html">
@@ -270,7 +271,7 @@
               <template is="dom-if" if="[[item.icon]]">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
               </template>
-              <span>[[item.title]]</span>
+              <span>[[localize(item.name + '.title']]</span>
             </a>
           </template>
         </iron-selector>
@@ -292,7 +293,7 @@
                     <template is="dom-if" if="[[item.icon]]">
                       <iron-icon icon="[[item.icon]]"></iron-icon>
                     </template>
-                    [[item.title]]
+                    [[_localizedTitle(item.name)]]
                   </a>
                 </paper-tab>
               </template>
@@ -302,7 +303,7 @@
             </a>
             <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
               <paper-fab src="images/icon-tickets.svg"></paper-fab>
-              <span>TICKETS</span>
+              <span>[[localize('tickets')]]</span>
             </a>
           </app-toolbar>
         </app-header>
@@ -323,8 +324,8 @@
     </app-drawer-layout>
 
     <paper-toast id="cookiesPolicy" opened="[[cookiesPolicyOpened]]" duration="0">
-      <p>Utilizamos cookies propias y de terceros para obtener datos estadísticos de la navegación de nuestros usuarios y mejorar nuestros servicios. Si acepta o continúa navegando, consideramos que acepta su uso. Puede cambiar la configuración u obtener más información sobre la <a href="/cookies">política de cookies</a>.</p>
-      <paper-fab mini icon="close" on-click="cookiesPolicyClose" title="Cerrar"></paper-fab>
+      <p inner-h-t-m-l="[[localize('cookies.text')]]"></p>
+      <paper-fab mini icon="close" on-click="cookiesPolicyClose" title="[[localize('cookies.close')]]"></paper-fab>
     </paper-toast>
 
   </template>
@@ -334,6 +335,10 @@
     Polymer({
 
       is: 'polymerday-app',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ],
 
       properties: {
 
@@ -394,6 +399,10 @@
 
       listeners: {
         'showAccountDialog': '_showAccountDialog'
+      },
+
+      _localizedTitle: function(name) {
+        return this.localize(name + '.title');
       },
 
       _menuChanged: function(splices) {

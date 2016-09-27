@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
+
 <dom-module id="polymerday-footer">
 
   <template>
@@ -76,7 +78,7 @@
   <ul class="links">
     <li>
       <a href="http://polymerday.eventbrite.es/" tabindex="-1" target="_blank" class="eventbrite">
-        <span class="card-actions__label eventbrite">registration at</span> <iron-icon src="../images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
+        <span class="card-actions__label eventbrite">[[localize('footer.registrationAt')]]</span> <iron-icon src="../images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
       </a>
     </li>
     <li>
@@ -85,7 +87,7 @@
       </a>
     </li>
     <li class="cookies">
-      <a href="/cookies">política de cookies</a>
+      <a href="/cookies">[[localize('footer.cookiesLinkText')]]</a>
     </li>
   </div>
 
@@ -95,7 +97,11 @@
 
     Polymer({
 
-      is: 'polymerday-footer'
+      is: 'polymerday-footer',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ],
 
     });
 

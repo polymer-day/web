@@ -3,6 +3,7 @@
 <link rel="import" href="../../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
 
+<link rel="import" href="../../commons/polymerday-localize-behavior.html">
 <link rel="import" href="../../styles/polymerday-theme.html">
 
 <dom-module id="polymerday-speaker">
@@ -110,7 +111,7 @@
         <div class="info__speaker-links">
           <template is="dom-if" if="[[speaker.talk]]">
             <a class="talk-link" href="[[speaker.talk]]" tabindex="-1">
-              <paper-button class="btn--primary">show talk</paper-button>
+              <paper-button class="btn--primary">[[localize('speakers.showTalk')]]</paper-button>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.web]]">
@@ -143,6 +144,10 @@
   <script>
   Polymer({
     is: 'polymerday-speaker',
+
+    behaviors: [
+      Polymerday.AppLocalizeBehavior
+    ],
 
     properties: {
       speaker: Object,

@@ -4,6 +4,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
 <link rel="import" href="../commons/polymerday-data.html">
 <link rel="import" href="../commons/polymerday-section-title.html">
 <link rel="import" href="../styles/polymerday-theme.html">
@@ -41,7 +42,7 @@
       page="speakers"
       data="{{speakers}}"></polymerday-data>
 
-    <polymerday-section-title title="SPEAKERS" message="More than 10 talks from developers with Polymer"></polymerday-section-title>
+    <polymerday-section-title title="[[localize('speakers.title')]]" message="[[localize('speakers.text')]]"></polymerday-section-title>
 
     <ul class="speakers">
         <template is="dom-repeat" items="[[speakers]]">
@@ -58,6 +59,10 @@
     Polymer({
 
       is: 'polymerday-speakers',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ],
 
       properties: {
         speakers: {

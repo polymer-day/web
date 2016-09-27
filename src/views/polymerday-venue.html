@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/google-map/google-map.html">
 
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
 <link rel="import" href="../commons/polymerday-section-title.html">
 
 <dom-module id="polymerday-venue">
@@ -101,7 +102,7 @@
     }
 
   </style>
-    <polymerday-section-title title="Venue" message="La Estación Gran Teatro Príncipe Pío"></polymerday-section-title>
+    <polymerday-section-title title="[[localize('venue.title')]]" message="[[localize('venue.text')]]"></polymerday-section-title>
     <google-map api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15" disable-zoom>
       <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
     </google-map>
@@ -146,7 +147,11 @@
 
     Polymer({
 
-      is: 'polymerday-venue'
+      is: 'polymerday-venue',
+
+      behaviors: [
+        Polymerday.AppLocalizeBehavior
+      ]
 
     });
 
