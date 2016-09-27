@@ -271,7 +271,7 @@
               <template is="dom-if" if="[[item.icon]]">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
               </template>
-              <span>[[localize(item.name + '.title']]</span>
+              <span>[[_localizedTitle(item.name)]]</span>
             </a>
           </template>
         </iron-selector>
