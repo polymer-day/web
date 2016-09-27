@@ -133,23 +133,26 @@
         <div class="info__speaker-links">
           <template is="dom-if" if="[[speaker.talk]]">
             <a class="talk-link" href="[[speaker.talk]]" tabindex="-1">
-              <paper-button class="btn--primary">[[localize('speakers.showTalk')]]</paper-button>
+              <paper-button class="btn--primary" inner-h-t-m-l="[[localize('speakers.showTalk', 'speaker', speaker.name)]]"></paper-button>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.web]]">
             <a target="_blank" href$="[[_computeWebURL(speaker.web)]]" class="text-icon-link">
+              <span class="sr-only">[[localize('speakers.web')]] </span>
               <span>[[speaker.web]]</span>
               <iron-icon icon="link"></iron-icon>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.linkedin]]">
             <a target="_blank" href$="[[_computeLinkedinURL(speaker.linkedin)]]" class="text-icon-link">
+              <span class="sr-only">[[localize('speakers.linkedin')]]</span>
               <span>[[speaker.linkedin]]</span>
               <iron-icon icon="linkedin"></iron-icon>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.twitter]]">
             <a target="_blank" href$="[[_computeTwitterURL(speaker.twitter)]]" class="text-icon-link">
+              <span class="sr-only">[[localize('speakers.twitter')]] </span>
               <span>[[speaker.twitter]]</span>
               <iron-icon icon="twitter"></iron-icon>
             </a>
