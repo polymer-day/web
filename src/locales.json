@@ -12,7 +12,7 @@
     "speakers.text": "Más de 10 charlas de desarrolladore en Polymer",
     "speakers.showTalk": "Ver charla",
     "speakers.hours": "horas",
-    "speakers.showSpeaker": "Mostar ponente<span class=\"sr-only\">&nbsp;{speaker}</span>",
+    "speakers.showSpeaker": "Mostrar ponente<span class=\"sr-only\">&nbsp;{speaker}</span>",
     "schedule.title": "Agenda",
     "schedule.text": "Dedicaremos un día y medio a hablar sobre Web Components",
     "schedule.friday": "Viernes",
