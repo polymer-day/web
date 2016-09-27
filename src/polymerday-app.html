@@ -186,6 +186,7 @@
       .view {
         box-sizing: border-box;
         display: block;
+        min-height: calc(100vh - 180px);
         overflow: visible;
         padding: 0;
       }
@@ -250,7 +251,8 @@
         tail="{{subroute}}"></app-route>
     <polymerday-data
       data="{{menu}}"
-      page="menu"></polymerday-data>
+      page="menu">
+    </polymerday-data>
 
     <!--
     <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
@@ -331,7 +333,6 @@
   </template>
 
   <script>
-
     Polymer({
 
       is: 'polymerday-app',
@@ -354,6 +355,11 @@
         menu: {
           type: Array,
           value: []
+        },
+
+        menuItems: {
+          type: Object,
+          value: {}
         },
 
         firebaseData: Object,
@@ -394,7 +400,8 @@
 
       observers: [
         'goTo(routeData.page)',
-        '_menuChanged(menu.splices)'
+        '_menuChanged(menu.splices)',
+        '_prueba(menuItems.*)'
       ],
 
       listeners: {
@@ -402,14 +409,44 @@
       },
 
       _localizedTitle: function(name) {
+        console.log('name',name);
         return this.localize(name + '.title');
       },
 
+      _prueba: function(ob) {
+        console.log("hidden ha cambiado para", ob);
+        // var item = ob.value;
+/*
+        console.log('_prueba', item);
+
+        for(var key in item) {
+          console.log(key, item[key]);
+        }
+*/
+      },
+
+      _addMenuItemSetter: function(item) {
+        var hidden = item.hidden;
+        delete item.hidden;
+        Object.defineProperty(item, "hidden", {
+          get: function() {
+            return hidden;
+          },
+          set: function(x) {
+            hidden = x;
+            this.notifyPath('menuItems.' + item.name + '.hidden', hidden);
+          }.bind(this)
+        });
+      },
+
       _menuChanged: function(splices) {
+        console.log("nuevo menu");
         if(splices && splices.indexSplices) {
+
           for (var i = 0, splice; i < splices.indexSplices.length; i++) {
             this._addMenuItems(splices.indexSplices[i]);
             this._removeMenuItems(splices.indexSplices[i]);
+            //this._changeMenuItems(splices.indexSplices[i]);
           }
         }
       },
@@ -418,6 +455,11 @@
         var item;
         for (var j = 0; j < splice.addedCount; j++) {
           item = splice.object[splice.index+j];
+          console.log(item);
+
+          this.set("menuItems." + item.name, item);
+          this._addMenuItemSetter(item);
+
           if (item.hidden !== true) {
             this.push('_menuVisible', item);
           }
@@ -434,6 +476,22 @@
           this.splice('_menuVisible', index, 1);
         }
       },
+
+      _changeMenuItems: function(splice) {
+        console.log('change',splice.object);
+        var index;
+        var item;
+        for (var i = 0, index; i < splice.object.length; i++) {
+          item = splice.object[i];
+          if (item.hidden !== true) {
+            this.push('_menuVisible', item);
+          }else {
+            index = this._menuVisible.indexOf(splice.removed[i]);
+            this.splice('_menuVisible', index, 1);
+          }
+        }
+      },
+
 
       _pageChanged: function(page) {
         var url = this.resolveUrl('views/polymerday-' + page + '.html');

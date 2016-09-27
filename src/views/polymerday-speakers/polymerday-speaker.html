@@ -30,27 +30,23 @@
 
       .container {
         display: flex;
-        flex-direction: row;
-      }
-
-      .container.image-left {
-        flex-direction: row-reverse;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 0 24px;
       }
 
       .image {
         width: 300px;
-        margin: 0 32px 0 0;
+        margin: 0 auto;
         text-align: center;
       }
 
-      .image-right .image {
-        margin: 0 0 0 32px;
-      }
-
-      .image iron-image {
+      iron-image {
         border-radius: 50%;
         height: 192px;
-        width: 192px;
+        min-width: 192px;
+        margin-bottom: 32px;
       }
 
       .info {
@@ -72,6 +68,7 @@
       .info__speaker-links {
         display: flex;
         align-items: baseline;
+        justify-content: center;
       }
 
       .info__speaker-links > * { margin-right: 24px; }
@@ -99,6 +96,31 @@
 
       [icon="linkedin"] {
         color: #0065A1;
+      }
+
+      @media (min-width:720px) {
+        .container {
+          flex-direction: row;
+          text-align: left;
+          align-items: flex-start;
+        }
+
+        .container.image-left {
+          flex-direction: row-reverse;
+        }
+
+        iron-image {
+          margin-right: 32px;
+        }
+
+        .image-right iron-image {
+          margin-left: 32px;
+          margin-right: 0;
+        }
+
+        .info__speaker-links {
+          justify-content: flex-start;
+        }
       }
 
     </style>
@@ -135,9 +157,9 @@
         </div>
       </div>
 
-      <div class="image">
+
         <iron-image preload sizing="cover" placeholder="[[_placeholder]]" src="[[speaker.image]]" alt="[[_computeImgAlt(speaker.name)]]"></iron-image>
-      </div>
+
     </div>
   </template>
 

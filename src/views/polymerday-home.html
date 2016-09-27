@@ -30,7 +30,7 @@
       .description {
         margin: 24px 0;
         max-width: 900px;
-        padding: 0 16px;
+        padding: 0 24px;
         @apply(--text-normal);
       }
 
@@ -40,7 +40,6 @@
         text-transform: uppercase;
         @apply(--text-title-secondary);
       }
-
 
       .logo {
         margin: 0 0 20px 0;
@@ -84,12 +83,6 @@
         @apply(--text-small-white);
       }
 
-      @media (max-width:600px) {
-        .tickets {
-          display: none;
-        }
-      }
-
     </style>
 
     <timer-days lang="[[language]]" target-date="[[_dateforTimer(date)]]"></timer-days>
@@ -99,7 +92,6 @@
       <span class="location">Madrid</span>
       <p class="description">[[localize('home.intro')]]</p>
     </div>
-
 
   </template>
 
