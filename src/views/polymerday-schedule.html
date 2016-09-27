@@ -86,8 +86,8 @@
 
   <div class="wrapper" role="tabpanel">
     <iron-pages selected="{{day}}" attr-for-selected="day">
-      <polymerday-schedule-list day="friday" events="[[eventsFriday]]"></polymerday-schedule-list>
-      <polymerday-schedule-list day="saturday" events="[[eventsSaturday]]"></polymerday-schedule-list>
+      <polymerday-schedule-list day="friday" events="[[eventsFriday]]" route="{{subroute}}"></polymerday-schedule-list>
+      <polymerday-schedule-list day="saturday" events="[[eventsSaturday]]" route="{{subroute}}"></polymerday-schedule-list>
     </iron-pages>
   </div>
 

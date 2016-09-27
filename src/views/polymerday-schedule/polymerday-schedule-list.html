@@ -1,4 +1,5 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/app-route/app-route.html">
 
 <link rel="import" href="./polymerday-schedule-item.html">
 
@@ -21,12 +22,17 @@
         max-width: 992px;
         margin: auto;
       }
-
-
     </style>
+
+    <app-route
+      route="{{route}}"
+      pattern="/:event"
+      data="{{routeData}}"
+      tail="{{subroute}}"></app-route>
+
     <template is="dom-repeat" items="[[events]]">
       <div class$="event [[_computeClass(item.type)]]">
-        <polymerday-schedule-item id="[[item.id]]" event="[[item]]"></polymerday-schedule-item>
+        <polymerday-schedule-item id$="[[item.id]]" event="[[item]]" opened="[[_computeOpened(item)]]"></polymerday-schedule-item>
       </div>
     </template>
   </template>
@@ -39,9 +45,26 @@
         events: Array
       },
 
+      observers: [
+        '_routeDataEventChanged(events.splices, routeData.event)'
+      ],
+
       _computeClass: function(type) {
         return type === 'activity' ? 'event--highlight' : '';
       },
+
+      _computeOpened: function(event) {
+        return event.id === this.routeData.event;
+      },
+
+      _routeDataEventChanged: function(events, eventId) {
+        if (eventId) {
+          Polymer.RenderStatus.afterNextRender(this, function(){
+            var eventNode = this.$$('#'+eventId);
+            eventNode && eventNode.set('opened', true) && eventNode.scrollIntoView();
+          });
+        }
+      }
     });
     </script>
 </dom-module>
