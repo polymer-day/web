@@ -9,7 +9,7 @@
     "home.intro": "El primer evento en España centrado en la librería Polymer y las herramientas de desarrollo de Google . Vamos a dedicar un día y medio para hablar sobre Web Components. Más de 10 charlas de desarrolladores que han estado usando Polymer durante más de 1 año en proyectos reales. El idioma principal del evento es español, aunque algunas charlas son inglés por ser la lengua materna del ponente.",
     "home.date": "{eventDate, date, full}",
     "speakers.title": "Ponentes",
-    "speakers.text": "Más de 10 charlas de desarrolladore en Polymer",
+    "speakers.text": "Más de 10 charlas de desarrolladores en Polymer",
     "speakers.showTalk": "Ver charla",
     "speakers.hours": "horas",
     "speakers.showSpeaker": "Mostar ponente<span class=\"sr-only\">&nbsp;{speaker}</span>",
