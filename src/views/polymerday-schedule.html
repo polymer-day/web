@@ -133,10 +133,11 @@
 
       selectDay: function(day) {
         day = day || this.defaultDay;
-        this.fire('iron-announce', { 'text': 'Schedule for: ' + day }, { bubbles: true });
         if (this.day !== day) {
           this.day = day;
           this.async(function() {
+            var text = this.localize('schedule.scheduleFor', 'day', day);
+            this.fire('iron-announce', {'text': text }, { bubbles: true });
             this.set('routeData.day', day);
           }, 50);
         }
