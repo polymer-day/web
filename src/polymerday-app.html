@@ -355,11 +355,6 @@
           value: []
         },
 
-        menuItems: {
-          type: Object,
-          value: {}
-        },
-
         firebaseData: Object,
 
         route: {
@@ -390,7 +385,8 @@
       },
 
       observers: [
-        'goTo(routeData.page)'
+        'goTo(routeData.page)',
+        '_menuChanged(menu.splices)'
       ],
 
       listeners: {
@@ -402,15 +398,28 @@
       },
 
       _pageChanged: function(page) {
-        var url = this.resolveUrl('views/polymerday-' + page + '.html');
+        if (page) {
+          var url = this.resolveUrl('views/polymerday-' + page + '.html');
+          // load page import on demand.
+          this.importHref(url, null, null, true);
+        }
+      },
 
-        // load page import on demand.
-        this.importHref(url, null, null, true);
+      _menuChanged: function(splices) {
+        if (!this.page && splices) {
+          for (var i = 0, splice; i < splices.indexSplices.length; i++) {
+            var splice = splices.indexSplices[i];
+              for (var j = 0; j < splice.addedCount; j++) {
+                item = splice.object[splice.index+j];
+                if (item.default) {
+                  this.goTo(item.name);
+                }
+              }
+          }
+        }
       },
 
       goTo: function(page) {
-        page = page || this._defaultView;
-
         if (this.page === page) {
           return;
         }
