@@ -156,7 +156,7 @@
     },
 
     _computeToggleLabel: function(opened) {
-      return opened ? 'Hide summary of talk by ' + this.event.speaker : 'Show summary of talk by ' + this.event.speaker;
+      return opened ? this.localize('schedule.hideSummary') + ' ' + this.event.speaker : this.localize('schedule.showSummary') + ' ' + this.event.speaker;
     },
 
     _computeToggleIcon: function(opened) {
