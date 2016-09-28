@@ -26,7 +26,7 @@
     }
 
     .tabs__item {
-      background: var(--color-blue-medium);
+      background: var(--color-blue-light);
       font-size: var(--text-size-default);
     }
 
@@ -42,12 +42,16 @@
       @apply(--font-primary);
       text-decoration: none;
       text-transform: uppercase;
-      color: var(--color-white-primary);
+      color: var(--color-blue-secondary);
     }
 
     paper-tab.iron-selected {
       background: var(--color-blue-primary);
     }
+ 
+    paper-tab.iron-selected a {
+      color: var(--color-white-primary)
+    }		      
 
     /* from 720px */
     @media (min-width: 45em) {
