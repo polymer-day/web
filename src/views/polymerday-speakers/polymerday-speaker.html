@@ -67,8 +67,15 @@
 
       .info__speaker-links {
         display: flex;
+        flex-wrap: wrap;
         align-items: baseline;
         justify-content: center;
+      }
+
+      .talk-link {
+        order: 1;
+        flex: 1 1 100%;
+        margin: 24px 24px 24px 0;
       }
 
       .info__speaker-links > * { margin-right: 24px; }
@@ -120,6 +127,11 @@
 
         .info__speaker-links {
           justify-content: flex-start;
+        }
+
+        .talk-link {
+          order: 0;
+          flex: none;
         }
       }
 

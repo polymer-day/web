@@ -254,12 +254,6 @@
       page="menu">
     </polymerday-data>
 
-    <!--
-    <paper-dialog id="accountDialog" entry-animation="fade-in-animation" exit-animation="fade-out-animation" with-backdrop>
-      <polymerday-signin user="{{user}}"></polymerday-signin>
-    </paper-dialog>
-    -->
-
     <app-drawer-layout force-narrow>
 
       <!-- Drawer content -->
@@ -267,14 +261,16 @@
         <app-toolbar>
           <img src="./images/logo_polymerday_white.png" alt="Polymer Day">
         </app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation">
-          <template is="dom-repeat" items="[[_menuVisible]]">
-            <a menu-name="[[item.name]]" href$="/[[item.name]]/" class$="[[item.className]]">
-              <template is="dom-if" if="[[item.icon]]">
-                <iron-icon icon="[[item.icon]]"></iron-icon>
-              </template>
-              <span>[[_localizedTitle(item.name)]]</span>
-            </a>
+        <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation" id="menuMobile">
+          <template is="dom-repeat" items="[[menu]]">
+            <template is="dom-if" if="[[!item.hidden]]" restamp>
+              <a menu-name="[[item.name]]" href$="/[[item.name]]/" class$="[[item.className]]">
+                <template is="dom-if" if="[[item.icon]]">
+                  <iron-icon icon="[[item.icon]]"></iron-icon>
+                </template>
+                <span>[[_localizedTitle(item.name)]]</span>
+              </a>
+            </template>
           </template>
         </iron-selector>
       </app-drawer>
@@ -289,15 +285,17 @@
           </app-toolbar>
           <app-toolbar class="tall">
             <paper-tabs class="menu-desktop bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
-              <template is="dom-repeat" items="[[_menuVisible]]">
-                <paper-tab menu-name="[[item.name]]" link>
-                  <a tabindex="-1" href="/[[item.name]]/">
-                    <template is="dom-if" if="[[item.icon]]">
-                      <iron-icon icon="[[item.icon]]"></iron-icon>
-                    </template>
-                    [[_localizedTitle(item.name)]]
-                  </a>
-                </paper-tab>
+              <template is="dom-repeat" items="[[menu]]" id="menuDesktop">
+                <template is="dom-if" if="[[!item.hidden]]" restamp>
+                  <paper-tab menu-name="[[item.name]]" link>
+                    <a tabindex="-1" href="/[[item.name]]/">
+                      <template is="dom-if" if="[[item.icon]]">
+                        <iron-icon icon="[[item.icon]]"></iron-icon>
+                      </template>
+                      [[_localizedTitle(item.name)]]
+                    </a>
+                  </paper-tab>
+                </template>
               </template>
             </paper-tabs>
             <a class="tickets-mobile" href="http://polymerday.eventbrite.es/" target="_blank">
@@ -382,13 +380,6 @@
           observer: '_pageChanged'
         },
 
-        _menuVisible: {
-          type: Array,
-          value: function() {
-            return [];
-          }
-        },
-
         cookiesPolicyOpened: {
           type: Boolean,
           value: function(){
@@ -399,9 +390,7 @@
       },
 
       observers: [
-        'goTo(routeData.page)',
-        '_menuChanged(menu.splices)',
-        '_prueba(menuItems.*)'
+        'goTo(routeData.page)'
       ],
 
       listeners: {
@@ -409,89 +398,8 @@
       },
 
       _localizedTitle: function(name) {
-        console.log('name',name);
         return this.localize(name + '.title');
       },
-
-      _prueba: function(ob) {
-        console.log("hidden ha cambiado para", ob);
-        // var item = ob.value;
-/*
-        console.log('_prueba', item);
-
-        for(var key in item) {
-          console.log(key, item[key]);
-        }
-*/
-      },
-
-      _addMenuItemSetter: function(item) {
-        var hidden = item.hidden;
-        delete item.hidden;
-        Object.defineProperty(item, "hidden", {
-          get: function() {
-            return hidden;
-          },
-          set: function(x) {
-            hidden = x;
-            this.notifyPath('menuItems.' + item.name + '.hidden', hidden);
-          }.bind(this)
-        });
-      },
-
-      _menuChanged: function(splices) {
-        console.log("nuevo menu");
-        if(splices && splices.indexSplices) {
-
-          for (var i = 0, splice; i < splices.indexSplices.length; i++) {
-            this._addMenuItems(splices.indexSplices[i]);
-            this._removeMenuItems(splices.indexSplices[i]);
-            //this._changeMenuItems(splices.indexSplices[i]);
-          }
-        }
-      },
-
-      _addMenuItems: function(splice) {
-        var item;
-        for (var j = 0; j < splice.addedCount; j++) {
-          item = splice.object[splice.index+j];
-          console.log(item);
-
-          this.set("menuItems." + item.name, item);
-          this._addMenuItemSetter(item);
-
-          if (item.hidden !== true) {
-            this.push('_menuVisible', item);
-          }
-          if (!this.page && item.default) {
-            this.set('page', item.name);
-          }
-        }
-      },
-
-      _removeMenuItems: function(splice) {
-        var index;
-        for (var i = 0, index; i < splice.removed.length; i++) {
-          index = this._menuVisible.indexOf(splice.removed[i]);
-          this.splice('_menuVisible', index, 1);
-        }
-      },
-
-      _changeMenuItems: function(splice) {
-        console.log('change',splice.object);
-        var index;
-        var item;
-        for (var i = 0, index; i < splice.object.length; i++) {
-          item = splice.object[i];
-          if (item.hidden !== true) {
-            this.push('_menuVisible', item);
-          }else {
-            index = this._menuVisible.indexOf(splice.removed[i]);
-            this.splice('_menuVisible', index, 1);
-          }
-        }
-      },
-
 
       _pageChanged: function(page) {
         var url = this.resolveUrl('views/polymerday-' + page + '.html');
