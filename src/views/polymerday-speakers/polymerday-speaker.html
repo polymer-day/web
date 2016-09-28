@@ -127,6 +127,7 @@
 
     <div class$="container [[_imagePositionClass(imageLeft)]]">
       <div class="info">
+        <a name="[[_computeAnchorName(speaker.name)]]"></a>
         <h2 class="item-title">[[speaker.name]]</h2>
         <span class="item-subtitle">[[speaker.job]]</span>
         <p class="description">[[speaker.description]]</p>
@@ -191,6 +192,16 @@
 
     attached: function(){
       this._placeholder = this.speaker.placeholder || this._placeholder;
+      var hash = location.hash.replace('#','');
+      var L = document.querySelector('polymerday-app').shadowRoot.querySelector('app-drawer-layout');
+      var M = L.querySelector('polymerday-speakers').shadowRoot.querySelectorAll('polymerday-speaker');
+      for(var i=0; i<M.length; i++) {
+        var anchor = M[i].shadowRoot.querySelector('a[name="' + hash + '"]');
+        if (anchor) {          
+          //console.log(M[i].id+'==='+hash);
+          anchor.scrollIntoView();
+        }
+      }
     },
 
     _imagePositionClass: function(left) {
@@ -211,6 +222,10 @@
 
     _computeImgAlt: function(name) {
       return name + ' photo';
+    },
+
+    _computeAnchorName: function(name) {
+      return name.replace(/\s/g, '').toLowerCase();
     }
   });
   </script>
