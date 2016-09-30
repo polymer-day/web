@@ -130,7 +130,7 @@
 
     <div class$="container [[_imagePositionClass(imageLeft)]]">
       <div class="info">
-        <a name="[[_computeAnchorName(speaker.name)]]"></a>
+        <a name="[[_computeAnchorName(speaker.twitter)]]"></a>
         <h2 class="item-title">[[speaker.name]]</h2>
         <span class="item-subtitle">[[speaker.job]]</span>
         <p class="description">[[speaker.description]]</p>
@@ -204,12 +204,10 @@
         var anchor = M[i].shadowRoot.querySelector('a[name="' + hash + '"]');
         if (anchor) {
           //console.log(M[i].id+'==='+hash);
-          anchor.scrollIntoView({
-            block: "start",
-            behavior: "auto"
-          });
-          var pN = document.body;
-          pN.scrollTop -= 100;
+          anchor.scrollIntoView(true);
+          setTimeout(function() {
+            document.body.scrollTop -= 200;
+          }, 100);
         }
       }
     },
