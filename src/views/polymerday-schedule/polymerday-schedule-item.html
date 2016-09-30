@@ -8,107 +8,107 @@
 <dom-module id="polymerday-schedule-item">
   <template>
     <style include="polymerday-classes">
-      :host {
-        display: block;
-        line-height: normal;
-        padding: 40px 0;
-
-        --paper-fab-background: var(--color-blue-primary);
-        --paper-fab-keyboard-focus-background: var(--color-blue-primary);
-      }
-
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0,0,0,0);
-        border: 0;
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      .header {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-      }
-
-      .header__title {
-        -ms-flex: 1 0 100%;
-        flex: 1 0 100%;
-        margin-bottom: -3px;
-      }
-
-      .header__date {
-        -ms-flex-order: -1;
-        order: -1;
-        min-height: 32px;
-        box-sizing: border-box;
-      }
-
+     :host {
+      display: block;
+      line-height: normal;
+      padding: 40px 0;
+      --paper-fab-background: var(--color-blue-primary);
+      --paper-fab-keyboard-focus-background: var(--color-blue-primary);
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    .header {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    
+    .header__title {
+      -ms-flex: 1 0 100%;
+      flex: 1 0 100%;
+      margin-bottom: -3px;
+    }
+    
+    .header__date {
+      -ms-flex-order: -1;
+      order: -1;
+      min-height: 32px;
+      box-sizing: border-box;
+    }
+    
+    .header__btn {
+      width: 32px;
+      height: 32px;
+      -ms-flex-order: -1;
+      order: -1;
+    }
+    
+    .date {
+      font-size: 16px;
+      padding-top: 5px;
+      min-width: 128px;
+    }
+    
+    .date__label {
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 0 0 0 16px;
+    }
+    
+    .title {
+      margin: 0 0 9px;
+    }
+    
+    .subtitle {
+      margin: 0;
+    }
+    
+    .summary__content {
+      line-height: 2;
+      margin: 1.5em 0;
+    }
+    
+    paper-fab {
+      @apply(--button-shadow);
+    }
+    /* from 769px */
+    
+    @media (min-width: 48.06em) {
       .header__btn {
-        width: 32px;
-        height: 32px;
-        -ms-flex-order: -1;
-        order: -1;
+        -ms-flex-order: 0;
+        order: 0;
       }
-
-      .date {
-        font-size: 16px;
-        padding-top: 5px;
-        min-width: 128px;
+      .header__title {
+        -ms-flex: 1 1 70%;
+        flex: 1 1 70%;
+        margin-bottom: 5px;
       }
-
       .date__label {
-        text-transform: uppercase;
-        font-size: 12px;
-        margin: 0 0 0 16px;
+        display: block;
+        margin: 10px 0 0;
       }
-
-      .title {
-        margin: 0 0 9px;
+      .summary {
+        padding-left: 128px;
       }
+    }
 
-      .subtitle {
-        margin: 0;
-      }
-
-      .summary__content {
-        line-height: 2;
-        margin: 1.5em 0;
-      }
-
-      paper-fab {
-        @apply(--button-shadow);
-      }
-
-      /* from 769px */
-      @media (min-width: 48.06em) {
-        .header__btn {
-          -ms-flex-order: 0;
-          order: 0;
-        }
-        .header__title {
-          -ms-flex: 1 1 70%;
-          flex: 1 1 70%;
-          margin-bottom: 5px;
-        }
-
-        .date__label {
-          display: block;
-          margin: 10px 0 0;
-        }
-
-        .summary { padding-left: 128px; }
-      }
     </style>
 
     <div class="header">
@@ -128,7 +128,9 @@
       <div class="summary">
         <p class="summary__content text--default">[[event.description]]</p>
         <template is="dom-if" if="[[_isTalk(event)]]">
-          <a href="/speakers/{{event.speakerId}}"><paper-button class="btn--primary" inner-h-t-m-l="[[localize('speakers.showSpeaker', 'speaker', event.speaker)]]"></paper-button></a>
+          <a href="/speakers/#{{_computeAnchorName(event.speaker)}}">
+            <paper-button class="btn--primary" inner-h-t-m-l="[[localize('speakers.showSpeaker', 'speaker', event.speaker)]]"></paper-button>
+          </a>
         </template>
       </div>
     </iron-collapse>
@@ -168,7 +170,7 @@
     },
 
     _fix2Digits: function(num) {
-      if (num<10) {
+      if (num < 10) {
         num = '0' + num;
       }
       return num;
@@ -184,7 +186,12 @@
       var dateStart = new Date(start);
       var dateEnd = new Date(end);
       return this._getTimeMinutes(dateStart) + ' - ' + this._getTimeMinutes(dateEnd);
+    },
+
+    _computeAnchorName: function(name) {
+      return name.replace(/\s/g, '').toLowerCase();
     }
   });
+
   </script>
 </dom-module>
