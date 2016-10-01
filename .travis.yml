@@ -7,14 +7,14 @@ cache:
     - node_modules
     - bower_components
 install:
+  - npm install
   - npm install -g bower
-  - npm install -g polymer-cli
-before_script:
   - bower install
 script:
-  - polymer build
+  - npm run build
 deploy:
   provider: firebase
+  edge: true
   skip_cleanup: true
   token: "${FIREBASE_TOKEN}"
   project: "${FIREBASE_PROJECT_ID}"
