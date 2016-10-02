@@ -14,8 +14,6 @@ const path = require('path');
 const gulp = require('gulp');
 const mergeStream = require('merge-stream');
 const polymer = require('polymer-build');
-const crisper = require('gulp-crisper');
-const gulpif = require('gulp-if');
 
 const polymerJSON = require(global.config.polymerJsonPath);
 const project = new polymer.PolymerProject(polymerJSON);
@@ -86,7 +84,7 @@ function writeBundledOutput(stream) {
 // use HTTP/2 server push
 function writeUnbundledOutput(stream) {
   return new Promise(resolve => {
-    streampipe(gulp.dest(unbundledPath))
+    stream.pipe(gulp.dest(unbundledPath))
       .on('end', resolve);
   });
 }

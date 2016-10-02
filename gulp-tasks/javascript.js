@@ -10,13 +10,12 @@
 
 'use strict';
 
-const del = require('del');
+const uglify = require('gulp-uglify');
 
-// Returns a function that returns a Promise to delete directories
-function clean(directories) {
-  return function clean() {
-    return del(directories);
-  };
+function minify() {
+  return uglify();
 }
 
-module.exports = clean;
+module.exports = {
+  minify: minify
+};

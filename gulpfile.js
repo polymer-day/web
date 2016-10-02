@@ -13,8 +13,6 @@
 const path = require('path');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
-const uglify = require('gulp-uglify');
-const htmlmin = require('gulp-htmlmin');
 
 // Got problems? Try logging 'em
 // const logging = require('plylog');
@@ -48,7 +46,9 @@ global.config = {
 // A few sample tasks are provided for you
 // A task should return either a WriteableStream or a Promise
 const clean = require('./gulp-tasks/clean.js');
+const html = require('./gulp-tasks/html.js');
 const images = require('./gulp-tasks/images.js');
+const javascript = require('./gulp-tasks/javascript.js');
 const project = require('./gulp-tasks/project.js');
 
 // The source task will split all of your source files into one
@@ -62,8 +62,8 @@ function source() {
   return project.splitSource()
     // Add your own build tasks here!
     .pipe(gulpif('**/*.{png,gif,jpg,svg}', images.minify()))
-    .pipe(gulpif('**/*.js', uglify()))
-    .pipe(gulpif('**/*.html', htmlmin({collapseWhitespace: true})))
+    .pipe(gulpif('**/*.js', javascript.minify()))
+    .pipe(gulpif('**/*.html', html.minify()))
     .pipe(project.rejoin()); // Call rejoin when you're finished
 }
 
@@ -73,16 +73,14 @@ function source() {
 // case you need it :)
 function dependencies() {
   return project.splitDependencies()
-    .pipe(gulpif('**/*.js', uglify()))
-    .pipe(gulpif('**/*.html', htmlmin({collapseWhitespace: true})))
     .pipe(project.rejoin());
 }
 
 // Clean the build directory, split all source and dependency files into streams
 // and process them, and output bundled and unbundled versions of the project
 // with their own service workers
-gulp.task('default', gulp.series([
-  clean.build,
+gulp.task('build', gulp.series([
+  clean([global.config.build.rootDirectory]),
   project.merge(source, dependencies),
   project.serviceWorker
 ]));

@@ -10,13 +10,14 @@
 
 'use strict';
 
-const del = require('del');
+const htmlmin = require('gulp-htmlmin');
 
-// Returns a function that returns a Promise to delete directories
-function clean(directories) {
-  return function clean() {
-    return del(directories);
-  };
+function minify() {
+  return htmlmin({
+    collapseWhitespace: true
+  });
 }
 
-module.exports = clean;
+module.exports = {
+  minify: minify
+};
