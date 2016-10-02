@@ -38,7 +38,10 @@
       :host {
         position: relative;
         display: block;
+        transition: opacity .5s;
       }
+
+      :host([unresolved]) { opacity: 0; }
 
       app-header {
         color: var(--color-white-primary);
@@ -210,7 +213,11 @@
       }
 
 
-      @media (min-width:720px) {
+      @media (min-width: 45em) {
+        :host { flex: 1; }
+
+        polymerday-footer { margin-top: -4rem; }
+
         app-header paper-icon-button{
           display:none;
         }
@@ -317,11 +324,12 @@
           <polymerday-cookies name="cookies" class="view view-cookies"></polymerday-cookies>
         </iron-pages>
 
-        <polymerday-footer></polymerday-footer>
 
       </app-header-layout>
 
     </app-drawer-layout>
+
+    <polymerday-footer></polymerday-footer>
 
     <paper-toast id="cookiesPolicy" opened="[[cookiesPolicyOpened]]" duration="0">
       <p inner-h-t-m-l="[[localize('cookies.text')]]"></p>
@@ -391,6 +399,12 @@
 
       listeners: {
         'showAccountDialog': '_showAccountDialog'
+      },
+
+      ready: function() {
+        this.async(function() {
+          this.removeAttribute('unresolved');
+        }, 500);
       },
 
       _localizedTitle: function(name) {

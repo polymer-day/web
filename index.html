@@ -98,15 +98,21 @@
     body {
       font-family: 'Roboto', 'Roboto Condensed', sans-serif;
       margin: 0;
-      min-height: 100vh;
     }
 
+    @media (min-width: 45em) {
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+    }
   </style>
 
 </head>
 <body>
 
-  <polymerday-app firebase-data='{
+  <polymerday-app unresolved firebase-data='{
     "authDomain": "polymerday-55a45.firebaseapp.com",
     "databaseUrl": "https://polymerday-55a45.firebaseio.com/",
     "apiKey": "AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU",
