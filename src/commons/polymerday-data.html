@@ -6,7 +6,8 @@
   <template>
     <firebase-query
       path="{{_path}}"
-      data="{{firebaseData}}">
+      data="{{firebaseData}}"
+      order-by-child="[[orderBy]]">
     </firebase-query>
     <app-indexeddb-mirror
       key="{{_path}}"
@@ -44,7 +45,9 @@
         data: {
           type: Object,
           notify: true
-        }
+        },
+
+        orderBy: String
       },
 
       _computedPath: function(page, subpage){
