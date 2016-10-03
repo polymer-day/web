@@ -155,8 +155,13 @@
       this.opened = !this.opened;
     },
 
-    _computeToggleLabel: function(opened) {
-      return opened ? this.localize('schedule.hideSummary') + ' ' + this.event.speaker : this.localize('schedule.showSummary') + ' ' + this.event.speaker;
+    _computeToggleLabel: function() {
+      var localizeKey = this.opened ? 'schedule.hideSummary' : 'schedule.showSummary';
+      if (this.localize) {
+        return this.localize(localizeKey, 'speaker', this.event.speaker);
+      } else {
+        this.debounce('_computeToggleLabel', this._computeToggleLabel.bind(this));
+      }
     },
 
     _computeToggleIcon: function(opened) {
