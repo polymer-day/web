@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/dom-repeat-n/dom-repeat-n.html">
+
+<dom-module id="polymerday-rating">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        --iron-icon-width: 22px;
+        --iron-icon-height: 22px;
+      }
+      iron-icon { margin: 0 3px; }
+    </style>
+    <template is="dom-repeat-n" count="[[rating]]">
+      <iron-icon icon="[[icon]]" aria-hidden="true"></iron-icon>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'polymerday-rating',
+      properties: {
+        rating: Number,
+        icon: {
+          type: String,
+          value: 'star'
+        }
+      }
+    });
+  </script>
+</dom-module>
