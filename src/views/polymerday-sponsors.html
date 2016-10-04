@@ -79,7 +79,7 @@
         subpage="gold"
         data="{{sponsorsGold}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsGold.length]]">
-        <polymerday-sponsors-list
+        <polymerday-sponsors-list class="full-width"
           sponsors="{{sponsorsGold}}"
           header="[[localize('sponsors.sponsoringType', 'type', 'Gold')]]"
           logos-size="l"></polymerday-sponsors-list>
@@ -91,7 +91,7 @@
         subpage="iron"
         data="{{sponsorsIron}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsIron.length]]">
-        <polymerday-sponsors-list
+        <polymerday-sponsors-list class="full-width"
           sponsors="{{sponsorsIron}}"
           header="[[localize('sponsors.sponsoringType', 'type', 'Iron')]]"
           logos-size="m"></polymerday-sponsors-list>
@@ -102,7 +102,7 @@
         subpage="paper"
         data="{{sponsorsPaper}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsPaper.length]]">
-        <polymerday-sponsors-list
+        <polymerday-sponsors-list class="full-width"
           sponsors="{{sponsorsPaper}}"
           header="[[localize('sponsors.sponsoringType', 'type', 'Paper')]]"
           logos-size="s"></polymerday-sponsors-list>
