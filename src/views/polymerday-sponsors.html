@@ -21,25 +21,26 @@
       text-decoration: none;
     }
 
-    .content {
+    /*.content {
       @apply(--layout-vertical);
       @apply(--layout-center-center);
       position: relative;;
       text-align: center;
-    }
+    }*/
 
     .jumbotron {
       background-color: var(--color-blue-light);
-      width: calc(100vw - 160px);
-      padding: 45px 80px;
+      /*width: calc(100vw - 160px);
+      padding: 45px 80px;*/
+      padding: 45px 0;
     }
 
-    @media (max-width:600px) {
+    /*@media (max-width:600px) {
       .jumbotron {
         padding: 45px 10px;
         width: calc(100vw - 20px);
       }
-    }
+    }*/
 
     .title {
       margin-top: 0;
@@ -55,23 +56,19 @@
     }
 
   </style>
-
-  <div class="content">
     <polymerday-section-title title="[[localize('sponsors.title')]]" message="[[localize('sponsors.text')]]"></polymerday-section-title>
-
-    <div class="jumbotron">
+    <div class="content full-width center jumbotron">
       <h2 class="title item-title">[[localize('sponsors.callForAction.title')]]</h2>
       <p class="item-subtitle">[[localize('sponsors.callForAction.text')]]</p>
       <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn" tabindex="-1"><paper-button class="btn--primary">[[localize('sponsors.callForAction.link')]]</paper-button></a></p>
     </div>
-
-    <div class="sponsors">
+    <div class="content">
       <polymerday-data
         page="sponsors"
         subpage="platinum"
         data="{{sponsorsPlatinum}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsPlatinum.length]]">
-        <polymerday-sponsors-list
+        <polymerday-sponsors-list class="full-width"
           sponsors="{{sponsorsPlatinum}}"
           header="[[localize('sponsors.sponsoringType', 'type', 'Platino')]]"
           logos-size="xl"></polymerday-sponsors-list>

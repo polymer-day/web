@@ -99,7 +99,7 @@
       letter-spacing: 1px;
       line-height: 32px;
       @apply(--font-primary-light);
-    }
+    };
 
     --text-subtitle: {
       color: var(--color-grey-primary);
@@ -107,7 +107,7 @@
       letter-spacing: 1px;
       line-height: 32px;
       @apply(--font-primary-light);
-    }
+    };
 
     --text-normal: {
       color: var(--color-grey-primary);
@@ -115,20 +115,25 @@
       letter-spacing: 1px;
       line-height: 32px;
       @apply(--font-secondary);
-    }
+    };
 
     --text-normal-white: {
       font-size: var(--text-size-default);
       color: var(--color-white-primary);
       @apply(--font-primary-light);
-    }
+    };
 
     --text-big-white: {
       font-size: var(--text-size-large);
       color: var(--color-white-primary);
       letter-spacing: 2px;
       line-height: 56px;
-    }
+    };
+
+    --text-big-white-thin: {
+      @apply(--text-big-white);
+      font-weight: 100;
+    };
 
     --text-small: {
       color: var(--color-grey-primary);
@@ -136,7 +141,7 @@
       line-height: 16px;
       text-transform: uppercase;
       @apply(--font-primary-thin);
-    }
+    };
 
     --text-small-white: {
       color: var(--color-white-primary);
@@ -144,14 +149,16 @@
       line-height: 16px;
       text-transform: uppercase;
       @apply(--font-primary-thin);
-    }
+    };
 
     /**
      * Common styles used in polymerday-talk and polymerday-schedule
      */
     --button-shadow: {
       box-shadow: 0 4px 4px rgba(60,71,78,0.24);
-    }
+    };
+
+    --polymerday-max-width: 992px;
 
   }
 </style>

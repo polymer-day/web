@@ -16,7 +16,7 @@
 
   <template>
 
-  <style>
+  <style include="polymerday-classes">
     :host {
       display: block;
     }
@@ -48,10 +48,10 @@
     paper-tab.iron-selected {
       background: var(--color-blue-primary);
     }
- 
+
     paper-tab.iron-selected a {
       color: var(--color-white-primary)
-    }		      
+    }
 
     /* from 720px */
     @media (min-width: 45em) {
@@ -74,8 +74,8 @@
     data="{{routeData}}"
     tail="{{subroute}}"></app-route>
 
-  <polymerday-data id="events" data="{{eventsFriday}}" page="schedule" subpage="friday"></polymerday-data>
-  <polymerday-data id="events" data="{{eventsSaturday}}" page="schedule" subpage="saturday"></polymerday-data>
+  <polymerday-data data="{{eventsFriday}}" page="schedule" subpage="friday"></polymerday-data>
+  <polymerday-data data="{{eventsSaturday}}" page="schedule" subpage="saturday"></polymerday-data>
 
   <polymerday-section-title title="[[localize('schedule.title')]]" message="[[localize('schedule.text')]]"></polymerday-section-title>
 
@@ -88,8 +88,8 @@
     </paper-tab>
   </paper-tabs>
 
-  <div class="wrapper" role="tabpanel">
-    <iron-pages selected="{{day}}" attr-for-selected="day">
+  <div class="content full-width" role="tabpanel">
+    <iron-pages class="full-width" selected="{{day}}" attr-for-selected="day">
       <polymerday-schedule-list day="friday" events="[[eventsFriday]]" route="{{subroute}}"></polymerday-schedule-list>
       <polymerday-schedule-list day="saturday" events="[[eventsSaturday]]" route="{{subroute}}"></polymerday-schedule-list>
     </iron-pages>

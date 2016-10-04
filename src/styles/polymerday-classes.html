@@ -27,6 +27,7 @@
         @apply(--text-normal);
       }
 
+<<<<<<< 9c2250c3e9b32b69c7d014412e4bd40645be97e3
       /* cards */
       .pd-card {
         background: #fff;
@@ -78,6 +79,24 @@
         border: 0;
       }
 
+      /* layout */
+      .content {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        position: relative;
+        padding: 0 1.5em;
+        margin: 1.5em 0 0;
+      }
+      .center {
+        text-align: center;
+      }
+      .full-width {
+        padding: 0;
+        width: 100%;
+      }
+      .content.full-width {
+        max-width: none;
+      }
 
       /* from 720px */
       @media (min-width: 45em) {
@@ -102,6 +121,11 @@
         .double-layout__item {
           width: 44.85%;
           max-width: 445px;
+        }
+
+        .content {
+          margin: 24px auto 0;
+          max-width: var(--polymerday-max-width);
         }
       }
     </style>

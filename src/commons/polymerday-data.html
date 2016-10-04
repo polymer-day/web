@@ -4,6 +4,11 @@
 
 <dom-module id="polymerday-data">
   <template>
+    <style>
+      :host{
+        display: none;
+      }
+    </style>
     <firebase-query
       path="{{_path}}"
       data="{{firebaseData}}"

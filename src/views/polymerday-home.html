@@ -9,28 +9,27 @@
 
   <template>
 
-    <style>
+    <style include="polymerday-classes">
       :host {
         display: block;
       }
 
-      .content {
+      /*.content {
         @apply(--layout-vertical);
         @apply(--layout-center-center);
-        position: relative;;
+        position: relative;
         text-align: center;
-      }
+      }*/
 
       .date {
         @apply(--text-subtitle);
-        margin: 48px auto 24px;
+        margin: 24px auto 24px;
         text-align: center;
       }
 
       .description {
         margin: 24px 0;
         max-width: 900px;
-        padding: 0 24px;
         @apply(--text-normal);
       }
 
@@ -75,10 +74,12 @@
       }
 
       timer-days::shadow .number {
-        font-family: Roboto;
-        font-weight: 100;
+        /*font-family: Roboto;
+        font-weight: 100;*/
+        /*@apply(--font-primary-thin);
         letter-spacing: 2px;
-        line-height: 56px;
+        line-height: 56px;*/
+        @apply(--text-big-white-thin);
       }
 
       timer-days::shadow .text {
@@ -88,7 +89,7 @@
     </style>
 
     <timer-days lang="[[language]]" target-date="[[_dateforTimer(date)]]"></timer-days>
-    <div class="content">
+    <div class="content center">
       <span class="date">[[localize('home.date', 'eventDate', date)]]</span>
       <h1 class="logo"><img src="../images/logo_polymerday.png" alt="PolymerDay" /></h1>
       <span class="location">Madrid</span>
