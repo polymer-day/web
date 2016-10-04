@@ -3,7 +3,7 @@
 <dom-module id="polymerday-classes">
   <template>
     <style>
-      /* headnig styles */
+      /* heading styles */
       .page-title { @apply(--page-title); }
       .page-subtitle { @apply(--page-subtitle); }
       .item-title { @apply(--item-title); }
@@ -60,12 +60,6 @@
         font-size: 14px;
       }
 
-      /* layout */
-      .double-layout__item {
-        display: block;
-        margin-bottom: 38px;
-      }
-
       /* utility classes */
       .sr-only {
         position: absolute;
@@ -78,6 +72,29 @@
         border: 0;
       }
 
+      /* layout */
+      .double-layout__item {
+        display: block;
+        margin-bottom: 38px;
+      }
+
+      .content {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        position: relative;
+        padding: 0 24px;
+        margin: 24px 0 0;
+      }
+      .center {
+        text-align: center;
+      }
+      .full-width {
+        padding: 0;
+        width: 100%;
+      }
+      .content.full-width {
+        max-width: none;
+      }
 
       /* from 720px */
       @media (min-width: 45em) {
@@ -102,6 +119,11 @@
         .double-layout__item {
           width: 44.85%;
           max-width: 445px;
+        }
+
+        .content {
+          margin: 24px auto 0;
+          max-width: var(--polymerday-max-width);
         }
       }
     </style>

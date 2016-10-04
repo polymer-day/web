@@ -186,14 +186,6 @@
         outline: 0;
       }
 
-      .view {
-        box-sizing: border-box;
-        display: block;
-        min-height: calc(100vh - 180px);
-        overflow: visible;
-        padding: 0;
-      }
-
       #cookiesPolicy {
         width: 100%;
         margin: 0;
@@ -237,10 +229,6 @@
 
         .tickets-mobile {
           display: none;
-        }
-
-        .view {
-          min-height: calc(70vh - 150px);
         }
       }
     </style>
@@ -317,12 +305,12 @@
         </app-header>
 
         <iron-pages id="views" role="main" selected="[[page]]" attr-for-selected="name">
-          <polymerday-home name="home" user="[[user]]" class="view"></polymerday-home>
-          <polymerday-speakers name="speakers" class="view"></polymerday-speakers>
-          <polymerday-schedule name="schedule" route="{{subroute}}" class="view"></polymerday-schedule>
-          <polymerday-venue name="venue" class="view"></polymerday-venue>
-          <polymerday-sponsors name="sponsors" class="view view-sponsors"></polymerday-sponsors>
-          <polymerday-cookies name="cookies" class="view view-cookies"></polymerday-cookies>
+          <polymerday-home name="home" user="[[user]]"></polymerday-home>
+          <polymerday-speakers name="speakers"></polymerday-speakers>
+          <polymerday-schedule name="schedule" route="{{subroute}}"></polymerday-schedule>
+          <polymerday-venue name="venue"></polymerday-venue>
+          <polymerday-sponsors name="sponsors"></polymerday-sponsors>
+          <polymerday-cookies name="cookies"></polymerday-cookies>
         </iron-pages>
 
 

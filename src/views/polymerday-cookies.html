@@ -6,32 +6,32 @@
 
   <template>
     <style include="polymerday-classes">
-      .content {
-        @apply(--layout-vertical);
-        @apply(--layout-center-center);
-        position: relative;
-        padding:40px 145px;
-      }
-
       h2, p, ul {
         display: block;
         width: 100%;
       }
+      ul {
+        list-style-type: none;
+      }
       strong {
-        font-size: bold;
+        font-weight: bold;
+        /*color: var(--color-grey-primary);*/
+      }
+      p {
+        @apply(--text-normal);
       }
       a {
-        color: inherit;
+        @apply(--text-normal);
+        color: var(--color-blue-dark);
       }
     </style>
-
+    <polymerday-section-title title="Política de Cookies" message="En cumplimiento con lo dispuesto en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico."></polymerday-section-title>
     <div class="content">
-      <polymerday-section-title title="Política de Cookies" message="En cumplimiento con lo dispuesto en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico."></polymerday-section-title>
       <h2 class="item-title">¿Qué son las cookies?</h2>
       <p>Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.</p>
       <h2 class="item-title">¿Qué tipos de cookies utiliza esta página web?</h2>
       <p><strong>Cookies de análisis</strong>: Son aquéllas que bien tratadas por nosotros o por terceros, nos permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio ofertado. Para ello se analiza su navegación en nuestra página web con el fin de mejorar la oferta de productos o servicios que le ofrecemos.</p>
-      <h2 class="item-title">Desactivar las cookies.</h2>
+      <h2 class="item-title">Desactivar las cookies</h2>
       <p>Puede usted <strong>permitir, bloquear o eliminar las cookies</strong> instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su ordenador. En la mayoría de los navegadores web se ofrece la posibilidad de permitir, bloquear o eliminar las cookies instaladas en su equipo. A continuación puede acceder a la configuración de los navegadores webs más frecuentes para aceptar, instalar o desactivar las cookies:</p>
       <ul>
         <li><a href="https://support.google.com/chrome/answer/95647?hl=es" target="_blank">Configurar cookies en Google Chrome</a></li>
@@ -39,9 +39,9 @@
         <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias?redirectlocale=es&amp;redirectslug=habilitar-y-deshabilitar-cookies-que-los-sitios-we" target="_blank">Configurar cookies en Mozilla Firefox</a></li>
         <li><a href="https://support.apple.com/es-es/HT201265" target="_blank">Configurar cookies en Safari (Apple)</a></li>
       </ul>
-      <h2 class="item-title">Cookies de terceros.</h2>
+      <h2 class="item-title">Cookies de terceros</h2>
       <p>Esta página web utiliza servicios de terceros para recopilar información con fines estadísticos y de uso de la web. Se usan cookies de DoubleClick para mejorar la publicidad que se incluye en el sitio web. Son utilizadas para orientar la publicidad según el contenido que es relevante para un usuario, mejorando así la calidad de experiencia en el uso del mismo. En concreto, usamos los servicios de Google Analytics para nuestras estadísticas.</p>
-      <h2 class="item-title">Advertencia sobre eliminar cookies.</h2>
+      <h2 class="item-title">Advertencia sobre eliminar cookies</h2>
       <p>Usted puede eliminar y bloquear todas las cookies de este sitio, pero parte del sitio no funcionará o la calidad de la página web puede verse afectada. Si tiene cualquier duda acerca de nuestra política de cookies, puede contactar con esta página web a través de nuestros canales de Contacto.</p>
     </div>
   </template>

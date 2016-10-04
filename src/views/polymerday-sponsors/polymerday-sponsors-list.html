@@ -6,7 +6,9 @@
   <template>
 
     <style include="polymerday-classes">
-
+      :host {
+        display: block;
+      }
       .sponsors--container {
         display: flex;
         flex-flow: row wrap;
@@ -78,7 +80,7 @@
 
     <div class$="sponsors--container sponsors--container--{{logos-size}}">
       <template is="dom-repeat" items="{{sponsors}}" as="sponsor">
-        <polymerday-sponsor-item class$="logos-size--{{logos-size}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
+        <polymerday-sponsor-item class$="center logos-size--{{logos-size}}" sponsor="[[sponsor]]"></polymerday-sponsor-item>
       </template>
     </div>
   </template>

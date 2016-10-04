@@ -15,13 +15,6 @@
   <style include="polymerday-classes">
     :host {
       display: block;
-      padding: 10px;
-      @apply(--layout-vertical)
-    }
-
-    .card-content {
-      @apply(--layout-vertical);
-      padding:40px 24px;
     }
 
     .card-content__address--container p{
@@ -55,9 +48,9 @@
       line-height: 32px;
     }
 
-    google-map {
-      width: 100%;
+    .map {
       height: 400px;
+      margin-bottom: 40px;
     }
 
     .gallery {
@@ -85,6 +78,9 @@
       height: auto;
     }
 
+    .text-list {
+      width: 100%;
+    }
     .text-list li {
       margin: 16px 0;
     }
@@ -117,19 +113,12 @@
       position: relative;
     }
 
-    @media (min-width: 45em) {
-      .card-content {
-        max-width: 992px;
-        margin: auto;
-      }
-    }
-
   </style>
     <polymerday-section-title title="[[localize('venue.title')]]" message="[[localize('venue.text')]]"></polymerday-section-title>
-    <google-map api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15" disable-zoom>
+    <google-map class="map full-width" api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15" disable-zoom>
       <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
     </google-map>
-    <div class="card-content">
+    <div class="content">
       <h2 class="card-title item-title">La Estación Gran Teatro Príncipe Pío</h2>
       <p class="card-content__link item-subtitle">
         <a href="https://www.google.es/maps/place/La+Estaci%C3%B3n+Gran+Teatro+Pr%C3%ADncipe+P%C3%ADo/@40.4208415,-3.7188506,15z/data=!4m2!3m1!1s0x0:0x89ba0fea276d4684?sa=X&ved=0ahUKEwj3-sWwuevOAhVIOhoKHRz-CEwQ_BIIhQEwCg" tabindex="-1">
