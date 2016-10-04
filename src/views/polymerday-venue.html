@@ -2,9 +2,11 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <link rel="import" href="../commons/polymerday-localize-behavior.html">
 <link rel="import" href="../commons/polymerday-section-title.html">
+<link rel="import" href="../commons/polymerday-rating.html">
 
 <dom-module id="polymerday-venue">
 
@@ -91,6 +93,30 @@
       color: var(--color-blue-primary);
     }
 
+    .hotel-list { margin-top: 20px; }
+
+    .pd-card__title {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .pd-card__title > a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 73%;
+    }
+
+    .pd-card {
+      position: relative;
+    }
+
     @media (min-width: 45em) {
       .card-content {
         max-width: 992px;
@@ -128,13 +154,59 @@
 
       <h2 class="card-title item-title">Accommodation</h2>
       <p class="text--default">We have reached an agreement with some hotels to apply a discount for those attending the evet. Using the coupon code <strong>POLYMER</strong> you'll obtain a discount on breakfast from 25% to 100% depending on the length of stay. According to the hotel will also include parking.</p>
-      <ul class="text-list">
-        <li><a href="http://www.jardinesdesabatini.com/">Jardines de Sabatini</a> <span title="4 stars">****</span></li>
-        <li><a href="http://www.senatorgranvia70spahotel.com/">Senator Gran Vía 70</a> <span title="4 stars">****</span></li>
-        <li><a href="http://www.jchoteles-puertadelsol.com/">JC Puerta del Sol</a> <span title="3 stars">***</span></li>
-        <li><a href="http://www.jchoteles-santodomingo.com/">JC Santo Domingo</a> <span title="3 stars">***</span></li>
-        <li><a href="http://www.jchoteles-santaana.com/">JC Santa Ana</a> <span title="3 stars">***</span></li>
-      </ul>
+
+      <div class="double-layout hotel-list">
+        <paper-card class="double-layout__item pd-card" image="../src/images/hotels/jardines-de-sabatini.jpg">
+          <div class="pd-card__content">
+            <h3 class="pd-card__title">
+              <a href="http://www.jardinesdesabatini.com/">Jardines de Sabatini</a>
+              <polymerday-rating rating="3"><span class="sr-only">3 [[localize('venue.stars')]]</span></polymerday-rating>
+            </h3>
+            <p>Cuesta de San Vicente 16, 28008 Madrid</p>
+          </div>
+        </paper-card>
+
+        <paper-card class="double-layout__item pd-card" image="../src/images/hotels/senator-gran-via.jpg">
+          <div class="pd-card__content">
+            <h3 class="pd-card__title">
+              <a href="">Senator Gran Vía</a>
+              <polymerday-rating rating="4"><span class="sr-only">4 [[localize('venue.stars')]]</span></polymerday-rating>
+            </h3>
+            <p>Gran Vía 70, 28013 Madrid</p>
+          </div>
+        </paper-card>
+
+        <paper-card class="double-layout__item pd-card" image="../src/images/hotels/jc-puerta-del-sol.jpg">
+          <div class="pd-card__content">
+            <h3 class="pd-card__title">
+              <a href="http://www.jchoteles-puertadelsol.com/">JC Puerta del Sol</a>
+              <polymerday-rating rating="3"><span class="sr-only">3 [[localize('venue.stars')]]</span></polymerday-rating>
+            </h3>
+            <p>Flora 4 - 1º, 28013 Madrid</p>
+          </div>
+        </paper-card>
+
+        <paper-card class="double-layout__item pd-card" image="../src/images/hotels/jc-santo-domingo.jpg">
+          <div class="pd-card__content">
+            <h3 class="pd-card__title">
+              <a href="http://www.jchoteles-santodomingo.com/">JC Santo Domingo</a>
+              <polymerday-rating rating="3"><span class="sr-only">3 [[localize('venue.stars')]]</span></polymerday-rating>
+            </h3>
+            <p>Cuesta de Santo Domingo 16, 28013 Madrid</p>
+          </div>
+        </paper-card>
+
+        <paper-card class="double-layout__item pd-card" image="../src/images/hotels/jc-santa-ana.jpg">
+          <div class="pd-card__content">
+            <h3 class="pd-card__title">
+              <a href="http://www.jchoteles-santodomingo.com/">JC Santa Ana</a>
+              <polymerday-rating rating="3"><span class="sr-only">3 [[localize('venue.stars')]]</span></polymerday-rating>
+            </h3>
+            <p>Cruz 8, 28012 Madrid</p>
+          </div>
+        </paper-card>
+      </div>
+
     </div>
   </template>
 
