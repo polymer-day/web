@@ -102,7 +102,7 @@
 
     <div class="header">
       <header class="header__title">
-        <h2 class="title item-title">[[event.name]]</h2>
+        <h2 class="title item-title">[[_getLanguageIcon(event.language)]][[event.name]]</h2>
         <p class="subtitle item-subtitle">[[event.speaker]]</p>
       </header>
 
@@ -179,6 +179,16 @@
       var dateStart = new Date(start+diff) ;
       var dateEnd = new Date(end+diff);
       return this._getTimeMinutes(dateStart) + ' - ' + this._getTimeMinutes(dateEnd);
+    },
+
+    _getLanguageIcon: function(language) {
+      if (language === 'en') {
+        return '🇺🇸 ';
+      } else if (language === 'es') {
+        return '🇪🇸 ';
+      } else {
+        return undefined;
+      }
     }
   });
   </script>
