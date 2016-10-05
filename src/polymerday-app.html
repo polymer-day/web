@@ -383,6 +383,7 @@
 
       observers: [
         'goTo(routeData.page)',
+        '_slashEnding(route.path)',
         '_menuChanged(menu.splices)'
       ],
 
@@ -419,6 +420,12 @@
                 }
               }
           }
+        }
+      },
+
+      _slashEnding: function(path) {
+        if (path && path.slice(-1) !== '/') {
+          this.set('route.path', path + '/');
         }
       },
 
