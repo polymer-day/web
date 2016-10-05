@@ -66,14 +66,15 @@
         --timer-days-hover-border-color: none;
       }
 
-      timer-days::shadow .number {
-        @apply(--text-big-white-thin);
-      }
+      timer-days {
+        --timer-days-number: {
+          @apply(--text-big-white-thin);
+        };
 
-      timer-days::shadow .text {
-        @apply(--text-small-white);
+        --timer-days-text: {
+          @apply(--text-small-white);
+        };
       }
-
     </style>
 
     <timer-days lang="[[language]]" target-date="[[_dateforTimer(date)]]"></timer-days>
