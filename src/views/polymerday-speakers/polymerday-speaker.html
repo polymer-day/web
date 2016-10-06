@@ -200,11 +200,13 @@
 
     attached: function() {
       this._placeholder = this.speaker.placeholder || this._placeholder;
-      this._scrollToAnchor();
-      document.body.onhashchange = this._scrollToAnchor;
-      setTimeout(function() {
-        this._notReloaded = true;
-      }, 1000);
+      if(this.shadowRoot) {
+        this._scrollToAnchor();
+        document.body.onhashchange = this._scrollToAnchor;
+        setTimeout(function() {
+          this._notReloaded = true;
+        }, 1000);
+      }
     },
 
     _scrollToAnchor: function() {
