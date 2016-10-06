@@ -20,6 +20,18 @@
       .pd-card__content {
         text-transform: uppercase;
       }
+
+      @media (max-width: 45em) {
+        .banner--big {
+          display: none;
+        }
+      }
+
+      @media (min-width: 45em) {
+        .banner--small {
+          display: none;
+        }
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -36,7 +48,8 @@
 
     <div class="banner">
       <a href="[[sponsor.banner.link]]" target="_blank">
-        <img class="banner-image" src="[[sponsor.banner.image.big]]" alt="[[sponsor.banner.link]]">
+        <img class="banner-image banner--big" src="[[sponsor.banner.image.big]]" alt="[[sponsor.banner.link]]">
+        <img class="banner-image banner--small" src="[[sponsor.banner.image.small]]" alt="[[sponsor.banner.link]]">
       </a>
     </div>
 
@@ -70,7 +83,7 @@
             "banner": {
               "image": {
                 "big": "http://www.logoping.co.uk/blog/wp-content/uploads/2015/08/google-polymer-tutorials.jpg",
-                "small": ""
+                "small": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png"
               },
               "link": "http://www.kairosds.com/"
             },
@@ -112,7 +125,7 @@
 
       _sponsorsChanged: function(value){
         if (!value) {
-          
+
         }
       }
 
