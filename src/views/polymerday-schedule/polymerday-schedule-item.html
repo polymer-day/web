@@ -148,8 +148,6 @@
       var localizeKey = this.opened ? 'schedule.hideSummary' : 'schedule.showSummary';
       if (this.localize) {
         return this.localize(localizeKey, 'speaker', this.event.speaker);
-      } else {
-        this.debounce('_computeToggleLabel', this._computeToggleLabel.bind(this));
       }
     },
 
