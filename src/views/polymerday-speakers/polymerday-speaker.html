@@ -14,11 +14,11 @@
       /*line-height: normal;
         margin: 0 0 80px 0;*/
     }
-    
+
     a {
       text-decoration: none;
     }
-    
+
     .container {
       display: flex;
       flex-direction: column-reverse;
@@ -26,53 +26,53 @@
       text-align: center;
       padding: 0 24px;
     }
-    
+
     .image {
       width: 300px;
       margin: 0 auto;
       text-align: center;
     }
-    
+
     iron-image {
       border-radius: 50%;
       height: 192px;
       min-width: 192px;
       margin-bottom: 32px;
     }
-    
+
     .info {
       flex-grow: 1;
     }
-    
+
     .info h2 {
       margin: 0 0 9px;
     }
-    
+
     .info p {
       @apply(--text-normal);
     }
-    
+
     .description {
       margin: 24px 0;
     }
-    
+
     .info__speaker-links {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
       justify-content: center;
     }
-    
+
     .talk-link {
       order: 1;
       flex: 1 1 100%;
       margin: 24px 24px 24px 0;
     }
-    
+
     .info__speaker-links>* {
       margin-right: 24px;
     }
-    
+
     .text-icon-link {
       @apply(--font-primary-light);
       font-size: var(--text-size-default);
@@ -81,26 +81,26 @@
       display: flex;
       align-items: center;
     }
-    
+
     .text-icon-link iron-icon {
       margin-left: 8px;
       width: 32px;
       height: 32px;
     }
-    
+
     .text-icon-link:hover span {
       text-decoration: underline;
     }
-    
+
     [icon="twitter"] {
       border-radius: 50%;
       overflow: hidden;
     }
-    
+
     [icon="linkedin"] {
       color: #0065A1;
     }
-    
+
     @media (min-width:720px) {
       .container {
         flex-direction: row;
@@ -200,11 +200,13 @@
 
     attached: function() {
       this._placeholder = this.speaker.placeholder || this._placeholder;
-      this._scrollToAnchor();
-      document.body.onhashchange = this._scrollToAnchor;
-      setTimeout(function() {
-        this._notReloaded = true;
-      }, 1000);
+      if(this.shadowRoot) {
+        this._scrollToAnchor();
+        document.body.onhashchange = this._scrollToAnchor;
+        setTimeout(function() {
+          this._notReloaded = true;
+        }, 1000);
+      }
     },
 
     _scrollToAnchor: function() {
