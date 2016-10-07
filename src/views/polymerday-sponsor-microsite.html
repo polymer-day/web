@@ -120,12 +120,12 @@
       },
 
       observers: [
-        '_sponsorsChanged(routeData.sponsor)'
+        '_sponsorChanged(routeData.sponsor)'
       ],
 
-      _sponsorsChanged: function(value){
+      _sponsorChanged: function(value){
         if (!value) {
-
+          this.set('route.path', 'sponsors');
         }
       }
 
