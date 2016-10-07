@@ -137,7 +137,7 @@
         <div class="info__speaker-links">
           <template is="dom-if" if="[[speaker.talk]]">
             <a class="talk-link" href="[[speaker.talk]]" tabindex="-1">
-              <paper-button class="btn--primary" inner-h-t-m-l="[[localize('speakers.showTalk', 'speaker', speaker.name)]]"></paper-button>
+              <paper-button class="btn--primary" aria-label$="[[localize('speakers.showTalkLbl', 'speaker', speaker.name)]]">[[localize('speakers.showTalk')]]</paper-button>
             </a>
           </template>
           <template is="dom-if" if="[[speaker.web]]">
