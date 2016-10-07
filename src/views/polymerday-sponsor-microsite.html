@@ -32,6 +32,19 @@
           display: none;
         }
       }
+
+      .pd-card__link > a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .pd-card {
+        position: relative;
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -48,7 +61,7 @@
 
     <div class="banner">
       <a href="[[sponsor.banner.link]]" target="_blank">
-        <img class="banner-image banner--big" src="[[sponsor.banner.image.big]]" alt="[[sponsor.banner.link]]">
+        <img class="banner-image banner--big" src="../images/venue-1600.jpg" alt="[[sponsor.banner.link]]">
         <img class="banner-image banner--small" src="[[sponsor.banner.image.small]]" alt="[[sponsor.banner.link]]">
       </a>
     </div>
@@ -58,6 +71,9 @@
         <template is="dom-repeat" items="[[sponsor.services]]">
           <paper-card class="double-layout__item pd-card" image="[[item.image]]">
             <div class="pd-card__content">
+              <div class="pd-card__link">
+                <a href$="[[item.link]]"></a>
+              </div>
               <p>[[item.text]]</p>
             </div>
           </paper-card>
