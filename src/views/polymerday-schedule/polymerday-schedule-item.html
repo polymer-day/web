@@ -117,7 +117,7 @@
       <div class="summary">
         <p class="summary__content text--default">[[event.description]]</p>
         <template is="dom-if" if="[[_hasSpeaker(event)]]">
-          <a href="/speakers/#{{event.speakerId}}"><paper-button class="btn--primary" inner-h-t-m-l="[[localize('speakers.showSpeaker', 'speaker', event.speaker)]]"></paper-button></a>
+          <a href="/speakers/#{{event.speakerId}}"><paper-button aria-label$="[[localize('speakers.showSpeakerLbl', 'speaker', event.speaker)]]" class="btn--primary">[[localize('speakers.showSpeaker')]]</paper-button></a>
         </template>
       </div>
     </iron-collapse>
