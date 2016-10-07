@@ -129,8 +129,7 @@
     </style>
 
     <div class$="container [[_imagePositionClass(imageLeft)]]">
-      <div class="info">
-        <a name="[[_computeAnchorName(speaker.id)]]"></a>
+      <div class="info" id="[[_computeAnchorName(speaker.id)]]">
         <h2 class="item-title">[[speaker.name]]</h2>
         <span class="item-subtitle">[[speaker.job]]</span>
         <p class="description">[[speaker.description]]</p>
@@ -214,7 +213,7 @@
       var L = document.querySelector('polymerday-app').shadowRoot.querySelector('app-drawer-layout');
       var M = L.querySelector('polymerday-speakers').shadowRoot.querySelectorAll('polymerday-speaker');
       for (var i = 0; i < M.length; i++) {
-        var anchor = M[i].shadowRoot.querySelector('a[name="' + hash + '"]');
+        var anchor = M[i].shadowRoot.querySelector('div[id="' + hash + '"]');
         if (anchor) {
           console.log(M[i].id + '===' + hash);
           anchor.scrollIntoView(true);
