@@ -14,7 +14,8 @@
     <firebase-query
       path="{{_path}}"
       data="{{data}}"
-      order-by-child="[[orderBy]]">
+      order-by-child="[[orderBy]]"
+      equal-to="[[equalTo]]">
     </firebase-query>
 
     <!-- https://github.com/polymer-day/web/issues/99
@@ -57,7 +58,8 @@
           notify: true
         },
 
-        orderBy: String
+        orderBy: String,
+        equalTo: Object
       },
 
       _computedPath: function(page, subpage){
