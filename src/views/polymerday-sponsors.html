@@ -42,9 +42,11 @@
   </style>
     <polymerday-section-title title="[[localize('sponsors.title')]]" message="[[localize('sponsors.text')]]"></polymerday-section-title>
     <div class="content">
+
       <polymerday-data
         page="sponsors"
-        subpage="platinum"
+        order-by="type"
+        equal-to="platinum"
         data="{{sponsorsPlatinum}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsPlatinum.length]]">
         <polymerday-sponsors-list class="full-width"
@@ -55,7 +57,8 @@
 
       <polymerday-data
         page="sponsors"
-        subpage="gold"
+        order-by="type"
+        equal-to="gold"
         data="{{sponsorsGold}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsGold.length]]">
         <polymerday-sponsors-list class="full-width"
@@ -64,10 +67,10 @@
           logos-size="l"></polymerday-sponsors-list>
       </template>
 
-
       <polymerday-data
         page="sponsors"
-        subpage="iron"
+        order-by="type"
+        equal-to="iron"
         data="{{sponsorsIron}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsIron.length]]">
         <polymerday-sponsors-list class="full-width"
@@ -78,7 +81,8 @@
 
       <polymerday-data
         page="sponsors"
-        subpage="paper"
+        order-by="type"
+        equal-to="paper"
         data="{{sponsorsPaper}}"></polymerday-data>
       <template is="dom-if" if="[[sponsorsPaper.length]]">
         <polymerday-sponsors-list class="full-width"
@@ -86,6 +90,7 @@
           header="[[localize('sponsors.sponsoringType', 'type', 'Paper')]]"
           logos-size="s"></polymerday-sponsors-list>
       </template>
+
     </div>
     <div class="content full-width center jumbotron">
       <h2 class="title item-title">[[localize('sponsors.callForAction.title')]]</h2>
