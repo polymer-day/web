@@ -58,6 +58,9 @@
     };
 
     var lang = navigator.language || navigator.userLanguage || document.documentElement.lang;
+    if (['en','es'].indexOf(lang) === -1) {
+      lang = 'en';
+    }
     document.documentElement.lang = lang;
 
     var onload = function() {
