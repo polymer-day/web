@@ -64,16 +64,14 @@
 
       .title {
         margin: 0 0 9px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: baseline;
+        align-items: baseline;
       }
 
-      .title img {
-        vertical-align: baseline;
-        margin: 0 8px 1px 0;
-      }
-
-      .title img:not([hidden]) {
-        display: -ms-inline-flexbox;
-        display: inline-flex;
+      .title__image {
+        margin-right: 10px;
       }
 
       .subtitle {
@@ -112,7 +110,12 @@
 
     <div class="header">
       <header class="header__title">
-        <h2 class="title item-title" lang$="[[event.language]]"><img hidden$="[[!event.language]]" src="../../images/flag-en.png" width="24" alt$="[[event.language]]"> [[event.name]]</h2>
+        <h2 class="title item-title">
+          <template is="dom-if" if="[[_getForeignLanguage(event.language)]]">
+            <img class="title__image" src$="[[_getLanguageFlag(event.language)]]" width="24" alt$="[[_getForeignLanguage(event.language)]]">
+          </template>
+          <span>[[event.name]]</span>
+        </h2>
         <p class="subtitle item-subtitle">[[event.speaker]]</p>
       </header>
 
@@ -187,6 +190,16 @@
       var dateStart = new Date(start+diff) ;
       var dateEnd = new Date(end+diff);
       return this._getTimeMinutes(dateStart) + ' - ' + this._getTimeMinutes(dateEnd);
+    },
+
+    _getForeignLanguage: function(language) {
+      return language === 'en' ? language : undefined;
+    },
+
+    _getLanguageFlag: function(language) {
+      if (language === 'en') {
+        return this.resolveUrl('../../images/flag-en.png');
+      }
     }
 
   });
