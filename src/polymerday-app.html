@@ -207,6 +207,14 @@
 
       @media (min-width: 45em) {
         :host {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+
+        app-drawer-layout {
           -ms-flex: 1;
           flex: 1;
         }
@@ -214,6 +222,7 @@
         app-header paper-icon-button{
           display:none;
         }
+
         [main-title] {
           font-size: 36px;
         }
