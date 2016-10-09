@@ -54,14 +54,14 @@
       data="{{routeData}}"
       tail="{{subroute}}"></app-route>
 
-    <!-- <polymerday-data
-      page="sponsors-microsite"
+    <polymerday-data
+      page="sponsors"
       subpage="{{routeData.sponsor}}"
-      data="{{sponsor}}"></polymerday-data> -->
+      data="{{sponsor}}"></polymerday-data>
 
     <div class="banner">
       <a href="[[sponsor.banner.link]]" target="_blank">
-        <img class="banner-image banner--big" src="../images/venue-1600.jpg" alt="[[sponsor.banner.link]]">
+        <img class="banner-image banner--big" src="[[sponsor.banner.image.big]]" alt="[[sponsor.banner.link]]">
         <img class="banner-image banner--small" src="[[sponsor.banner.image.small]]" alt="[[sponsor.banner.link]]">
       </a>
     </div>
@@ -72,7 +72,7 @@
           <paper-card class="double-layout__item pd-card" image="[[item.image]]">
             <div class="pd-card__content">
               <div class="pd-card__link">
-                <a href$="[[item.link]]"></a>
+                <a href$="[[item.link]]" target="_blank"></a>
               </div>
               <p>[[item.text]]</p>
             </div>
@@ -93,39 +93,7 @@
 
         sponsorName: String,
 
-        sponsor: {
-          type: Object,
-          value: {
-            "banner": {
-              "image": {
-                "big": "http://www.logoping.co.uk/blog/wp-content/uploads/2015/08/google-polymer-tutorials.jpg",
-                "small": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png"
-              },
-              "link": "http://www.kairosds.com/"
-            },
-            "services": [{
-               "image": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png",
-               "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ratione laboriosam, minus, delectus facilis quis sequi, perferendis id saepe doloremque illo praesentium, laborum et! Corporis repellat, doloremque aspernatur molestiae aliquid!",
-               "link": "http://www.kairosds.com/"
-            }, {
-               "image": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png",
-               "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique consequuntur at delectus voluptates obcaecati sed est eum saepe nostrum labore itaque totam sequi, adipisci autem distinctio necessitatibus aperiam expedita dicta.",
-               "link": "http://www.kairosds.com/"
-            }, {
-               "image": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png",
-               "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure ut natus totam molestias quos, voluptate doloribus commodi vel cum blanditiis, distinctio maiores architecto ratione laborum minus. Laudantium tempore itaque, numquam.",
-               "link": "http://www.kairosds.com/"
-            }, {
-               "image": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png",
-               "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, non, sapiente. Impedit deserunt quibusdam sint, illum cum nisi tenetur praesentium animi voluptatem officia temporibus labore unde iure voluptate facilis, minima.",
-               "link": "http://www.kairosds.com/"
-            }, {
-               "image": "http://cdn.dev.classmethod.jp/wp-content/uploads/2014/06/polymer.png",
-               "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores aliquam inventore doloribus, incidunt praesentium consequuntur velit deserunt. Fugit itaque, consectetur. Inventore accusantium maiores, architecto excepturi sapiente ullam qui iure? Velit.",
-               "link": "http://www.kairosds.com/"
-            }]
-          },
-        },
+        sponsor: Object,
 
         route: Object,
 
