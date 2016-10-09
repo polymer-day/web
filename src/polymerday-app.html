@@ -62,13 +62,11 @@
       }
 
       [main-title] {
-        color: transparent;
-        background-image: url(./images/logo_polymerday_white.png);
-        background-position: left;
-        background-repeat: no-repeat;
-        background-size: contain;
-        font-size: 24px;
+        margin: 0;
+        line-height: 1;
       }
+
+      [main-title] img { display: block; }
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
@@ -255,7 +253,7 @@
       <!-- Drawer content -->
       <app-drawer id="drawer">
         <app-toolbar>
-          <img src="./images/logo_polymerday_white.png" alt="Polymer Day">
+          <img src="./images/logo-polymerday-white.svg" alt="Polymer Day" width="188" height="32">
         </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="menu-name" class="drawer-list" role="navigation" id="menuMobile">
           <template is="dom-repeat" items="[[menu]]">
@@ -274,10 +272,10 @@
       <!-- Main content -->
       <app-header-layout>
 
-        <app-header fixed condenses reveals effects="waterfall blend-background">
+        <app-header fixed condenses reveals effects="waterfall blend-background" role="banner">
           <app-toolbar class="logo">
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <div main-title >Polymer Day</div>
+            <h1 main-title><img src="./images/logo-polymerday-white.svg" alt="Polymer Day" width="188" height="32"></h1>
           </app-toolbar>
           <app-toolbar class="tall">
             <paper-tabs class="menu-desktop bottom self-end" selected="[[page]]" attr-for-selected="menu-name" role="navigation" noink>
