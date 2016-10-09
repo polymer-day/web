@@ -16,21 +16,25 @@
       position: relative;
     }
 
-    ul.links {
+    .links {
       position: absolute;
       bottom: 0;
       left: 0;
-      margin-bottom: 16px;
+      right: 0;
+      margin: 0 0 16px;
+      padding: 0;
+      text-align: center;
       @apply(--font-primary-light);
     }
 
-    ul.links li {
+    .links li {
       display: inline-block;
       line-height:2em;
       margin: 0 16px 0;
+      vertical-align: middle;
     }
 
-    ul.links li.cookies {
+    .links li.cookies {
       display: block;
     }
 
@@ -57,6 +61,14 @@
 
     }
 
+    .link-icon {
+      display: flex;
+    }
+
+    .link-icon__label {
+      margin-right: 5px;
+    }
+
     @media (min-width:720px) {
       :host {
         background-image: url('../images/bg-footer.png');
@@ -65,7 +77,13 @@
         background-position: bottom right;
         height: 30vh;
       }
-      ul.links li.cookies {
+
+      .links {
+        left: 30px;
+        text-align: left;
+      }
+
+      .links .cookies {
         display: inline-block;
       }
 
@@ -77,13 +95,13 @@
   </style>
   <ul class="links">
     <li>
-      <a href="http://polymerday.eventbrite.es" target="_blank" class="eventbrite">
-        <span class="card-actions__label eventbrite">[[localize('footer.registrationAt')]]</span> <iron-icon src="../images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
+      <a href="http://polymerday.eventbrite.es" target="_blank" class="eventbrite link-icon">
+        <span class="link-icon__label eventbrite">[[localize('footer.registrationAt')]]</span> <iron-icon src="../images/logo-eventbrite.svg" class="icon-eventbrite" aria-label="Eventbrite" title="Eventbrite"></iron-icon>
       </a>
     </li>
     <li>
-      <a href="https://twitter.com/PolymerDay" target="_blank" class="twitter">
-        <span class="card-actions__label">@PolymerDay</span> <iron-icon icon="twitter"></iron-icon>
+      <a href="https://twitter.com/PolymerDay" target="_blank" class="twitter link-icon">
+        <span class="link-icon__label">@PolymerDay</span> <iron-icon icon="twitter"></iron-icon>
       </a>
     </li>
     <!-- <li class="cookies">
