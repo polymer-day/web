@@ -34,14 +34,22 @@
   <template>
 
     <style>
-
       :host {
         position: relative;
-        display: block;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-height: 100vh;
         transition: opacity .5s;
       }
 
       :host([unresolved]) { opacity: 0; }
+
+      app-drawer-layout {
+        -ms-flex: 1;
+        flex: 1;
+      }
 
       app-header {
         color: var(--color-white-primary);
@@ -205,19 +213,6 @@
 
 
       @media (min-width: 45em) {
-        :host {
-          display: -ms-flexbox;
-          display: flex;
-          -ms-flex-direction: column;
-          flex-direction: column;
-          min-height: 100vh;
-        }
-
-        app-drawer-layout {
-          -ms-flex: 1;
-          flex: 1;
-        }
-
         app-header paper-icon-button{
           display:none;
         }
