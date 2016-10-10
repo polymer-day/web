@@ -46,6 +46,7 @@
     --page-title: {
       @apply(--font-primary-thin);
       font-size: 40px;
+      font-size: calc( 30px + (40 - 30) * ( (100vw - 320px) / ( 720 - 320) ));
       letter-spacing: 2px;
       line-height: 1.2; /* 48 */
       color: var(--color-blue-dark);
