@@ -1,0 +1,119 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../commons/polymerday-data.html">
+
+<dom-module id="polymerday-sponsor-microsite">
+  <template>
+
+    <style include="polymerday-classes">
+      :host {
+        display: block;
+      }
+
+      .banner-image {
+        width: 100%;
+        max-height: 16em;
+      }
+
+      .pd-card__content {
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 45em) {
+        .banner--big {
+          display: none;
+        }
+      }
+
+      @media (min-width: 45em) {
+        .banner--small {
+          display: none;
+        }
+      }
+
+      .pd-card__link > a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .pd-card {
+        position: relative;
+      }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+      route="{{route}}"
+      pattern="/sponsor-microsite/:sponsor"
+      data="{{routeData}}"
+      tail="{{subroute}}"></app-route>
+
+    <polymerday-data
+      page="sponsors"
+      subpage="{{routeData.sponsor}}"
+      data="{{sponsor}}"></polymerday-data>
+
+    <div class="banner">
+      <a href="[[sponsor.banner.link]]" target="_blank">
+        <img class="banner-image banner--big" src="[[sponsor.banner.image.big]]" alt="[[sponsor.banner.link]]">
+        <img class="banner-image banner--small" src="[[sponsor.banner.image.small]]" alt="[[sponsor.banner.link]]">
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="double-layout hotel-list">
+        <template is="dom-repeat" items="[[sponsor.services]]">
+          <paper-card class="double-layout__item pd-card" image="[[item.image]]">
+            <div class="pd-card__content">
+              <div class="pd-card__link">
+                <a href$="[[item.link]]" target="_blank"></a>
+              </div>
+              <p>[[item.text]]</p>
+            </div>
+          </paper-card>
+        </template>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'polymerday-sponsor-microsite',
+
+      properties: {
+
+        sponsorName: String,
+
+        sponsor: Object,
+
+        route: Object,
+
+        routeData: Object,
+
+        subroute: Object
+
+      },
+
+      observers: [
+        '_sponsorChanged(routeData.sponsor)'
+      ],
+
+      _sponsorChanged: function(value){
+        if (!value) {
+          this.set('route.path', 'sponsors');
+        }
+      }
+
+    });
+
+  </script>
+</dom-module>
