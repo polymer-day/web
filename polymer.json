@@ -6,6 +6,8 @@
     "src/views/polymerday-schedule.html",
     "src/views/polymerday-speakers.html",
     "src/views/polymerday-sponsors.html",
+    "src/views/polymerday-sponsors-all.html",
+    "src/views/polymerday-sponsors-microsite.html",
     "src/views/polymerday-venue.html",
     "src/views/polymerday-cookies.html"
   ],
