@@ -1,12 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-
-<link rel="import" href="../commons/polymerday-localize-behavior.html">
-<link rel="import" href="../commons/polymerday-data.html">
-<link rel="import" href="../commons/polymerday-section-title.html">
-
-<link rel="import" href="./polymerday-sponsors/polymerday-sponsors-list.html">
-
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 
 <dom-module id="polymerday-sponsors">
 
@@ -40,63 +34,17 @@
     }
 
   </style>
-    <polymerday-section-title title="[[localize('sponsors.title')]]" message="[[localize('sponsors.text')]]"></polymerday-section-title>
-    <div class="content">
 
-      <polymerday-data
-        page="sponsors"
-        order-by="type"
-        equal-to="platinum"
-        data="{{sponsorsPlatinum}}"></polymerday-data>
-      <template is="dom-if" if="[[sponsorsPlatinum.length]]">
-        <polymerday-sponsors-list class="full-width"
-          sponsors="{{sponsorsPlatinum}}"
-          header="[[localize('sponsors.sponsoringType', 'type', 'Platino')]]"
-          logos-size="xl"></polymerday-sponsors-list>
-      </template>
+    <app-route
+        route="{{route}}"
+        pattern="/:sponsor"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
 
-      <polymerday-data
-        page="sponsors"
-        order-by="type"
-        equal-to="gold"
-        data="{{sponsorsGold}}"></polymerday-data>
-      <template is="dom-if" if="[[sponsorsGold.length]]">
-        <polymerday-sponsors-list class="full-width"
-          sponsors="{{sponsorsGold}}"
-          header="[[localize('sponsors.sponsoringType', 'type', 'Gold')]]"
-          logos-size="l"></polymerday-sponsors-list>
-      </template>
-
-      <polymerday-data
-        page="sponsors"
-        order-by="type"
-        equal-to="iron"
-        data="{{sponsorsIron}}"></polymerday-data>
-      <template is="dom-if" if="[[sponsorsIron.length]]">
-        <polymerday-sponsors-list class="full-width"
-          sponsors="{{sponsorsIron}}"
-          header="[[localize('sponsors.sponsoringType', 'type', 'Iron')]]"
-          logos-size="m"></polymerday-sponsors-list>
-      </template>
-
-      <polymerday-data
-        page="sponsors"
-        order-by="type"
-        equal-to="paper"
-        data="{{sponsorsPaper}}"></polymerday-data>
-      <template is="dom-if" if="[[sponsorsPaper.length]]">
-        <polymerday-sponsors-list class="full-width"
-          sponsors="{{sponsorsPaper}}"
-          header="[[localize('sponsors.sponsoringType', 'type', 'Paper')]]"
-          logos-size="s"></polymerday-sponsors-list>
-      </template>
-
-    </div>
-    <div class="content full-width center jumbotron">
-      <h2 class="title item-title">[[localize('sponsors.callForAction.title')]]</h2>
-      <p class="item-subtitle">[[localize('sponsors.callForAction.text')]]</p>
-      <p><a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn" tabindex="-1"><paper-button class="btn--primary">[[localize('sponsors.callForAction.link')]]</paper-button></a></p>
-    </div>
+    <iron-pages selected="[[page]]" attr-for-selected="name">
+      <polymerday-sponsors-all name="all"></polymerday-sponsors-all>
+      <polymerday-sponsor-microsite name="microsite" sponsor="{{routeData.sponsor}}"></polymerday-sponsor-microsite>
+    </iron-pages>
 
   </template>
 
@@ -108,7 +56,31 @@
 
       behaviors: [
         Polymerday.AppLocalizeBehavior
-      ]
+      ],
+
+      properties: {
+        route: {
+          type: Object
+        },
+
+        page: {
+          type: String,
+          computed: '_selectPage(routeData.sponsor)',
+          observer: '_pageChanged'
+        }
+      },
+
+      _selectPage: function(sponsor) {
+        return sponsor ? 'microsite': 'all';
+      },
+
+      _pageChanged: function(page) {
+        if (page) {
+          var url = this.resolveUrl('./polymerday-sponsors-' + page + '.html');
+          // load page import on demand.
+          this.importHref(url, null, null, true);
+        }
+      }
 
     });
 

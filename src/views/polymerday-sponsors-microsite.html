@@ -47,28 +47,23 @@
       }
     </style>
 
-    <app-location route="{{route}}"></app-location>
-    <app-route
-      route="{{route}}"
-      pattern="/sponsor-microsite/:sponsor"
-      data="{{routeData}}"
-      tail="{{subroute}}"></app-route>
-
     <polymerday-data
+      id="data"
       page="sponsors"
-      subpage="{{routeData.sponsor}}"
-      data="{{sponsor}}"></polymerday-data>
+      order-by-key
+      equal-to="[[sponsor]]"
+      data="{{sponsorsData}}"></polymerday-data>
 
     <div class="banner">
-      <a href="[[sponsor.banner.link]]" target="_blank">
-        <img class="banner-image banner--big" src="[[sponsor.banner.image.big]]" alt="[[sponsor.banner.link]]">
-        <img class="banner-image banner--small" src="[[sponsor.banner.image.small]]" alt="[[sponsor.banner.link]]">
+      <a href="[[sponsorData.banner.link]]" target="_blank">
+        <img class="banner-image banner--big" src="[[sponsorData.banner.image.big]]" alt="[[sponsorData.banner.link]]">
+        <img class="banner-image banner--small" src="[[sponsorData.banner.image.small]]" alt="[[sponsorData.banner.link]]">
       </a>
     </div>
 
     <div class="content">
       <div class="double-layout hotel-list">
-        <template is="dom-repeat" items="[[sponsor.services]]">
+        <template is="dom-repeat" items="[[sponsorData.services]]">
           <paper-card class="double-layout__item pd-card" image="[[item.image]]">
             <div class="pd-card__content">
               <div class="pd-card__link">
@@ -90,29 +85,28 @@
       is: 'polymerday-sponsor-microsite',
 
       properties: {
-
-        sponsorName: String,
-
-        sponsor: Object,
-
-        route: Object,
-
-        routeData: Object,
-
-        subroute: Object
-
+        sponsor: {
+          type: String,
+          notify: true
+        },
+        sponsorData: Object,
+        sponsorsData: Array
       },
 
       observers: [
-        '_sponsorChanged(routeData.sponsor)'
+          '_getSponsor(sponsorsData.length)'
       ],
 
-      _sponsorChanged: function(value){
-        if (!value) {
-          this.set('route.path', 'sponsors');
+      _getSponsor: function(length) {
+        if (length) {
+          var sponsorData = this.$.data.child(this.sponsor);
+          if (sponsorData && sponsorData.banner) {
+            this.set('sponsorData', sponsorData);
+          } else {
+            this.sponsor = '';
+          }
         }
       }
-
     });
 
   </script>

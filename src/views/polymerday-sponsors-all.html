@@ -1,0 +1,90 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../commons/polymerday-localize-behavior.html">
+<link rel="import" href="../commons/polymerday-data.html">
+<link rel="import" href="../commons/polymerday-section-title.html">
+<link rel="import" href="./polymerday-sponsors/polymerday-sponsors-list.html">
+
+<dom-module id="polymerday-sponsors-all">
+  <style include="polymerday-classes">
+    <style include="polymerday-classes">
+    :host {
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .jumbotron {
+      background-color: var(--color-blue-light);
+      padding: 45px 0;
+    }
+
+    .title {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .sponsors {
+      max-width: 80%;
+    }
+
+    .item-subtitle {
+      color: var(--color-grey-primary);
+    }
+
+  </style>
+
+  </style>
+
+  <template>
+    <polymerday-section-title title="[[localize('sponsors.title')]]" message="[[localize('sponsors.text')]]"></polymerday-section-title>
+    <div class="content">
+      <polymerday-data page="sponsors" order-by="type" equal-to="platinum" data="{{sponsorsPlatinum}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsPlatinum.length]]">
+        <polymerday-sponsors-list class="full-width" sponsors="{{sponsorsPlatinum}}" header="[[localize('sponsors.sponsoringType', 'type', 'Platino')]]"
+          logos-size="xl"></polymerday-sponsors-list>
+      </template>
+
+      <polymerday-data page="sponsors" order-by="type" equal-to="gold" data="{{sponsorsGold}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsGold.length]]">
+        <polymerday-sponsors-list class="full-width" sponsors="{{sponsorsGold}}" header="[[localize('sponsors.sponsoringType', 'type', 'Gold')]]"
+          logos-size="l"></polymerday-sponsors-list>
+      </template>
+
+      <polymerday-data page="sponsors" order-by="type" equal-to="iron" data="{{sponsorsIron}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsIron.length]]">
+        <polymerday-sponsors-list class="full-width" sponsors="{{sponsorsIron}}" header="[[localize('sponsors.sponsoringType', 'type', 'Iron')]]"
+          logos-size="m"></polymerday-sponsors-list>
+      </template>
+
+      <polymerday-data page="sponsors" order-by="type" equal-to="paper" data="{{sponsorsPaper}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsPaper.length]]">
+        <polymerday-sponsors-list class="full-width" sponsors="{{sponsorsPaper}}" header="[[localize('sponsors.sponsoringType', 'type', 'Paper')]]"
+          logos-size="s"></polymerday-sponsors-list>
+      </template>
+    </div>
+    <div class="content full-width center jumbotron">
+      <h2 class="title item-title">[[localize('sponsors.callForAction.title')]]</h2>
+      <p class="item-subtitle">[[localize('sponsors.callForAction.text')]]</p>
+      <p>
+        <a class="callToAction" target="_blank" href="https://drive.google.com/open?id=0Bztz0UIAZ0trYklac2dwdWl0bVpoeS1yTzh4T2VSbkV2WmJn"
+          tabindex="-1">
+          <paper-button class="btn--primary">[[localize('sponsors.callForAction.link')]]</paper-button>
+        </a>
+      </p>
+    </div>
+  </template>
+
+  <script>
+  Polymer({
+
+    is: 'polymerday-sponsors-all',
+
+    behaviors: [
+      Polymerday.AppLocalizeBehavior
+    ]
+  });
+  </script>
+</dom-module>
