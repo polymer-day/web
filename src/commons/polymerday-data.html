@@ -12,8 +12,10 @@
       }
     </style>
     <firebase-query
+      id="firebaseQuery"
       path="{{_path}}"
       data="{{data}}"
+      order-by-key="[[orderByKey]]"
       order-by-child="[[orderBy]]"
       equal-to="[[equalTo]]">
     </firebase-query>
@@ -59,6 +61,7 @@
         },
 
         orderBy: String,
+        orderByKey: Boolean,
         equalTo: Object
       },
 
@@ -68,6 +71,10 @@
           path += '/' + subpage;
         }
         return path;
+      },
+
+      child: function(child) {
+        return this.$.firebaseQuery.child(child);
       }
 
     });
