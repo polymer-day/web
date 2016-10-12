@@ -5,19 +5,20 @@ PDW.App = (function() {
     var template = document.getElementById('t');
 
     template.app = {}; // Shared global properties among pages.
+    template.app.version = '0.0.1';
     template.app.isIOS = PDW.Utils.isIOS();
     template.app.isAndroid = PDW.Utils.isAndroid();
     template.app.isSafari = PDW.Utils.isSafari();
     template.app.isTouchScreen = PDW.Utils.isTouchScreen();
 
 
-    template.domStampedPromise = new Promise(resolve => {
-      template.addEventListener('dom-change', resolve);
-    });
-
-    template.domStampedPromise.then(function(){
-      console.log('dom-change captured');
-    });
+    // template.domStampedPromise = new Promise(resolve => {
+    //   template.addEventListener('dom-change', resolve);
+    // });
+    //
+    // template.domStampedPromise.then(function(){
+    //   console.log('dom-change captured');
+    // });
 
 
     PDW.App.Template = template;
