@@ -119,19 +119,6 @@
     .pd-card {
       position: relative;
     }
-
-    /* from 500px */
-    @media (min-width: 31.250em) {
-      img.map {
-        display: inline;
-        transform: none;
-        -webkit-transform: none;
-        -ms-transform: none;
-      }
-      a.full-width {
-        text-align: center;
-      }
-    }
   </style>
     <polymerday-section-title title="[[localize('venue.title')]]" message="[[localize('venue.text')]]"></polymerday-section-title>
     <template is="dom-if" if="[[staticMap]]">
@@ -241,7 +228,9 @@
          */
         staticMap: {
           type: Boolean,
-          value: false //in case it comes as undefined
+          value: function() {
+            return ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+          }
         }
       }
     });
