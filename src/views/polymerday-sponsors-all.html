@@ -64,6 +64,12 @@
         <polymerday-sponsors-list class="full-width" sponsors="{{sponsorsPaper}}" header="[[localize('sponsors.sponsoringType', 'type', 'Paper')]]"
           logos-size="s"></polymerday-sponsors-list>
       </template>
+
+      <polymerday-data page="sponsors" order-by="type" equal-to="neon" data="{{sponsorsNeon}}"></polymerday-data>
+      <template is="dom-if" if="[[sponsorsNeon.length]]">
+        <polymerday-sponsors-list class="full-width" sponsors="{{sponsorsNeon}}" header="[[localize('sponsors.sponsoringType', 'type', 'Neon')]]"
+          logos-size="s"></polymerday-sponsors-list>
+      </template>
     </div>
     <div class="content full-width center jumbotron">
       <h2 class="title item-title">[[localize('sponsors.callForAction.title')]]</h2>
