@@ -349,7 +349,12 @@
          * App logic and commons var for the whole application
          */
         app: {
-          type: Object
+          type: Object,
+          value: function() {
+            return {
+              version: '0.0.1'
+            };
+          }
         },
 
         menu: {
