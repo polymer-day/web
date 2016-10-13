@@ -166,17 +166,16 @@
       return num;
     },
 
-    _getTimeMinutes: function(date) {
-      var hours = this._fix2Digits(date.getUTCHours());
+    _parseTimeToCEST: function(date) {
+      var hours = this._fix2Digits(date.getUTCHours()+2);
       var minutes = this._fix2Digits(date.getUTCMinutes());
       return hours + ':' + minutes;
     },
 
     _getTime: function(start, end) {
-      var diff = 2*60*60*1000;
-      var dateStart = new Date(start+diff) ;
-      var dateEnd = new Date(end+diff);
-      return this._getTimeMinutes(dateStart) + ' - ' + this._getTimeMinutes(dateEnd);
+      var dateStart = new Date(start);
+      var dateEnd = new Date(end);
+      return this._parseTimeToCEST(dateStart) + ' - ' + this._parseTimeToCEST(dateEnd);
     },
 
     _getLanguageIcon: function(language) {

@@ -17,7 +17,9 @@
       data="{{data}}"
       order-by-key="[[orderByKey]]"
       order-by-child="[[orderBy]]"
-      equal-to="[[equalTo]]">
+      equal-to="[[equalTo]]"
+      start-at="[[startAt]]"
+      end-at="[[endAt]]">
     </firebase-query>
 
     <!-- https://github.com/polymer-day/web/issues/99
@@ -62,7 +64,9 @@
 
         orderBy: String,
         orderByKey: Boolean,
-        equalTo: Object
+        equalTo: Object,
+        startAt: String,
+        endAt: String
       },
 
       _computedPath: function(page, subpage){

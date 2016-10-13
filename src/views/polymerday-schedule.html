@@ -20,79 +20,30 @@
     :host {
       display: block;
     }
-
-    .tabs {
-      margin: 0 auto 40px;
+    .item-title {
+      width: 100%;
     }
-
-    .tabs__item {
-      background: var(--color-blue-light);
-      font-size: var(--text-size-default);
-    }
-
-    .tabs__item,
-    .tabs__item a {
-      -ms-flex: 1;
-      flex: 1;
-    }
-
-    .tabs__item a {
-      @apply(--layout-horizontal);
-      @apply(--layout-center-center);
-      @apply(--font-primary);
-      text-decoration: none;
-      text-transform: uppercase;
-      color: var(--color-blue-secondary);
-    }
-
-    paper-tab.iron-selected {
-      background: var(--color-blue-primary);
-    }
-
-    paper-tab.iron-selected a {
-      color: var(--color-white-primary)
-    }
-
-    /* from 720px */
-    @media (min-width: 45em) {
-      .tabs { width: 384px; }
-
-      .tabs__item,
-      .tabs__item a {
-        -ms-flex: 0 1 192px;
-        flex: 0 1 192px;
-      }
-
-      .tabs__item:first-child { border-radius: 4px 0 0 4px; }
-      .tabs__item:last-child { border-radius: 0 4px 4px 0; }
+    polymerday-schedule-list {
+      width: 100%;
     }
   </style>
 
-  <app-route
-    route="{{route}}"
-    pattern="/:day"
-    data="{{routeData}}"
-    tail="{{subroute}}"></app-route>
-
-  <polymerday-data data="{{eventsFriday}}" page="schedule" subpage="friday"></polymerday-data>
-  <polymerday-data data="{{eventsSaturday}}" page="schedule" subpage="saturday"></polymerday-data>
-
   <polymerday-section-title title="[[localize('schedule.title')]]" message="[[localize('schedule.text')]]"></polymerday-section-title>
 
-  <paper-tabs class="tabs" selected="{{day}}" attr-for-selected="day" fallback-selection="[[defaultDay]]" role="navigation" no-bar noink>
-    <paper-tab day="friday" link class="tabs__item">
-      <a href$="[[route.prefix]]/friday/">[[localize('schedule.friday')]]</a>
-    </paper-tab>
-    <paper-tab day="saturday" link class="tabs__item">
-      <a href$="[[route.prefix]]/saturday/">[[localize('schedule.saturday')]]</a>
-    </paper-tab>
-  </paper-tabs>
+  <polymerday-data data="{{eventsFriday}}" page="schedule" order-by="start" start-at="Fri Oct 21 2016 00:00:01 GMT+02:00" end-at="Fri Oct 21 2016 23:59:59 GMT+02:00"></polymerday-data>
+  <div class="content center">
+    <h2 class="item-title">[[localize('schedule.friday')]]</h2>
+  </div>
+  <div class="content full-width">
+    <polymerday-schedule-list day="friday" events="[[eventsFriday]]" route="{{route}}"></polymerday-schedule-list>
+  </div>
 
-  <div class="content full-width" role="tabpanel">
-    <iron-pages class="full-width" selected="{{day}}" attr-for-selected="day">
-      <polymerday-schedule-list day="friday" events="[[eventsFriday]]" route="{{subroute}}"></polymerday-schedule-list>
-      <polymerday-schedule-list day="saturday" events="[[eventsSaturday]]" route="{{subroute}}"></polymerday-schedule-list>
-    </iron-pages>
+  <polymerday-data data="{{eventsSaturday}}" page="schedule" order-by="start" start-at="Sat Oct 22 2016 00:00:01 GMT+02:00" end-at="Sat Oct 22 2016 23:59:59 GMT+02:00"></polymerday-data>
+  <div class="content center">
+    <h2 class="item-title">[[localize('schedule.saturday')]]</h2>
+  </div>
+  <div class="content full-width">
+    <polymerday-schedule-list day="saturday" events="[[eventsSaturday]]" route="{{route}}"></polymerday-schedule-list>
   </div>
 
   </template>
@@ -117,36 +68,8 @@
 
         subroute: {
           type: Object
-        },
-
-        defaultDay: {
-          type: String,
-          value: 'friday'
-        }
-      },
-
-      observers: [
-        'selectDay(routeData.day)'
-      ],
-
-      attached: function() {
-        // This will create the singleton element if it has not
-        // been created yet:
-        Polymer.IronA11yAnnouncer.requestAvailability();
-      },
-
-      selectDay: function(day) {
-        day = day || this.defaultDay;
-        if (this.day !== day) {
-          this.day = day;
-          this.async(function() {
-            var text = this.localize('schedule.scheduleFor', 'day', day);
-            this.fire('iron-announce', {'text': text }, { bubbles: true });
-            this.set('routeData.day', day);
-          }, 50);
         }
       }
-
     });
 
   </script>
