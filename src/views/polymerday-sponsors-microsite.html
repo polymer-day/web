@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <link rel="import" href="../commons/polymerday-data.html">
 
@@ -14,23 +15,6 @@
 
       .banner-image {
         width: 100%;
-        max-height: 16em;
-      }
-
-      .pd-card__content {
-        text-transform: uppercase;
-      }
-
-      @media (max-width: 45em) {
-        .banner--big {
-          display: none;
-        }
-      }
-
-      @media (min-width: 45em) {
-        .banner--small {
-          display: none;
-        }
       }
 
       .pd-card__link > a::before {
@@ -47,6 +31,8 @@
       }
     </style>
 
+    <iron-media-query query="(min-width: 45em)" query-matches="{{isBigScreen}}"></iron-media-query>
+
     <polymerday-data
       id="data"
       page="sponsors"
@@ -54,12 +40,9 @@
       equal-to="[[sponsor]]"
       data="{{sponsorsData}}"></polymerday-data>
 
-    <div class="banner">
-      <a href="[[sponsorData.banner.link]]" target="_blank">
-        <img class="banner-image banner--big" src="[[sponsorData.banner.image.big]]" alt="[[sponsorData.banner.link]]">
-        <img class="banner-image banner--small" src="[[sponsorData.banner.image.small]]" alt="[[sponsorData.banner.link]]">
-      </a>
-    </div>
+    <a href="[[sponsorData.banner.link]]" target="_blank">
+      <img class="banner-image" src$="[[_computeBannerImage(isBigScreen, sponsorData.banner)]]" alt$="[[sponsorData.banner.alt]]">
+    </a>
 
     <div class="content">
       <div class="double-layout hotel-list">
@@ -105,6 +88,14 @@
           } else {
             this.sponsor = '';
           }
+        }
+      },
+
+      _computeBannerImage: function(isBigScreen, banner) {
+        if (isBigScreen) {
+          return banner.big || banner.small;
+        } else {
+          return banner.small || banner.big;
         }
       }
     });
