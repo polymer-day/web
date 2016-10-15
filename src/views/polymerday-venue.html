@@ -16,28 +16,23 @@
     :host {
       display: block;
     }
-
     .card-content__address--container p{
       margin:0;
     }
-
     .card-title,
      .card-content__link{
       margin: 0;
       width:100%;
     }
-
     .card-title {
       margin: 0 0 9px;
     }
-
     .card-content__link iron-icon {
       height: 16px;
     }
     .card-content__link iron-icon[icon="place"] {
       vertical-align: baseline;
     }
-
     .card-content__address{
       margin-bottom: 0;
       color: var(--color-blue-medium);
@@ -47,12 +42,17 @@
       letter-spacing: 1px;
       line-height: 32px;
     }
-
     .map {
       height: 400px;
       margin-bottom: 40px;
     }
-
+    img.map {
+      display: block;
+      margin-bottom: 16px;
+      transform: translateX(calc(50vw - 320px)); /* img 640px/2 */
+      -webkit-transform: translateX(calc(50vw - 320px));
+      -ms-transform: translateX(calc(50vw - 320px));
+    }
     .gallery {
       display: -ms-flexbox;
       -ms-flex-wrap: wrap;
@@ -77,20 +77,16 @@
       width: 100%;
       height: auto;
     }
-
     .text-list {
       width: 100%;
     }
     .text-list li {
       margin: 16px 0;
     }
-
     .text-list a {
       color: var(--color-blue-primary);
     }
-
     .hotel-list { margin-top: 20px; }
-
     .pd-card__title {
       display: -ms-flexbox;
       display: flex;
@@ -99,7 +95,6 @@
       -ms-flex-pack: justify;
       justify-content: space-between;
     }
-
     .pd-card__title > a::before {
       content: "";
       position: absolute;
@@ -108,16 +103,21 @@
       width: 100%;
       height: 73%;
     }
-
     .pd-card {
       position: relative;
     }
-
   </style>
     <polymerday-section-title title="[[localize('venue.title')]]" message="[[localize('venue.text')]]"></polymerday-section-title>
-    <google-map class="map full-width" api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15" disable-zoom>
-      <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
-    </google-map>
+    <template is="dom-if" if="[[staticMap]]">
+      <a href="https://www.google.com/maps/dir//la+estacion+gran+teatro+principe+pio/" class="full-width"><img class="map"
+        src="https://maps.googleapis.com/maps/api/staticmap?center=principe+pio,ES&zoom=15&scale=2&size=640x400&maptype=roadmap&markers=color:red%7C40.4208456,-3.719&key=AIzaSyA4rAT0fdTZLNkJ5o0uaAwZ89vVPQpr_Kc"
+        alt="[[localize('venue.altMap')]]"></a>
+    </template>
+    <template is="dom-if" if="[[!staticMap]]">
+      <google-map class="map full-width" api-key="AIzaSyBFnBHD71cVoldgU_GINuLx0382dpqF1ZU" latitude="40.4208415" longitude="-3.7188506"  fit-to-markers zoom="15" disable-zoom>
+        <google-map-marker latitude="40.4208415" longitude="-3.7188506"></google-map-marker>
+      </google-map>
+    </template>
     <div class="content">
       <h2 class="card-title item-title">La Estación Gran Teatro Príncipe Pío</h2>
       <p class="card-content__link item-subtitle">
@@ -200,17 +200,23 @@
   </template>
 
   <script>
-
     Polymer({
-
       is: 'polymerday-venue',
-
       behaviors: [
         Polymerday.AppLocalizeBehavior
-      ]
-
+      ],
+      properties: {
+        /**
+         * Ideally true when this component is placed in a device with touch screen
+         */
+        staticMap: {
+          type: Boolean,
+          value: function() {
+            return ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+          }
+        }
+      }
     });
-
   </script>
 
 </dom-module>
