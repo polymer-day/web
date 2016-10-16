@@ -58,7 +58,7 @@
     };
 
     var lang = navigator.language || navigator.userLanguage || document.documentElement.lang;
-    if (['en','es'].indexOf(lang) === -1) {
+    if (['en','es'].indexOf(lang.substring(0,2)) === -1) {
       lang = 'en';
     }
     document.documentElement.lang = lang;
