@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/timer-days/timer-days.html">
+<link rel="import" href="../../bower_components/polymerday-twitter-timeline/polymerday-twitter-timeline.html">
 
 <link rel="import" href="../commons/polymerday-localize-behavior.html">
 
@@ -75,6 +76,11 @@
           @apply(--text-small-white);
         };
       }
+
+      polymerday-twitter-timeline {
+         text-align: left;
+         margin-top: 50px;
+      }
     </style>
 
     <timer-days lang="[[language]]" target-date="[[_dateforTimer(date)]]"></timer-days>
@@ -83,6 +89,14 @@
       <h1 class="logo"><img src="../images/logo-polymerday-color.svg" alt="Polymer Day"></h1>
       <span class="location">Madrid</span>
       <p class="description">[[localize('home.intro')]]</p>
+      <polymerday-twitter-timeline
+        lang="es"
+        height="500"
+        width="900"
+        link-color="#616161"
+        chrome="noheader nofooter noborders"
+        widget-id="786489175050625024">
+      </polymerday-twitter-timeline>
     </div>
 
   </template>
