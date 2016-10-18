@@ -17,17 +17,14 @@
         width: 100%;
       }
 
-      .pd-card__link > a::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+      paper-card {
         height: 100%;
-      }
-
-      .pd-card {
-        position: relative;
+        --paper-card-header-image-text: {
+          @apply(--item-title);
+        }
+        --paper-card-content: {
+          @apply(--text-normal);
+        }
       }
     </style>
 
@@ -47,14 +44,11 @@
     <div class="content">
       <div class="double-layout hotel-list">
         <template is="dom-repeat" items="[[sponsorData.services]]">
-          <paper-card class="double-layout__item pd-card" image="[[item.image]]">
-            <div class="pd-card__content">
-              <div class="pd-card__link">
-                <a href$="[[item.link]]" target="_blank"></a>
-              </div>
-              <p>[[item.text]]</p>
-            </div>
-          </paper-card>
+          <a href$="[[item.link]]" target="_blank" class="double-layout__item">
+            <paper-card heading$="[[item.title]]" image="[[item.image]]">
+              <p class="card-content">[[item.text]]</p>
+            </paper-card>
+          </a>
         </template>
       </div>
     </div>
