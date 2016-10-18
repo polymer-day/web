@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/timer-days/timer-days.html">
 <link rel="import" href="../../bower_components/polymerday-twitter-timeline/polymerday-twitter-timeline.html">
+<link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
 
 <link rel="import" href="../commons/polymerday-localize-behavior.html">
 
@@ -44,6 +45,16 @@
         height: auto;
         max-width: 380px;
         min-width: 300px;
+      }
+
+      .videos {
+        margin:0 auto;
+        text-align:center;
+      }
+      .youtube {
+        float:left;
+        width:45%;
+        margin:10px;
       }
 
       timer-days {
@@ -89,6 +100,27 @@
       <h1 class="logo"><img src="../images/logo-polymerday-color.svg" alt="Polymer Day"></h1>
       <span class="location">Madrid</span>
       <p class="description">[[localize('home.intro')]]</p>
+      <div class="videos">
+        <google-youtube
+          class='youtube'
+          video-id="NbRKOP-tDeM"
+          height="427"
+          width="240"
+          rel="0"
+          start="0"
+          autoplay="0">
+        </google-youtube>
+        
+        <google-youtube
+          class='youtube'
+          video-id="slH7dRRys68"
+          height="427"
+          width="240"
+          rel="0"
+          start="0"
+          autoplay="0">
+        </google-youtube>
+      </div>
       <polymerday-twitter-timeline
         lang="es"
         height="500"

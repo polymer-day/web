@@ -52,7 +52,8 @@
     "app-localize-behavior": "PolymerElements/app-localize-behavior#^0.10.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.4.3",
     "app-storage": "PolymerElements/app-storage#^0.9.5",
-    "dom-repeat-n": "^1.0.2"
+    "dom-repeat-n": "^1.0.2",
+    "google-youtube":"https://github.com/GoogleWebComponents/google-youtube.git"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
