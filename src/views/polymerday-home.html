@@ -48,13 +48,14 @@
       }
 
       .videos {
-        margin:0 auto;
-        text-align:center;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        flex-wrap: wrap;
       }
       .youtube {
-        float:left;
-        width:45%;
-        margin:10px;
+        margin: 10px;
+        min-width: 280px;
       }
 
       timer-days {
@@ -110,7 +111,7 @@
           start="0"
           autoplay="0">
         </google-youtube>
-        
+
         <google-youtube
           class='youtube'
           video-id="slH7dRRys68"
