@@ -16,121 +16,45 @@
         display: block;
       }
 
-      .date {
-        @apply(--text-subtitle);
-        margin: 24px auto 24px;
-        text-align: center;
-      }
-
-      .description {
-        margin: 24px 0;
-        max-width: 832px;
-        @apply(--text-normal);
-      }
-
-      .location {
-        display: block;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-        @apply(--text-title-secondary);
-      }
-
-      .logo {
-        margin: 0 20px 20px;
-        padding: 0;
-      }
-
-      .logo img {
+      .videoWrapper {
+      	position: relative;
+      	padding-bottom: 54%; /* 16:9 */
+      	padding-top: 25px;
+      	height: 0;
         width: 100%;
-        height: auto;
-        max-width: 380px;
-        min-width: 300px;
+        margin: 0 auto;
+
       }
-
-      .videos {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-around;
-        flex-wrap: wrap;
-      }
-      .youtube {
-        margin: 10px;
-        min-width: 280px;
-      }
-
-      timer-days {
-        align-items: center;
-        background-image: url('../images/bg-timer-days.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        background-color: var(--color-white-primary);
-        border: none;
-        box-shadow: none;
-        display: flex;
-        height: 200px;
-        justify-content: center;
-        min-width: 320px;
-
-        --timer-days-font-color: var(--color-white-primary);
-        --timer-days-font-number-size: 48px;
-
-        --timer-days-hover-font-color: var(--color-white-primary);
-        --timer-days-hover-border-color: none;
-      }
-
-      timer-days {
-        --timer-days-number: {
-          @apply(--text-big-white-thin);
-        };
-
-        --timer-days-text: {
-          @apply(--text-small-white);
-        };
+      .videoWrapper iframe {
+      	position: absolute;
+      	top: 0;
+      	left: 0;
+      	width: 100%;
+      	height: 100%;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
       }
 
       polymerday-twitter-timeline {
          text-align: left;
          margin-top: 50px;
+         max-width: 900px;
+         margin: 0 auto;
       }
+
     </style>
-
-    <timer-days lang="[[language]]" target-date="[[_dateforTimer(date)]]"></timer-days>
-    <div class="content center">
-      <span class="date">[[localize('home.date', 'eventDate', date)]]</span>
-      <h1 class="logo"><img src="../images/logo-polymerday-color.svg" alt="Polymer Day"></h1>
-      <span class="location">Madrid</span>
-      <p class="description">[[localize('home.intro')]]</p>
-      <div class="videos">
-        <google-youtube
-          class='youtube'
-          video-id="NbRKOP-tDeM"
-          height="427"
-          width="240"
-          rel="0"
-          start="0"
-          autoplay="0">
-        </google-youtube>
-
-        <google-youtube
-          class='youtube'
-          video-id="slH7dRRys68"
-          height="427"
-          width="240"
-          rel="0"
-          start="0"
-          autoplay="0">
-        </google-youtube>
-      </div>
-      <polymerday-twitter-timeline
-        lang="es"
-        height="500"
-        width="900"
-        link-color="#616161"
-        chrome="noheader nofooter noborders"
-        widget-id="786489175050625024">
-      </polymerday-twitter-timeline>
+    <div class="videoWrapper">
+      <iframe src='https://eventos.televeo.com/player/aec' frameborder='0' allowfullscreen></iframe>
     </div>
+
+    <polymerday-twitter-timeline
+      lang="es"
+      height="500"
+      width="900"
+      link-color="#616161"
+      chrome="noheader nofooter noborders"
+      widget-id="786489175050625024">
+    </polymerday-twitter-timeline>
+
 
   </template>
 
