@@ -64,6 +64,14 @@
 
       .title {
         margin: 0 0 9px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: baseline;
+        align-items: baseline;
+      }
+
+      .title__image {
+        margin-right: 10px;
       }
 
       .subtitle {
@@ -79,8 +87,8 @@
         @apply(--button-shadow);
       }
 
-      /* from 769px */
-      @media (min-width: 48.06em) {
+      /* from 720px */
+      @media (min-width: 45em) {
         .header__btn {
           -ms-flex-order: 0;
           order: 0;
@@ -102,7 +110,12 @@
 
     <div class="header">
       <header class="header__title">
-        <h2 class="title item-title">[[_getLanguageIcon(event.language)]][[event.name]]</h2>
+        <h2 class="title item-title">
+          <template is="dom-if" if="[[_getForeignLanguage(event.language)]]">
+            <img class="title__image" src$="[[_getLanguageFlag(event.language)]]" width="24" alt$="[[_getForeignLanguage(event.language)]]">
+          </template>
+          <span>[[event.name]]</span>
+        </h2>
         <p class="subtitle item-subtitle">[[event.speaker]]</p>
       </header>
 
@@ -178,15 +191,16 @@
       return this._parseTimeToCEST(dateStart) + ' - ' + this._parseTimeToCEST(dateEnd);
     },
 
-    _getLanguageIcon: function(language) {
+    _getForeignLanguage: function(language) {
+      return language === 'en' ? language : undefined;
+    },
+
+    _getLanguageFlag: function(language) {
       if (language === 'en') {
-        return '🇺🇸 ';
-      } else if (language === 'es') {
-        return '🇪🇸 ';
-      } else {
-        return undefined;
+        return this.resolveUrl('../../images/flag-en.png');
       }
     }
+
   });
   </script>
 </dom-module>

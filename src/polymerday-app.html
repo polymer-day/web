@@ -17,6 +17,7 @@
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
@@ -74,7 +75,10 @@
         line-height: 1;
       }
 
-      [main-title] img { display: block; }
+      [main-title] img {
+        display: block;
+        width: 120px!important;
+      }
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
@@ -221,6 +225,10 @@
           font-size: 36px;
         }
 
+        [main-title] img {
+          width: 188px!important;
+        }
+
         .menu-desktop, .tickets {
           display: block;
         }
@@ -257,6 +265,8 @@
       data="{{menu}}"
       page="menu">
     </polymerday-data>
+
+    <app-scrollpos-control selected="[[page]]" reset="[[_resetScroll(subroute)]]"></app-scrollpos-control>
 
     <app-drawer-layout force-narrow>
 
@@ -306,8 +316,8 @@
               <iron-icon src="images/icon-tickets.svg"></iron-icon>
             </a>
             <a class="tickets" href="http://polymerday.eventbrite.es/" target="_blank">
-              <paper-fab src="images/icon-tickets.svg"></paper-fab>
-              <span>[[localize('tickets')]]</span>
+              <paper-fab src="images/icon-tickets.svg" style="display:none;"></paper-fab>
+              <span style="display:none;">[[localize('tickets')]]</span>
             </a>
           </app-toolbar>
         </app-header>
@@ -470,8 +480,11 @@
       cookiesPolicyClose: function() {
         localStorage.setItem('cookies-policy-accepted', true);
         this.$.cookiesPolicy.close();
-      }
+      },
 
+      _resetScroll: function(subroute) {
+        return (subroute.path.length > 1 || document.location.hash) ? false : true;
+      }
     });
 
   </script>
