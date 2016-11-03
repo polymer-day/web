@@ -1,9 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/timer-days/timer-days.html">
 <link rel="import" href="../../bower_components/polymerday-twitter-timeline/polymerday-twitter-timeline.html">
-<link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
 
 <link rel="import" href="../commons/polymerday-localize-behavior.html">
 
@@ -15,46 +13,54 @@
       :host {
         display: block;
       }
-
-      .videoWrapper {
-      	position: relative;
-      	padding-bottom: 54%; /* 16:9 */
-      	padding-top: 25px;
-      	height: 0;
-        width: 100%;
-        margin: 0 auto;
-      }
-      .videoWrapper iframe {
-      	position: absolute;
-      	top: 0;
-      	left: 0;
-      	width: 100%;
-      	height: 100%;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
+      .date {
+       @apply(--text-subtitle);
+       margin: 24px auto 24px;
+       text-align: center;
+     }
+     .description {
+       margin: 24px 0;
+       max-width: 832px;
+       @apply(--text-normal);
+     }
+     .location {
+       display: block;
+       margin-bottom: 20px;
+       text-transform: uppercase;
+       @apply(--text-title-secondary);
+     }
+     .logo {
+       margin: 0 20px 20px;
+       padding: 0;
+     }
+     .logo img {
+       width: 100%;
+       height: auto;
+       max-width: 380px;
+       min-width: 300px;
+     }
       polymerday-twitter-timeline {
          text-align: left;
          margin-top: 50px;
          max-width: 900px;
          margin: 0 auto;
       }
-
     </style>
-    <div class="videoWrapper">
-      <iframe src='https://eventos.televeo.com/player/aec' frameborder='0' allowfullscreen></iframe>
+    <div class="content center">
+      <!-- <span class="date">[[localize('home.date', 'eventDate', date)]]</span> -->
+      <span class="date">[[localize('home.banner')]]</span>
+      <h1 class="logo"><img src="../images/logo-polymerday-color.svg" alt="Polymer Day"></h1>
+      <span class="location">Madrid</span>
+      <p class="description">[[localize('home.intro')]]</p>
+      <polymerday-twitter-timeline
+        lang="es"
+        height="500"
+        width="900"
+        link-color="#616161"
+        chrome="noheader nofooter noborders"
+        widget-id="786489175050625024">
+      </polymerday-twitter-timeline>
     </div>
-
-    <polymerday-twitter-timeline
-      lang="es"
-      height="500"
-      width="900"
-      link-color="#616161"
-      chrome="noheader nofooter noborders"
-      widget-id="786489175050625024">
-    </polymerday-twitter-timeline>
-
-
   </template>
 
   <script>
