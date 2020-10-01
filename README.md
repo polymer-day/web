@@ -1,8 +1,8 @@
-# Polymer Day app
+# Polymer Day App
 
 The first event focused on Google's Polymer Library and App's Toolbox in Spain. We dedicate one an a half days to talk about Web Components technology. More than 10 talks from developer who are using Polymer during long time and for real projects.
 
-## Install the Polymer Day app
+## Install the Polymer Day App
 
 First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
 
